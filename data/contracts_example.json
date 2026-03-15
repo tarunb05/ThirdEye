@@ -1,0 +1,18 @@
+[
+  {
+    "id": "dao_hack",
+    "text": "Reentrancy vulnerability in withdraw function caused the DAO hack in 2016 allowing attackers to drain funds."
+  },
+  {
+    "id": "parity_wallet_bug",
+    "text": "Parity wallet smart contract bug allowed attackers to freeze millions of dollars worth of Ether."
+  },
+  {
+    "id": "integer_overflow",
+    "text": "Integer overflow vulnerability allowed manipulation of token balances in early ERC20 contracts."
+  },
+  {
+    "id": "unchecked_call",
+    "text": "Unchecked external call return values can allow unexpected contract behavior and fund loss."
+  }
+]
