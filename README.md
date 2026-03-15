@@ -11,9 +11,11 @@ ThirdEye is a multi-LLM powered Solidity smart contract vulnerability scanner th
 ## Local Setup
 
 ### Backend
-## ⚠️Important
+#### ⚠️Important
 
-Always activate the environment before running the backend:
+Always activate the environment before running the backend: ```bash
+py -3.11 -m venv venv
+.\venv\Scripts\activate```
 
 ```bash
 cd backend
