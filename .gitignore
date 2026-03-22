@@ -13,3 +13,10 @@ dist/
 
 # OS
 .DS_Store
+
+# Chromadb integration
+thirdeye-chromadb/chroma_db/
+thirdeye-chromadb/.venv/
+thirdeye-chromadb/data/
+*.DS_Store
+
