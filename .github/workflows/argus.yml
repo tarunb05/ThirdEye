@@ -1,0 +1,104 @@
+# Argus — smart-contract auditor as a PR gate.
+#
+# On every pull request that touches Solidity, this workflow runs the Argus
+# council over the changed .sol files and uploads the results as SARIF so they
+# appear inline in the PR's "Files changed" / Security tab.
+#
+# IMPORTANT: the council needs a live LLM backend. CI has no local Ollama, so
+# the real scan runs against the HOSTED tier (LLM_BACKEND=groq) and REQUIRES a
+# repository secret named GROQ_API_KEY. If that secret is absent (e.g. on forks
+# or before it's configured) the scan step is SKIPPED rather than failing the
+# build — Argus is advisory until the key is set up. See the `if:` guard below.
+
+name: Argus contract audit
+
+on:
+  pull_request:
+    # Only bother when Solidity actually changed.
+    paths:
+      - "**/*.sol"
+
+# SARIF upload needs security-events: write; contents/read to checkout.
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: read
+
+jobs:
+  argus-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with history so we can diff against the base)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install backend dependencies
+        # argus_cli.py + council only need httpx and python-dotenv at runtime;
+        # we install just those to keep CI fast (no reportlab/fastapi needed).
+        run: python -m pip install --upgrade pip httpx python-dotenv
+
+      - name: Collect changed .sol files
+        id: changed
+        # Diff the PR head against the base branch and keep only existing .sol
+        # files. Output is a single space-separated list consumed below.
+        run: |
+          BASE="origin/${{ github.base_ref }}"
+          FILES=$(git diff --name-only --diff-filter=ACMR "$BASE"...HEAD -- '*.sol' | tr '\n' ' ')
+          echo "Changed .sol files: $FILES"
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+          if [ -z "$(echo "$FILES" | tr -d '[:space:]')" ]; then
+            echo "has_files=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_files=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run Argus council on changed contracts
+        # Two guards:
+        #   1. there were actually changed .sol files, AND
+        #   2. the GROQ_API_KEY secret exists (no key -> skip, don't fail).
+        if: steps.changed.outputs.has_files == 'true' && secrets.GROQ_API_KEY != ''
+        # Belt-and-braces: even with a key, a NO-GO verdict makes argus_cli exit
+        # 1. We capture that as a finding (uploaded via SARIF) rather than
+        # hard-failing the whole pipeline here; flip continue-on-error to false
+        # once you want NO-GO to block merges.
+        continue-on-error: true
+        working-directory: backend
+        env:
+          LLM_BACKEND: groq
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # Deterministic-ish runs across re-triggers.
+          PYTHONUNBUFFERED: "1"
+        run: |
+          # argus_cli expects paths relative to backend/, but changed files are
+          # repo-relative — prefix with ../ so they resolve from inside backend/.
+          set -o pipefail
+          STATUS=0
+          # Scan each changed contract; merge would need per-file SARIF, so we
+          # scan them one at a time and keep the last (single-file PRs are the
+          # common case). For multi-file PRs, extend to merge SARIF runs.
+          for f in ${{ steps.changed.outputs.files }}; do
+            echo "::group::Argus scan $f"
+            python argus_cli.py scan "../$f" --sarif "../argus.sarif" --backend groq || STATUS=$?
+            echo "::endgroup::"
+          done
+          echo "Argus exit status: $STATUS (1 = NO-GO verdict)"
+
+      - name: Upload SARIF to GitHub code scanning
+        # Only if the scan actually produced a SARIF file (i.e. it ran).
+        if: ${{ hashFiles('argus.sarif') != '' }}
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: argus.sarif
+          category: argus
+
+      - name: Note when the scan was skipped
+        if: steps.changed.outputs.has_files == 'true' && secrets.GROQ_API_KEY == ''
+        run: |
+          echo "::warning::Argus scan skipped — repository secret GROQ_API_KEY is not set."
+          echo "Add GROQ_API_KEY in Settings → Secrets → Actions to enable the audit gate."

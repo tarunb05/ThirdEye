@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(./venv/Scripts/pip list *)",
+      "Bash(./venv/Scripts/pip install *)",
+      "Bash(./venv/Scripts/python -c ' *)",
+      "Bash(./venv/Scripts/python dataset_runner.py --static-only)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(node_modules/.bin/vite build *)"
+    ]
+  }
+}
