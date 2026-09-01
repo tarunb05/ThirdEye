@@ -1,0 +1,75 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+venv_wsl/
+venv_mac/
+venv_win/
+*.db
+.env
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+# ANCHORED to backend/. This used to be a bare "data/", which git matches at ANY
+# depth — so it silently swallowed frontend/src/data/, the directory holding the
+# generated benchmark snapshot, the campus findings module and the scan replays.
+# Exhibit.tsx and TryIt.tsx import all three, so a fresh clone of this repo could
+# not build the frontend at all, and the snapshot a few lines below is committed
+# specifically so the deployed dashboard has real numbers without the datasets.
+# git add frontend/ skips ignored paths SILENTLY, so nothing ever complained.
+backend/data/
+
+# Foundry build artifacts (the workspace SOURCE is tracked; out/cache are not)
+backend/dynamic_workspace/out/
+backend/dynamic_workspace/cache/
+
+# Large third-party benchmark corpora (cloned by backend/eval/loaders/, not
+# authored here). ANCHORED with a leading slash: this means the top-level
+# datasets/ ONLY. Unanchored, it also swallowed backend/datasets/ -- the
+# tracked Etherscan corpus and index.json -- exactly the way a bare 'data/'
+# once swallowed frontend/src/data/. git add skips ignored paths silently.
+/datasets/
+
+# Generated eval CHECKPOINTS are large; ignored.
+backend/eval/checkpoints/
+
+# Result tables under results/ ARE tracked: they are small, and they are what
+# the paper and the dashboard cite.
+#
+# This was previously "backend/eval/results/*" plus a hand-maintained !allowlist,
+# which failed twice over. New result files were silently dropped unless someone
+# remembered to add a ! line, and NOTHING in a subdirectory could ever be
+# re-allowed at all -- git does not descend into an ignored directory to honour a
+# negation, so the entire dgx_fullscale/ campus capture was invisible.
+#
+# Inverted: track by default, and name the few things that must stay out.
+backend/eval/results/.pipeline.lock
+backend/eval/results/dgx_fullscale/ollama.log
+backend/eval/results/benchmark_run.log
+backend/eval/results/benchmark_vuln_rerun.log
+
+# New benchmark buckets: the CONTRACTS are large third-party corpora and stay
+# out, but the ground-truth manifests and the build scripts are small, are what
+# make every number reproducible, and are tracked. Ignoring the whole directory
+# (which is what this used to do) meant the labels lived only on one laptop.
+smartcontract-datasets/*
+!smartcontract-datasets/README.md
+!smartcontract-datasets/_manifests/
+!smartcontract-datasets/_scripts/
+
+.vercel
+
+# local scratch
+*.log
+nohup.out
+
+# Session-scratch orchestration scripts (ad-hoc batch drivers used while runs
+# were quota/GPU throttled). The reproducible commands live in RESUME.md and
+# the experiments themselves are the tracked eval/*.py modules.
+backend/eval/overnight.sh
+backend/eval/phaseB.sh
+backend/eval/phaseD.sh
+backend/eval/finish.sh
+backend/eval/pipeline_all.sh
+publish_when_done.sh

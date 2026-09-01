@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: thirdeye-backend
+    env: python
+    rootDir: backend
+    plan: free
+    buildCommand: >
+      pip install -r requirements.txt &&
+      (pip install solc-select && solc-select install 0.8.20 && solc-select use 0.8.20 ||
+       echo "[render] solc/Slither setup failed - continuing without it, services/slither.py degrades gracefully")
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: LLM_BACKEND
+        value: groq
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      # REQUIRED — the hosted council runs on Cerebras (gpt-oss-120b + zai-glm-4.7)
+      # and the arbitration judge is Cerebras. Without this key the council
+      # errors and scans return INCONCLUSIVE. Set the value in the Render dashboard.
+      - key: CEREBRAS_API_KEY
+        sync: false
+      - key: CEREBRAS_MODEL
+        value: gpt-oss-120b
+      - key: CEREBRAS_MODEL_B
+        value: zai-glm-4.7
+      - key: DATABASE_URL
+        sync: false
+      - key: ENABLE_VECTORDB
+        value: "false"
+      - key: ALLOWED_ORIGINS
+        value: "https://REPLACE-WITH-YOUR-VERCEL-URL.vercel.app"

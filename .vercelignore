@@ -1,0 +1,15 @@
+# Only the frontend is deployed (Vercel Root Directory = frontend).
+# Everything below is evaluation data, corpora, or the Python backend — none of
+# it is used by the client bundle, and uploading it would push a multi-GB
+# payload for a 289KB build.
+backend/
+datasets/
+smartcontract-datasets/
+etherscan_verified-*/
+docs/
+documenso/
+**/venv*/
+**/__pycache__/
+**/node_modules/
+*.epub
+*.pdf
