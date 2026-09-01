@@ -1,0 +1,260 @@
+@import "tailwindcss";
+
+/* ─── Third-Eye design tokens ─────────────────────────────────────────
+   ONE type system with the exhibit, because they are one artifact.
+
+   The exhibit reads as a lab report, and the register comes almost entirely
+   from type: serif prose, monospace numbers, sans reserved for chrome. The tool
+   was set in Outfit -- a geometric display face whose single-storey 'a' and wide
+   caps read as consumer product -- so clicking from the paper into the tool felt
+   like leaving one document for a different one.
+
+   THE MAPPING, and the reason it is not "serif everywhere": a tool is not a
+   document. Prose and headings carry the report voice; controls must stay
+   invisible, and a serif button reads as a mistake.
+     serif  -- headings and explanatory prose      (the argument)
+     mono   -- every number, verdict, code, label  (the measurement)
+     sans   -- buttons, inputs, nav, chrome        (the machinery)
+
+   Inter, not Outfit, for that sans: it is designed to disappear at UI sizes,
+   which is the whole job. It was already named in the exhibit's font stack but
+   had never actually been loaded, so the exhibit was falling back to system
+   faces -- loading it here fixes both surfaces at once.                  */
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Source Serif 4", "Iowan Old Style", Charter, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  /* Base surfaces — bone paper. (The comment here used to describe the old
+     near-black plum theme, three migrations after it stopped being true.) */
+  --color-base: #F7F5F0;        /* app background */
+  --color-surface: #FFFFFF;     /* panels */
+  --color-surface-2: #EDE9DF;   /* raised panels */
+  --color-line: rgba(22,21,15,0.10);
+
+  /* Accent — the VALIDATED data blue, matching lib/theme.ts and the exhibit.
+     #2C4A6B was replaced because it failed the palette validator on two checks:
+     outside the lightness band and under the chroma floor, i.e. it rendered as
+     grey rather than as a hue. It survived here after lib/theme.ts was fixed,
+     which is why the deployed bundle still carried it. --color-gold is a
+     historical name; it has been the signal vermillion since the move off
+     violet, and renaming it would touch every call site for no gain. */
+  --color-accent: #1F6FB2;
+  --color-accent-soft: #4A88C4;
+  --color-accent-dim: rgba(31,111,178,0.08);
+  --color-gold: #B4351F;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(22, 21, 15, 0.22) transparent;
+}
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(22, 21, 15, 0.18);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(22, 21, 15, 0.32);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  /* Flat bone, no gradient. The decorative glow was part of the dark-SaaS look;
+     a lab-report surface should be uniform, and a flat field also survives a
+     projector without banding. */
+  background: #F7F5F0;
+  color: #16150F;
+  font-family: var(--font-sans);
+  /* "ss01","cv01" were Outfit's stylistic sets and meant nothing to any other
+     face; they shipped as dead declarations once Outfit went. Optical sizing is
+     what Source Serif 4 actually wants -- it is a variable optical-size font, so
+     display sizes get the tighter-spaced cut automatically. */
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizedLegibility;
+}
+
+textarea,
+code,
+pre,
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* THE REPORT VOICE. Headings carry the argument, so they take the serif; an
+   element selector is specificity 0,0,1, so any heading that must stay mono or
+   sans opts out simply by keeping its Tailwind font- class (0,1,0 wins). That
+   is deliberate: h3 is used in this app mostly for small uppercase tracked
+   labels, which are chrome, not prose -- so h3 is NOT in this rule. */
+h1,
+h2 {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  letter-spacing: -0.011em;
+}
+
+/* Explanatory prose. Opt-in, because most text in a tool is a label, not
+   writing -- blanket-serifing body copy would catch every table cell. */
+.prose-report {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  line-height: 1.62;
+}
+
+::selection {
+  background: #F6E7E2;
+  color: #16150F;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  /* Was rgba(196,181,253,.6) -- the old dark-theme lilac. On bone that is a
+     ~1.3:1 pale wash: keyboard users had a focus ring they could not see, which
+     is the one indicator they navigate by. Ink at full opacity is unambiguous
+     on every surface in the app. */
+  outline: 2px solid rgba(22, 21, 15, 0.75);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ─── Animations ─────────────────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+.animate-pulse-glow { animation: pulse-glow 1.8s ease-in-out infinite; }
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up { animation: slide-up 0.35s ease-out both; }
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in { animation: fade-in 0.3s ease-out both; }
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-scale-in { animation: scale-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(22, 21, 15, 0.03) 25%,
+    rgba(22, 21, 15, 0.08) 50%,
+    rgba(22, 21, 15, 0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+@keyframes scan-sweep {
+  0% { transform: translateY(-120%); }
+  100% { transform: translateY(320%); }
+}
+.scan-sweep { animation: scan-sweep 1.8s ease-in-out infinite; }
+
+/* Slow spin for radar / scanner motifs */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin-slow 8s linear infinite; }
+
+/* Ring pulse for live-status indicators */
+@keyframes ring-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(44,74,107,0.08); }
+  70% { box-shadow: 0 0 0 8px rgba(44,74,107,0.08); }
+  100% { box-shadow: 0 0 0 0 rgba(44,74,107,0.08); }
+}
+.animate-ring-pulse { animation: ring-pulse 1.8s ease-out infinite; }
+
+/* Flow-pulse: a token travelling along a pipeline edge (SVG dash) */
+@keyframes flow-dash {
+  to { stroke-dashoffset: -32; }
+}
+.flow-dash { animation: flow-dash 0.9s linear infinite; }
+
+/* Marching token along a path */
+@keyframes node-light {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Bar grow for charts */
+@keyframes bar-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.bar-grow {
+  transform-origin: left center;
+  animation: bar-grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes bar-rise {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+/* Subtle background grid for hero panels */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(196, 181, 253, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 181, 253, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Premium soft glow ring for the verdict + brand mark */
+@keyframes lid-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+.animate-lid-blink { animation: lid-blink 5.5s ease-in-out infinite; transform-origin: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ── Exhibit (light) ──────────────────────────────────────────────────
+   The app shell is dark; the exhibit is deliberately light so it survives a
+   projector in a lit room. Without this the dark body shows through on
+   overscroll and around the page edges. Applied by Exhibit.tsx on mount. */
+body.exhibit-mode {
+  background: #F7F5F0;
+  color: #16150F;
+}
+body.exhibit-mode ::selection { background: #F6E7E2; }
