@@ -1,0 +1,19 @@
+python-dotenv==1.0.1
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+pydantic==2.9.0
+httpx==0.27.0
+aiosqlite==0.20.0
+asyncpg==0.29.0
+passlib==1.7.4
+bcrypt==4.0.1
+python-multipart==0.0.12
+reportlab==4.2.5
+chromadb==0.5.0
+openpyxl>=3.1.0
+slither-analyzer==0.11.5
+solc-select==1.2.0
+# Optional: retrieval grounding (services/retrieval.py) prefers LanceDB but
+# falls back to an in-memory cosine index if it's absent, so this is not
+# required to run. Uncomment to enable the persistent vector store.
+# lancedb>=0.13.0
