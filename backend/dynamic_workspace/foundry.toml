@@ -1,0 +1,5 @@
+[profile.default]
+src = "src"
+test = "test"
+auto_detect_solc = true
+optimizer = false
