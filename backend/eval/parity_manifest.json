@@ -1,0 +1,223 @@
+{
+ "note": "Laptop (RTX 4GB) baseline verdicts for the DGX hardware-parity check. Same contracts, same seed, same no-arbitration config.",
+ "source": "checkpoints/benchmark/ollama_noarb/seed0",
+ "n": 24,
+ "baseline": [
+  {
+   "contract_id": "01_dappclean_erc1724_zkassetmintable",
+   "bucket": "01_safe",
+   "tier": "audit_reviewed_clean",
+   "expected": "safe",
+   "verdict": "GO",
+   "latency_s": 64.2,
+   "api_calls": 3
+  },
+  {
+   "contract_id": "01_dappclean_wrapdonft",
+   "bucket": "01_safe",
+   "tier": "audit_reviewed_clean",
+   "expected": "safe",
+   "verdict": "NO-GO",
+   "latency_s": 39.3,
+   "api_calls": 3
+  },
+  {
+   "contract_id": "01_dappclean_schainsfunctionalityinternal",
+   "bucket": "01_safe",
+   "tier": "audit_reviewed_clean",
+   "expected": "safe",
+   "verdict": "GO",
+   "latency_s": 157.4,
+   "api_calls": 3
+  },
+  {
+   "contract_id": "01_dappclean_pools_compoundtempuspool",
+   "bucket": "01_safe",
+   "tier": "audit_reviewed_clean",
+   "expected": "safe",
+   "verdict": "NO-GO",
+   "latency_s": 49.4,
+   "api_calls": 3
+  },
+  {
+   "contract_id": "01_oz_access_extensions_accesscontroldefaultadminrules",
+   "bucket": "01_safe",
+   "tier": "audited_library",
+   "expected": "safe",
+   "verdict": "NO-GO",
+   "latency_s": 275.8,
+   "api_calls": 3
+  },
+  {
+   "contract_id": "01_ozup_utils_multicallupgradeable",
+   "bucket": "01_safe",
+   "tier": "audited_library",
+   "expected": "safe",
+   "verdict": "NO-GO",
+   "latency_s": 32.0,
+   "api_calls": 3
+  },
+  {
+   "contract_id": "01_solady_accounts_eip7702proxy",
+   "bucket": "01_safe",
+   "tier": "audited_library",
+   "expected": "safe",
+   "verdict": "NO-GO",
+   "latency_s": 67.8,
+   "api_calls": 3
+  },
+  {
+   "contract_id": "01_ozup_utils_reentrancyguardtransientupgradeable",
+   "bucket": "01_safe",
+   "tier": "audited_library",
+   "expected": "safe",
+   "verdict": "NO-GO",
+   "latency_s": 16.8,
+   "api_calls": 2
+  },
+  {
+   "contract_id": "01_w3bclean_124_index_coop_notional_trade_module_contracts_protocol_integration_claim_compcl",
+   "bucket": "01_safe",
+   "tier": "realworld_no_bug_reported",
+   "expected": "safe",
+   "verdict": "NO-GO",
+   "latency_s": 76.5,
+   "api_calls": 2
+  },
+  {
+   "contract_id": "01_w3bclean_122_contracts_lib_openzeppelin_contracts_contracts_crosschain_polygon_crosschain",
+   "bucket": "01_safe",
+   "tier": "realworld_no_bug_reported",
+   "expected": "safe",
+   "verdict": "NO-GO",
+   "latency_s": 65.0,
+   "api_calls": 3
+  },
+  {
+   "contract_id": "01_w3bclean_96_timeswap_convenience_contracts_libraries_squareroot",
+   "bucket": "01_safe",
+   "tier": "realworld_no_bug_reported",
+   "expected": "safe",
+   "verdict": "NO-GO",
+   "latency_s": 12.2,
+   "api_calls": 2
+  },
+  {
+   "contract_id": "01_w3bclean_124_index_coop_notional_trade_module_contracts_product_assetlimithook",
+   "bucket": "01_safe",
+   "tier": "realworld_no_bug_reported",
+   "expected": "safe",
+   "verdict": "NO-GO",
+   "latency_s": 39.9,
+   "api_calls": 4
+  },
+  {
+   "contract_id": "02_dappscan_incentives_distributionmanager",
+   "bucket": "02_vuln_labelled",
+   "tier": "audit_report",
+   "expected": "vulnerable",
+   "verdict": "NO-GO",
+   "latency_s": 44.7,
+   "api_calls": 3
+  },
+  {
+   "contract_id": "02_dappscan_hacken_hyksos_hyksos_contracts_audit_hyksosbase",
+   "bucket": "02_vuln_labelled",
+   "tier": "audit_report",
+   "expected": "vulnerable",
+   "verdict": "NO-GO",
+   "latency_s": 46.1,
+   "api_calls": 4
+  },
+  {
+   "contract_id": "02_dappscan_quillaudits_burst_token_smart_contract_burst_token_33b0e2e7ec14828e000ae95e7d4ce",
+   "bucket": "02_vuln_labelled",
+   "tier": "audit_report",
+   "expected": "vulnerable",
+   "verdict": "NO-GO",
+   "latency_s": 34.9,
+   "api_calls": 3
+  },
+  {
+   "contract_id": "02_dappscan_openzeppelin_basic_attention_token_basic_attention_token_crowdsale_17a5f8440a256",
+   "bucket": "02_vuln_labelled",
+   "tier": "audit_report",
+   "expected": "vulnerable",
+   "verdict": "NO-GO",
+   "latency_s": 53.5,
+   "api_calls": 5
+  },
+  {
+   "contract_id": "02_dvl_phantom_permit",
+   "bucket": "02_vuln_labelled",
+   "tier": "curated",
+   "expected": "vulnerable",
+   "verdict": "NO-GO",
+   "latency_s": 55.8,
+   "api_calls": 6
+  },
+  {
+   "contract_id": "02_dvl_signaturereplay",
+   "bucket": "02_vuln_labelled",
+   "tier": "curated",
+   "expected": "vulnerable",
+   "verdict": "NO-GO",
+   "latency_s": 60.2,
+   "api_calls": 6
+  },
+  {
+   "contract_id": "02_dvl_reentrancy",
+   "bucket": "02_vuln_labelled",
+   "tier": "curated",
+   "expected": "vulnerable",
+   "verdict": "NO-GO",
+   "latency_s": 58.2,
+   "api_calls": 4
+  },
+  {
+   "contract_id": "02_dvl_self_transfer",
+   "bucket": "02_vuln_labelled",
+   "tier": "curated",
+   "expected": "vulnerable",
+   "verdict": "NO-GO",
+   "latency_s": 52.7,
+   "api_calls": 6
+  },
+  {
+   "contract_id": "02_solidifi_unhandled_exception_015",
+   "bucket": "02_vuln_labelled",
+   "tier": "injected",
+   "expected": "vulnerable",
+   "verdict": "NO-GO",
+   "latency_s": 166.6,
+   "api_calls": 5
+  },
+  {
+   "contract_id": "02_solidifi_time_manipulation_042",
+   "bucket": "02_vuln_labelled",
+   "tier": "injected",
+   "expected": "vulnerable",
+   "verdict": "NO-GO",
+   "latency_s": 97.6,
+   "api_calls": 7
+  },
+  {
+   "contract_id": "02_solidifi_transaction_order_dependence_013",
+   "bucket": "02_vuln_labelled",
+   "tier": "injected",
+   "expected": "vulnerable",
+   "verdict": "NO-GO",
+   "latency_s": 152.2,
+   "api_calls": 5
+  },
+  {
+   "contract_id": "02_solidifi_unchecked_low_level_calls_027",
+   "bucket": "02_vuln_labelled",
+   "tier": "injected",
+   "expected": "vulnerable",
+   "verdict": "NO-GO",
+   "latency_s": 83.2,
+   "api_calls": 5
+  }
+ ]
+}
