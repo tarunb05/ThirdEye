@@ -1,0 +1,954 @@
+{
+ "sample": 150,
+ "scored": 46,
+ "abstained": 104,
+ "diagnosed": 104,
+ "by_cause": {
+  "CORPUS: missing import (multi-file project)": 89,
+  "HARD: solidity compile error": 9,
+  "OURS: pragma unsatisfiable with installed solc": 1,
+  "other": 5
+ },
+ "ours": 1,
+ "ours_estimated_total": 1,
+ "corpus": 89,
+ "hard": 9,
+ "rows": [
+  {
+   "contract_id": "01_oz_utils_structs_checkpoints",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"math/Math.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_solady_utils_libstring",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"LibBytes.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.6
+  },
+  {
+   "contract_id": "01_solady_accounts_erc7821",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"Receiver.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_oz_token_erc20_extensions_erc20burnable",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"ERC20.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_ozup_governance_extensions_governortimelockcompoundupgradeable",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/governance/IGovernor.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_oz_utils_cryptography_signaturechecker",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"ECDSA.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_solady_utils_enumerablemaplib",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"EnumerableSetLib.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_ozup_token_erc721_extensions_erc721enumerableupgradeable",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"ERC721Upgradeable.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_oz_proxy_transparent_transparentupgradeableproxy",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"ERC1967/ERC1967Utils.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_solady_accounts_erc6551",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"Receiver.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_ozup_finance_vestingwalletupgradeable",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/token/ERC20/IERC20.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_ozup_token_erc20_extensions_erc20cappedupgradeable",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"ERC20Upgradeable.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_oz_token_erc1155_erc1155",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"IERC1155.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_oz_utils_math_signedmath",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"SafeCast.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_solady_accounts_eip7702proxy",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Function \"tload\" not found.",
+   "category": "HARD: solidity compile error",
+   "latency_s": 0.6
+  },
+  {
+   "contract_id": "01_ozup_token_erc1155_extensions_erc1155supplyupgradeable",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"ERC1155Upgradeable.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_ozup_proxy_utils_uupsupgradeable",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/interfaces/draft-IERC1822.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_ozup_token_erc20_extensions_erc20votesupgradeable",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"ERC20Upgradeable.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_ozup_access_extensions_accesscontroldefaultadminrulesupgradeable",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/access/extensions/IAccessControlDefaultAdminRules.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_solady_utils_reentrancyguardtransient",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Function \"tload\" not found.",
+   "category": "HARD: solidity compile error",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_oz_access_extensions_accesscontroldefaultadminrules",
+   "tier": "audited_library",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"IAccessControlDefaultAdminRules.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_constantsholder",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "audit_probe.sol:23:1: Error: Source \"Permissions.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_dappclean_erc1724_zkassetmintable",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "audit_probe.sol:6:1: Error: Source \"openzeppelin-solidity/contracts/math/SafeMath.sol\" not found: File not found.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_dappclean_dependencies_openzeppelin_gsn_gsnrecipient",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"IRelayRecipient.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_ownerpausable",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "audit_probe.sol:4:1: Error: Source \"@openzeppelin/contracts/ownership/Ownable.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_milestonepricing",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "audit_probe.sol:10:1: Error: Source \"PricingStrategy.sol\" not found: File not found.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_abep20delegator",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "audit_probe.sol:4:1: Error: Source \"ATokenInterfaces.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_smoothyv1",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"openzeppelin-solidity/contracts/token/ERC20/SafeERC20.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_ethercollateral",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "audit_probe.sol:5:1: Error: Source \"Owned.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_dappclean_2key_token_pools_twokeydeepfreezetokenpool",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "audit_probe.sol:4:1: Error: Source \"TokenPool.sol\" not found: File not found.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_orchestration_incentiveorchestrator",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/access/Ownable.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_dappmaintenance",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "audit_probe.sol:4:1: Error: Source \"Owned.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_prize_pool_compound_compoundprizepoolproxyfactory",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"CompoundPrizePool.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_pools_compoundtempuspool",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/token/ERC20/IERC20.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.6
+  },
+  {
+   "contract_id": "01_dappclean_synth",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "audit_probe.sol:5:1: Error: Source \"Owned.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_dappclean_basesynthetix",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "audit_probe.sol:5:1: Error: Source \"interfaces/IERC20.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_tokens_dieseltoken",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/access/Ownable.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.6
+  },
+  {
+   "contract_id": "01_dappclean_tenderfarm_tenderfarmfactory",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"ITenderFarm.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_dappclean_balancer_core_v2_vault_poolregistry",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/utils/SafeCast.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_pcv_balancer_manager_weightedbalancerpoolmanager",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"IWeightedBalancerPoolManager.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_dappclean_periphery_queryhelper",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"Types.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.6
+  },
+  {
+   "contract_id": "01_dappclean_src_exchange",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "audit_probe.sol:23:1: Error: Source \"@0x/contracts-exchange-libs/contracts/src/LibEIP712ExchangeDomain.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_sampleerc20",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/token/ERC20/ERC20.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_dappclean_lendingprotocol_libraries_helpers_helpers",
+   "tier": "audit_reviewed_clean",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"types/DataTypes.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_w3bclean_70_contracts_tokens_usdv",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/access/Ownable.sol\" not found: File not found.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_w3bclean_115_core_contracts_liquiditymining_supplyminer",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/math/SafeMath.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_w3bclean_124_index_coop_notional_trade_module_external_contracts_balancer_bpool",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "audit_probe.sol:17:1: Error: Source \"BToken.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_w3bclean_106_contracts_descriptors_lendticketsvghelper",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"TicketTypeSpecificSVGHelper.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_w3bclean_90_contracts_phuturepriceoracle",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/access/IAccessControl.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.5
+  },
+  {
+   "contract_id": "01_w3bclean_68_contracts_bridge_contracts_amunbasketbridge_polygonerc20wrapper",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_w3bclean_37_contracts_amm_tempusammuserdatahelpers",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@balancer-labs/v2-solidity-utils/contracts/openzeppelin/IERC20.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_w3bclean_102_contracts_utils_deviation",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"Constants.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_w3bclean_124_index_coop_notional_trade_module_contracts_protocol_modules_v1_stakingmodule",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/token/ERC20/IERC20.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.5
+  },
+  {
+   "contract_id": "01_w3bclean_38_contracts_identity",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"libs/SignatureValidatorV2.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_w3bclean_31_bcvx_deps_tokenswappathregistry",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"deps/@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_w3bclean_124_index_coop_notional_trade_module_contracts_protocol_integration_claim_compcl",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"interfaces/external/IComptroller.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "01_w3bclean_110_lib_openzeppelin_contracts_upgradeable_contracts_token_erc20_extensions_erc2",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"ERC20Upgradeable.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_w3bclean_190_prepo_monorepo_apps_smart_contracts_token_contracts_ppo_staking_governance_c",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"Governable.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_w3bclean_3_contracts_crossmarginliquidation",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"CrossMarginAccounts.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_w3bclean_72_openleverage_contracts_contracts_airdrop",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/cryptography/MerkleProof.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_w3bclean_110_lib_solmate_src_tokens_weth",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"ERC20.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_w3bclean_74_timeswap_timeswap_v1_core_contracts_libraries_safebalance",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/token/ERC20/IERC20.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_w3bclean_49_contracts_shims_unitest",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"market/OverlayV1Comptroller.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_w3bclean_122_contracts_lib_openzeppelin_contracts_contracts_crosschain_polygon_crosschain",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source \"CrossChainEnabled.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "01_w3bclean_23_contracts_external_actions_batchaction",
+   "tier": "realworld_no_bug_reported",
+   "bucket": "01_safe",
+   "solc_ok": false,
+   "error": "Error: Source file requires different compiler version (current compiler is 0.7.0+commit.9e61f92b.Windows.msvc) - note that nightly builds are considered to be strictly less than the released version",
+   "category": "OURS: pragma unsatisfiable with installed solc",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "02_nss_reentrancy_018",
+   "tier": "curated",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Warning: This is a pre-release compiler version, please do not use it in production.",
+   "category": "other",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "02_dvl_dirtybytes",
+   "tier": "curated",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"forge-std/Test.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_nss_forced_ether_reception_004",
+   "tier": "curated",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "audit_probe.sol:72:22: Error: Expected token Semicolon got 'LParen'",
+   "category": "HARD: solidity compile error",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_smartbugs_unchecked_low_level_calls_142",
+   "tier": "curated",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Traceback (most recent call last):",
+   "category": "other",
+   "latency_s": 1.0
+  },
+  {
+   "contract_id": "02_smartbugs_reentrancy_075",
+   "tier": "curated",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Traceback (most recent call last):",
+   "category": "other",
+   "latency_s": 0.2
+  },
+  {
+   "contract_id": "02_dvl_nftmint_exposedmetadata",
+   "tier": "curated",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"forge-std/Test.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.6
+  },
+  {
+   "contract_id": "02_nss_integer_overflow_013",
+   "tier": "curated",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Warning: This is a pre-release compiler version, please do not use it in production.",
+   "category": "other",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "02_dvl_storage_collision",
+   "tier": "curated",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"forge-std/Test.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dvl_array_deletion",
+   "tier": "curated",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"forge-std/Test.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "02_dvl_transientstoragemisuse_t",
+   "tier": "curated",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"forge-std/Test.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "02_dvl_uninitialized_variables",
+   "tier": "curated",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"forge-std/Test.sol\" not found: File not found. Searched the following locations: \"\".",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_smartbugs_denial_of_service_042",
+   "tier": "curated",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Warning: This is a pre-release compiler version, please do not use it in production.",
+   "category": "other",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "02_solidifi_unhandled_exception_012",
+   "tier": "injected",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "audit_probe.sol:99:39: Error: Expected token Comma got 'Payable'",
+   "category": "HARD: solidity compile error",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_solidifi_reentrancy_046",
+   "tier": "injected",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "audit_probe.sol:83:15: Error: Expected token Comma got 'Identifier'",
+   "category": "HARD: solidity compile error",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_solidifi_unchecked_low_level_calls_041",
+   "tier": "injected",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "audit_probe.sol:13:92: Error: Expected token Comma got 'Identifier'",
+   "category": "HARD: solidity compile error",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_solidifi_transaction_order_dependence_013",
+   "tier": "injected",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "audit_probe.sol:9:92: Error: Expected token Comma got 'Identifier'",
+   "category": "HARD: solidity compile error",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_solidifi_transaction_order_dependence_046",
+   "tier": "injected",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "audit_probe.sol:21:9: Error: Expected identifier, got 'Payable'",
+   "category": "HARD: solidity compile error",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_solidifi_reentrancy_013",
+   "tier": "injected",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "audit_probe.sol:9:92: Error: Expected token Comma got 'Identifier'",
+   "category": "HARD: solidity compile error",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_libraries_erc20permit",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"interfaces/IERC20Permit.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "02_dappscan_djiinautobuyer",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/utils/math/Math.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "02_dappscan_hacken_splash_splash_core_b38add0749f450a528197909005f6666cf609960_src_gameplay_",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"oz-contracts/access/Ownable.sol\" not found: File not found.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.6
+  },
+  {
+   "contract_id": "02_dappscan_robonomics_robotliabilitylib",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "audit_probe.sol:4:1: Error: Source \"openzeppelin-solidity/contracts/ECRecovery.sol\" not found: File not found.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_project_projectwalletauthoriser",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "audit_probe.sol:4:1: Error: Source \"utils/Ownable.sol\" not found: File not found.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_openzeppelin_basic_attention_token_basic_attention_token_crowdsale_17a5f8440a256",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "audit_probe.sol:3:1: Error: Source \"StandardToken.sol\" not found: File not found.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_libraries_transfers",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"interfaces/IERC20.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_openzeppelin_eip_4337_ethereum_account_abstraction_account_abstraction_8832d6e04",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"StakeManager.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_hacken_hyksos_hyksos_contracts_audit_hyksosbase",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"DepositQueue.sol\" not found: File not found.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "02_dappscan_incentives_distributionmanager",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"interfaces/IAaveDistributionManager.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.6
+  },
+  {
+   "contract_id": "02_dappscan_credit_creditmanager",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/utils/Address.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_stokensv2",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_callisto_network_worthpad_security_audit_report_worth_71760542a40e580ad6c0c57c5e",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/utils/math/SafeMath.sol\" not found: File not found.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_contract_token_rockettokenreth",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/token/ERC20/ERC20.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "02_dappscan_strategy",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"GenericLender/IGenericLender.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_chainlinkpricefeed",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/utils/Address.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "02_dappscan_iosiro_synthetix_didpha_release_smart_contract_audit_synthetix_d7b8c122f7aaa6991",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "audit_probe.sol:5:1: Error: Source \"Owned.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_token_vdsgtoken",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/token/ERC20/ERC20.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_delegation_delegationservice",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "audit_probe.sol:24:1: Error: Source \"@openzeppelin/contracts/introspection/IERC1820Registry.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  },
+  {
+   "contract_id": "02_dappscan_adapters_baseparaswapadapter",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"dependencies/openzeppelin/contracts/SafeMath.sol\" not found: File outside of allowed directories.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.3
+  },
+  {
+   "contract_id": "02_dappscan_hacken_lunafi_lunafi_smart_contracts_6ff9a601e9bc72326b8e89f69daaa3105ed6afb0_cl",
+   "tier": "audit_report",
+   "bucket": "02_vuln_labelled",
+   "solc_ok": false,
+   "error": "Error: Source \"@openzeppelin/contracts/token/ERC20/IERC20.sol\" not found: File not found.",
+   "category": "CORPUS: missing import (multi-file project)",
+   "latency_s": 0.4
+  }
+ ]
+}

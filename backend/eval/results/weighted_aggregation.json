@@ -1,0 +1,442 @@
+{
+  "n_rows": 233,
+  "n_dev": 116,
+  "n_test": 117,
+  "alpha": 1.0,
+  "weights": {
+    "proxy_upgradeability": 0.6666666666666666,
+    "arithmetic": 0.7941176470588235,
+    "reentrancy": 0.8620689655172413,
+    "access_control": 0.7727272727272727,
+    "flashloan_mev": 0.625,
+    "oracle_price_manipulation": 0.6,
+    "business_logic": 0.5254237288135594,
+    "dos_gas": 0.6976744186046512
+  },
+  "tau": 0.575,
+  "or_gate_test": {
+    "tp": 51,
+    "fp": 43,
+    "tn": 19,
+    "fn": 4,
+    "precision": 0.543,
+    "recall": 0.927,
+    "f1": 0.685,
+    "fpr": 0.694
+  },
+  "weighted_test": {
+    "tp": 48,
+    "fp": 19,
+    "tn": 43,
+    "fn": 7,
+    "precision": 0.716,
+    "recall": 0.873,
+    "f1": 0.787,
+    "fpr": 0.306
+  },
+  "fit_on_all_inflated": {
+    "tp": 98,
+    "fp": 42,
+    "tn": 82,
+    "fn": 11,
+    "precision": 0.7,
+    "recall": 0.899,
+    "f1": 0.787,
+    "fpr": 0.339
+  },
+  "summary": {
+    "n_splits": 10,
+    "wins": 9,
+    "or_gate": {
+      "precision": 0.563,
+      "recall": 0.938,
+      "f1": 0.703,
+      "fpr": 0.648
+    },
+    "or_gate_std": {
+      "precision": 0.021,
+      "recall": 0.02,
+      "f1": 0.017,
+      "fpr": 0.054
+    },
+    "weighted": {
+      "precision": 0.733,
+      "recall": 0.824,
+      "f1": 0.77,
+      "fpr": 0.274
+    },
+    "weighted_std": {
+      "precision": 0.043,
+      "recall": 0.101,
+      "f1": 0.033,
+      "fpr": 0.078
+    },
+    "median_tau": 0.55,
+    "threshold_only": {
+      "precision": 0.738,
+      "recall": 0.851,
+      "f1": 0.79,
+      "fpr": 0.268
+    },
+    "threshold_only_std": {
+      "precision": 0.022,
+      "recall": 0.043,
+      "f1": 0.027,
+      "fpr": 0.028
+    },
+    "weighting_beats_threshold_only": 3
+  },
+  "runs": [
+    {
+      "split": 0,
+      "tau": 0.575,
+      "tau_flat": 0.925,
+      "or_gate": {
+        "tp": 51,
+        "fp": 43,
+        "tn": 19,
+        "fn": 4,
+        "precision": 0.543,
+        "recall": 0.927,
+        "f1": 0.685,
+        "fpr": 0.694
+      },
+      "weighted": {
+        "tp": 48,
+        "fp": 19,
+        "tn": 43,
+        "fn": 7,
+        "precision": 0.716,
+        "recall": 0.873,
+        "f1": 0.787,
+        "fpr": 0.306
+      },
+      "threshold_only": {
+        "tp": 45,
+        "fp": 16,
+        "tn": 46,
+        "fn": 10,
+        "precision": 0.738,
+        "recall": 0.818,
+        "f1": 0.776,
+        "fpr": 0.258
+      }
+    },
+    {
+      "split": 1,
+      "tau": 0.75,
+      "tau_flat": 0.975,
+      "or_gate": {
+        "tp": 52,
+        "fp": 40,
+        "tn": 22,
+        "fn": 3,
+        "precision": 0.565,
+        "recall": 0.945,
+        "f1": 0.707,
+        "fpr": 0.645
+      },
+      "weighted": {
+        "tp": 46,
+        "fp": 17,
+        "tn": 45,
+        "fn": 9,
+        "precision": 0.73,
+        "recall": 0.836,
+        "f1": 0.78,
+        "fpr": 0.274
+      },
+      "threshold_only": {
+        "tp": 48,
+        "fp": 17,
+        "tn": 45,
+        "fn": 7,
+        "precision": 0.738,
+        "recall": 0.873,
+        "f1": 0.8,
+        "fpr": 0.274
+      }
+    },
+    {
+      "split": 2,
+      "tau": 0.425,
+      "tau_flat": 0.925,
+      "or_gate": {
+        "tp": 53,
+        "fp": 42,
+        "tn": 20,
+        "fn": 2,
+        "precision": 0.558,
+        "recall": 0.964,
+        "f1": 0.707,
+        "fpr": 0.677
+      },
+      "weighted": {
+        "tp": 51,
+        "fp": 21,
+        "tn": 41,
+        "fn": 4,
+        "precision": 0.708,
+        "recall": 0.927,
+        "f1": 0.803,
+        "fpr": 0.339
+      },
+      "threshold_only": {
+        "tp": 47,
+        "fp": 16,
+        "tn": 46,
+        "fn": 8,
+        "precision": 0.746,
+        "recall": 0.855,
+        "f1": 0.797,
+        "fpr": 0.258
+      }
+    },
+    {
+      "split": 3,
+      "tau": 0.45,
+      "tau_flat": 0.925,
+      "or_gate": {
+        "tp": 50,
+        "fp": 38,
+        "tn": 24,
+        "fn": 5,
+        "precision": 0.568,
+        "recall": 0.909,
+        "f1": 0.699,
+        "fpr": 0.613
+      },
+      "weighted": {
+        "tp": 48,
+        "fp": 19,
+        "tn": 43,
+        "fn": 7,
+        "precision": 0.716,
+        "recall": 0.873,
+        "f1": 0.787,
+        "fpr": 0.306
+      },
+      "threshold_only": {
+        "tp": 46,
+        "fp": 14,
+        "tn": 48,
+        "fn": 9,
+        "precision": 0.767,
+        "recall": 0.836,
+        "f1": 0.8,
+        "fpr": 0.226
+      }
+    },
+    {
+      "split": 4,
+      "tau": 0.825,
+      "tau_flat": 0.925,
+      "or_gate": {
+        "tp": 52,
+        "fp": 40,
+        "tn": 22,
+        "fn": 3,
+        "precision": 0.565,
+        "recall": 0.945,
+        "f1": 0.707,
+        "fpr": 0.645
+      },
+      "weighted": {
+        "tp": 34,
+        "fp": 8,
+        "tn": 54,
+        "fn": 21,
+        "precision": 0.81,
+        "recall": 0.618,
+        "f1": 0.701,
+        "fpr": 0.129
+      },
+      "threshold_only": {
+        "tp": 46,
+        "fp": 18,
+        "tn": 44,
+        "fn": 9,
+        "precision": 0.719,
+        "recall": 0.836,
+        "f1": 0.773,
+        "fpr": 0.29
+      }
+    },
+    {
+      "split": 5,
+      "tau": 0.4,
+      "tau_flat": 0.925,
+      "or_gate": {
+        "tp": 51,
+        "fp": 32,
+        "tn": 30,
+        "fn": 4,
+        "precision": 0.614,
+        "recall": 0.927,
+        "f1": 0.739,
+        "fpr": 0.516
+      },
+      "weighted": {
+        "tp": 50,
+        "fp": 19,
+        "tn": 43,
+        "fn": 5,
+        "precision": 0.725,
+        "recall": 0.909,
+        "f1": 0.806,
+        "fpr": 0.306
+      },
+      "threshold_only": {
+        "tp": 50,
+        "fp": 15,
+        "tn": 47,
+        "fn": 5,
+        "precision": 0.769,
+        "recall": 0.909,
+        "f1": 0.833,
+        "fpr": 0.242
+      }
+    },
+    {
+      "split": 6,
+      "tau": 0.45,
+      "tau_flat": 0.925,
+      "or_gate": {
+        "tp": 53,
+        "fp": 40,
+        "tn": 22,
+        "fn": 2,
+        "precision": 0.57,
+        "recall": 0.964,
+        "f1": 0.716,
+        "fpr": 0.645
+      },
+      "weighted": {
+        "tp": 50,
+        "fp": 22,
+        "tn": 40,
+        "fn": 5,
+        "precision": 0.694,
+        "recall": 0.909,
+        "f1": 0.787,
+        "fpr": 0.355
+      },
+      "threshold_only": {
+        "tp": 47,
+        "fp": 20,
+        "tn": 42,
+        "fn": 8,
+        "precision": 0.701,
+        "recall": 0.855,
+        "f1": 0.77,
+        "fpr": 0.323
+      }
+    },
+    {
+      "split": 7,
+      "tau": 0.625,
+      "tau_flat": 0.975,
+      "or_gate": {
+        "tp": 50,
+        "fp": 43,
+        "tn": 19,
+        "fn": 5,
+        "precision": 0.538,
+        "recall": 0.909,
+        "f1": 0.676,
+        "fpr": 0.694
+      },
+      "weighted": {
+        "tp": 41,
+        "fp": 16,
+        "tn": 46,
+        "fn": 14,
+        "precision": 0.719,
+        "recall": 0.745,
+        "f1": 0.732,
+        "fpr": 0.258
+      },
+      "threshold_only": {
+        "tp": 42,
+        "fp": 16,
+        "tn": 46,
+        "fn": 13,
+        "precision": 0.724,
+        "recall": 0.764,
+        "f1": 0.743,
+        "fpr": 0.258
+      }
+    },
+    {
+      "split": 8,
+      "tau": 0.525,
+      "tau_flat": 0.925,
+      "or_gate": {
+        "tp": 52,
+        "fp": 43,
+        "tn": 19,
+        "fn": 3,
+        "precision": 0.547,
+        "recall": 0.945,
+        "f1": 0.693,
+        "fpr": 0.694
+      },
+      "weighted": {
+        "tp": 46,
+        "fp": 20,
+        "tn": 42,
+        "fn": 9,
+        "precision": 0.697,
+        "recall": 0.836,
+        "f1": 0.76,
+        "fpr": 0.323
+      },
+      "threshold_only": {
+        "tp": 47,
+        "fp": 18,
+        "tn": 44,
+        "fn": 8,
+        "precision": 0.723,
+        "recall": 0.855,
+        "f1": 0.783,
+        "fpr": 0.29
+      }
+    },
+    {
+      "split": 9,
+      "tau": 0.825,
+      "tau_flat": 0.925,
+      "or_gate": {
+        "tp": 52,
+        "fp": 41,
+        "tn": 21,
+        "fn": 3,
+        "precision": 0.559,
+        "recall": 0.945,
+        "f1": 0.703,
+        "fpr": 0.661
+      },
+      "weighted": {
+        "tp": 39,
+        "fp": 9,
+        "tn": 53,
+        "fn": 16,
+        "precision": 0.812,
+        "recall": 0.709,
+        "f1": 0.757,
+        "fpr": 0.145
+      },
+      "threshold_only": {
+        "tp": 50,
+        "fp": 16,
+        "tn": 46,
+        "fn": 5,
+        "precision": 0.758,
+        "recall": 0.909,
+        "f1": 0.826,
+        "fpr": 0.258
+      }
+    }
+  ],
+  "note": "Weights and tau fit on dev ONLY, reported on a disjoint test split, averaged over N random splits. The fit-on-all row is included solely to show how much fitting to the evaluation set would have inflated it."
+}

@@ -1,0 +1,184 @@
+{
+  "sample_size": 16,
+  "n_pos": 8,
+  "n_neg": 8,
+  "seed": 0,
+  "configs": {
+    "single_llm": {
+      "tp": 1,
+      "fp": 0,
+      "tn": 8,
+      "fn": 7,
+      "precision": 1.0,
+      "recall": 0.125,
+      "f1": 0.2222222222222222,
+      "accuracy": 0.5625
+    },
+    "council": {
+      "tp": 6,
+      "fp": 0,
+      "tn": 8,
+      "fn": 2,
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571428571428571,
+      "accuracy": 0.875
+    },
+    "council+arbitration": {
+      "tp": 1,
+      "fp": 0,
+      "tn": 8,
+      "fn": 7,
+      "precision": 1.0,
+      "recall": 0.125,
+      "f1": 0.2222222222222222,
+      "accuracy": 0.5625
+    }
+  },
+  "rows": [
+    {
+      "cid": "sb:FibonacciBalance.sol",
+      "is_ac": true,
+      "pred": {
+        "single_llm": true,
+        "council": false,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:arbitrary_location_write_simple.sol",
+      "is_ac": true,
+      "pred": {
+        "single_llm": false,
+        "council": false,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:incorrect_constructor_name1.sol",
+      "is_ac": true,
+      "pred": {
+        "single_llm": false,
+        "council": true,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:incorrect_constructor_name2.sol",
+      "is_ac": true,
+      "pred": {
+        "single_llm": false,
+        "council": true,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:incorrect_constructor_name3.sol",
+      "is_ac": true,
+      "pred": {
+        "single_llm": false,
+        "council": true,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:mapping_write.sol",
+      "is_ac": true,
+      "pred": {
+        "single_llm": false,
+        "council": true,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:multiowned_vulnerable.sol",
+      "is_ac": true,
+      "pred": {
+        "single_llm": false,
+        "council": true,
+        "council+arbitration": true
+      }
+    },
+    {
+      "cid": "sb:mycontract.sol",
+      "is_ac": true,
+      "pred": {
+        "single_llm": false,
+        "council": true,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:BECToken.sol",
+      "is_ac": false,
+      "pred": {
+        "single_llm": false,
+        "council": false,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:insecure_transfer.sol",
+      "is_ac": false,
+      "pred": {
+        "single_llm": false,
+        "council": false,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:integer_overflow_1.sol",
+      "is_ac": false,
+      "pred": {
+        "single_llm": false,
+        "council": false,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:integer_overflow_add.sol",
+      "is_ac": false,
+      "pred": {
+        "single_llm": false,
+        "council": false,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:integer_overflow_benign_1.sol",
+      "is_ac": false,
+      "pred": {
+        "single_llm": false,
+        "council": false,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:integer_overflow_mapping_sym_1.sol",
+      "is_ac": false,
+      "pred": {
+        "single_llm": false,
+        "council": false,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:integer_overflow_minimal.sol",
+      "is_ac": false,
+      "pred": {
+        "single_llm": false,
+        "council": false,
+        "council+arbitration": false
+      }
+    },
+    {
+      "cid": "sb:integer_overflow_mul.sol",
+      "is_ac": false,
+      "pred": {
+        "single_llm": false,
+        "council": false,
+        "council+arbitration": false
+      }
+    }
+  ]
+}

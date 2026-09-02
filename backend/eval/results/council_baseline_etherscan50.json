@@ -1,0 +1,56 @@
+{
+  "run_name": "council/etherscan50",
+  "n_items": 50,
+  "n_predictions": 50,
+  "binary": {
+    "tp": 1,
+    "fp": 14,
+    "tn": 30,
+    "fn": 5,
+    "support": 50,
+    "skipped_no_prediction": 0,
+    "precision": 0.06666666666666667,
+    "recall": 0.16666666666666666,
+    "f1": 0.09523809523809522,
+    "accuracy": 0.62
+  },
+  "per_category": {
+    "other": {
+      "tp": 0,
+      "fp": 12,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "access_control": {
+      "tp": 1,
+      "fp": 8,
+      "fn": 5,
+      "support": 6,
+      "precision": 0.1111111111111111,
+      "recall": 0.16666666666666666,
+      "f1": 0.13333333333333333
+    },
+    "reentrancy": {
+      "tp": 0,
+      "fp": 6,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  },
+  "averages": {
+    "macro_precision": 0.037037037037037035,
+    "macro_recall": 0.05555555555555555,
+    "macro_f1": 0.044444444444444446,
+    "micro_precision": 0.037037037037037035,
+    "micro_recall": 0.16666666666666666,
+    "micro_f1": 0.06060606060606061
+  },
+  "categories_normalized_to_dasp10": true,
+  "unmapped_categories": {}
+}

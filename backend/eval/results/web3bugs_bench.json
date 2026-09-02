@@ -1,0 +1,701 @@
+{
+ "summary": {
+  "contests_scored": 7,
+  "contests_detected": 6,
+  "contest_recall": 0.857,
+  "sclass_bugs_in_scored_contests": 14,
+  "sclass_bugs_in_detected_contests": 13,
+  "bug_level_recall_upper_bound": 0.929,
+  "median_latency_s": 597.3,
+  "total_api_calls": 221,
+  "note": "Contest-level, any-slice-positive. bug_level_recall is an UPPER BOUND: it credits every S-class bug in a contest whenever any slice of that contest was flagged, which does not prove the flag found THAT bug. No safe class exists here, so precision is not computable and is not reported \u2014 it stays on the balanced buckets.",
+  "backend": "ollama",
+  "max_slices": 25
+ },
+ "contests": [
+  {
+   "contest_id": "115",
+   "detected": true,
+   "n_slices_scanned": 12,
+   "n_slices_available": 131,
+   "n_files_out_of_scope": 15,
+   "flagged": [
+    {
+     "slice": "libraries/WadRayMath.sol",
+     "types": [
+      "arithmetic",
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "liquidityMining/DistributorManager.sol",
+     "types": [
+      "business_logic",
+      "dos_gas"
+     ]
+    },
+    {
+     "slice": "v1/VaultsDataProviderV1.sol",
+     "types": [
+      "business_logic",
+      "dos_gas"
+     ]
+    }
+   ],
+   "slices_errored": 0,
+   "per_slice": [
+    {
+     "slice": "interfaces/IGenericMiner.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "interfaces/IConfigProvider.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "interfaces/IBalancerPool.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "libraries/WadRayMath.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "arithmetic",
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "echidna/TIVSetup.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "interfaces/IVaultsCore.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "liquidityMining/DistributorManager.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "business_logic",
+      "dos_gas"
+     ]
+    },
+    {
+     "slice": "upgrade/MIMODeployment.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "v1/VaultsDataProviderV1.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "business_logic",
+      "dos_gas"
+     ]
+    },
+    {
+     "slice": "echidna/TInceptionVaultHealthy.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "interfaces/IVaultsCore.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "interfaces/IGovernanceAddressProvider.sol",
+     "verdict": "GO",
+     "types": []
+    }
+   ],
+   "api_calls": 31,
+   "latency_s": 404.1,
+   "schema": 1
+  },
+  {
+   "contest_id": "13",
+   "detected": true,
+   "n_slices_scanned": 12,
+   "n_slices_available": 16,
+   "n_files_out_of_scope": 7,
+   "flagged": [
+    {
+     "slice": "nfthubs/RCNftHubL2.sol",
+     "types": [
+      "dos_gas"
+     ]
+    }
+   ],
+   "slices_errored": 3,
+   "per_slice": [
+    {
+     "slice": "interfaces/IRCNftHubL2.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "contracts/RCOrderbook.sol",
+     "verdict": "INCONCLUSIVE",
+     "types": []
+    },
+    {
+     "slice": "nfthubs/RCNftHubL2.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "dos_gas"
+     ]
+    },
+    {
+     "slice": "interfaces/IRCBridge.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "contracts/Migrations.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "interfaces/IRCOrderbook.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "interfaces/IRCNftHubL1.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "contracts/RCTreasury.sol",
+     "verdict": "INCONCLUSIVE",
+     "types": []
+    },
+    {
+     "slice": "interfaces/IRCMarket.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "contracts/RCFactory.sol",
+     "verdict": "INCONCLUSIVE",
+     "types": []
+    },
+    {
+     "slice": "contracts/RCMarket.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "interfaces/IRCFactory.sol",
+     "verdict": "GO",
+     "types": []
+    }
+   ],
+   "api_calls": 38,
+   "latency_s": 1748.9,
+   "schema": 1
+  },
+  {
+   "contest_id": "23",
+   "detected": true,
+   "n_slices_scanned": 12,
+   "n_slices_available": 72,
+   "n_files_out_of_scope": 26,
+   "flagged": [
+    {
+     "slice": "external/FreeCollateralExternal.sol",
+     "types": [
+      "arithmetic",
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "internal/AccountContextHandler.sol",
+     "types": [
+      "dos_gas"
+     ]
+    },
+    {
+     "slice": "actions/nTokenRedeemAction.sol",
+     "types": [
+      "access_control",
+      "arithmetic",
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "math/FloatingPoint56.sol",
+     "types": [
+      "arithmetic",
+      "business_logic"
+     ]
+    }
+   ],
+   "slices_errored": 2,
+   "per_slice": [
+    {
+     "slice": "external/SettleAssetsExternal.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "valuation/FreeCollateral.sol",
+     "verdict": "INCONCLUSIVE",
+     "types": []
+    },
+    {
+     "slice": "external/FreeCollateralExternal.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "arithmetic",
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "balances/BalanceHandler.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "proxy/nProxy.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "internal/AccountContextHandler.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "dos_gas"
+     ]
+    },
+    {
+     "slice": "actions/nTokenRedeemAction.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "access_control",
+      "arithmetic",
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "proxy/Proxy.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "math/FloatingPoint56.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "arithmetic",
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "governance/NoteERC20.sol",
+     "verdict": "INCONCLUSIVE",
+     "types": []
+    },
+    {
+     "slice": "math/Bitmap.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "math/SafeInt256.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    }
+   ],
+   "api_calls": 43,
+   "latency_s": 1064.8,
+   "schema": 1
+  },
+  {
+   "contest_id": "32",
+   "detected": true,
+   "n_slices_scanned": 12,
+   "n_slices_available": 40,
+   "n_files_out_of_scope": 0,
+   "flagged": [
+    {
+     "slice": "contracts/UniswapV3Oracle.sol",
+     "types": [
+      "access_control",
+      "arithmetic",
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "contracts/LPTokenMaster.sol",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "contracts/TransferHelper.sol",
+     "types": [
+      "business_logic"
+     ]
+    }
+   ],
+   "slices_errored": 0,
+   "per_slice": [
+    {
+     "slice": "contracts/UniswapV3Oracle.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "access_control",
+      "arithmetic",
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "external/PoolAddress.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "interfaces/IUniswapPriceConverter.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "interfaces/ILendingController.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "uniV3/IPeripheryImmutableState.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "contracts/LPTokenMaster.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "contracts/TransferHelper.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "interfaces/ILendingPair.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "interfaces/IERC721.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "external/Math.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "uniV3/ISwapRouter.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "external/Address.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    }
+   ],
+   "api_calls": 28,
+   "latency_s": 360.2,
+   "schema": 1
+  },
+  {
+   "contest_id": "44",
+   "detected": true,
+   "n_slices_scanned": 4,
+   "n_slices_available": 4,
+   "n_files_out_of_scope": 2,
+   "flagged": [
+    {
+     "slice": "swap/Swap.sol",
+     "types": [
+      "arithmetic",
+      "proxy_upgradeability",
+      "reentrancy"
+     ]
+    }
+   ],
+   "slices_errored": 0,
+   "per_slice": [
+    {
+     "slice": "governance/EmergencyGovernable.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "governance/EmergencyPausable.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "swap/Swap.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "arithmetic",
+      "proxy_upgradeability",
+      "reentrancy"
+     ]
+    },
+    {
+     "slice": "utils/Math.sol",
+     "verdict": "GO",
+     "types": []
+    }
+   ],
+   "api_calls": 12,
+   "latency_s": 161.4,
+   "schema": 1
+  },
+  {
+   "contest_id": "66",
+   "detected": true,
+   "n_slices_scanned": 12,
+   "n_slices_available": 142,
+   "n_files_out_of_scope": 2,
+   "flagged": [
+    {
+     "slice": "YETI/LockupContractFactory.sol",
+     "types": [
+      "access_control",
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "AssetWrappers/WBQI.sol",
+     "types": [
+      "arithmetic",
+      "business_logic",
+      "oracle_price_manipulation"
+     ]
+    },
+    {
+     "slice": "AssetWrappers/WAAVE.sol",
+     "types": [
+      "arithmetic",
+      "business_logic",
+      "oracle_price_manipulation",
+      "reentrancy"
+     ]
+    },
+    {
+     "slice": "TestContracts/ActivePoolTester.sol",
+     "types": [
+      "access_control",
+      "arithmetic"
+     ]
+    }
+   ],
+   "slices_errored": 0,
+   "per_slice": [
+    {
+     "slice": "Dependencies/CheckContract.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "Dependencies/LiquitySafeMath128.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "YUSDToYETIRouters/dummyUniV2Router.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "Interfaces/ITroveManagerLiquidations.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "YETI/LockupContractFactory.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "access_control",
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "AssetWrappers/WBQI.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "arithmetic",
+      "business_logic",
+      "oracle_price_manipulation"
+     ]
+    },
+    {
+     "slice": "Dependencies/ReentrancyGuard.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "AssetWrappers/WAAVE.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "arithmetic",
+      "business_logic",
+      "oracle_price_manipulation",
+      "reentrancy"
+     ]
+    },
+    {
+     "slice": "Interfaces/ISYETI.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "Interfaces/ITroveManagerRedemptions.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "TestContracts/ActivePoolTester.sol",
+     "verdict": "NO-GO",
+     "types": [
+      "access_control",
+      "arithmetic"
+     ]
+    },
+    {
+     "slice": "Oracles/AAVETokenOracle.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    }
+   ],
+   "api_calls": 42,
+   "latency_s": 616.4,
+   "schema": 1
+  },
+  {
+   "contest_id": "67",
+   "detected": false,
+   "n_slices_scanned": 12,
+   "n_slices_available": 16,
+   "n_files_out_of_scope": 9,
+   "flagged": [],
+   "slices_errored": 1,
+   "per_slice": [
+    {
+     "slice": "strategy/BaseStrategy.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "curve/ICurve.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "anchor/IEthAnchorRouter.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "integrations/IIntegration.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "vault/IVaultSponsoring.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "vault/Depositors.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "strategy/IStrategy.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "strategy/USTStrategy.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "contracts/SandclockFactory.sol",
+     "verdict": "GO",
+     "types": []
+    },
+    {
+     "slice": "contracts/Vault.sol",
+     "verdict": "INCONCLUSIVE",
+     "types": []
+    },
+    {
+     "slice": "anchor/IConversionPool.sol",
+     "verdict": "GO",
+     "types": [
+      "business_logic"
+     ]
+    },
+    {
+     "slice": "strategy/NonUSTStrategy.sol",
+     "verdict": "GO",
+     "types": []
+    }
+   ],
+   "api_calls": 27,
+   "latency_s": 597.3,
+   "schema": 1
+  }
+ ]
+}
