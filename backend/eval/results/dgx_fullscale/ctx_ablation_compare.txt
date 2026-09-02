@@ -1,0 +1,35 @@
+
+=== CONTEXT ABLATION: ctx4k vs ctx16k ===
+paired contracts        36   (51 in ctx4k, 47 in ctx16k)
+scored in BOTH arms     20
+  inconclusive ctx4k    16/36  44.4% [29.5, 60.4]
+  inconclusive ctx16k   0/36  0.0% [0.0, 9.6]
+  accuracy     ctx4k    5/20  25.0% [11.2, 46.9]
+  accuracy     ctx16k   15/20  75.0% [53.1, 88.8]
+  recall       ctx4k    2/16  12.5% [3.5, 36.0]
+  recall       ctx16k   13/16  81.2% [57.0, 93.4]
+  FPR          ctx4k    1/4  25.0% [4.6, 69.9]
+  FPR          ctx16k   2/4  50.0% [15.0, 85.0]
+
+median latency ctx4k      402.9s
+  median latency ctx16k     108.2s
+  ctx16k faster on   20/20 paired contracts, median speedup x4.01
+  sign test               p = 0.00000  (significant)
+
+Discordant pairs        ctx4k-only-correct=2  ctx16k-only-correct=12
+McNemar                 chi2=5.79 p=0.0162
+Verdict                 a real paired difference
+
+verdict flips           14/20  (70.0% of paired contracts)
+    GO     -> NO-GO  (truth safe)  01_dappclean_consensys_modular_interactive_c
+    GO     -> NO-GO  (truth vulnerable)  02_dappscan_controller
+    GO     -> NO-GO  (truth vulnerable)  02_dappscan_hacken_oracula_oracula0x85f3ec4e
+    GO     -> NO-GO  (truth vulnerable)  02_dappscan_inspex_superlauncher_v_2_v2_core
+    GO     -> NO-GO  (truth vulnerable)  02_dappscan_lido
+    GO     -> NO-GO  (truth vulnerable)  02_dappscan_liquidity_amm
+    GO     -> NO-GO  (truth vulnerable)  02_dappscan_quillaudits_amplify_voting_smart
+    GO     -> NO-GO  (truth vulnerable)  02_dappscan_rosca
+    GO     -> NO-GO  (truth vulnerable)  02_dappscan_src_features_metatransactionsfea
+    GO     -> NO-GO  (truth vulnerable)  02_dappscan_treasury_vctreasuryv1
+    GO     -> NO-GO  (truth vulnerable)  02_solidifi_arithmetic_005
+    NO-GO  -> GO     (truth vulnerable)  02_solidifi_reentrancy_019

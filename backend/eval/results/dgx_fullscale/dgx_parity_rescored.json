@@ -1,0 +1,378 @@
+{
+ "rule": "noisy-OR, RISK_TAU=0.925",
+ "n": 24,
+ "agreement": 0.792,
+ "accuracy_laptop": 0.708,
+ "accuracy_dgx": 0.667,
+ "rows": [
+  {
+   "contract_id": "01_dappclean_erc1724_zkassetmintable",
+   "laptop_shipped_rule": "GO",
+   "dgx": "GO",
+   "truth": "safe",
+   "agrees": true,
+   "stored_or_gate_verdict": "GO",
+   "laptop_confs": [],
+   "dgx_confs": [
+    0.9
+   ]
+  },
+  {
+   "contract_id": "01_dappclean_pools_compoundtempuspool",
+   "laptop_shipped_rule": "GO",
+   "dgx": "NO-GO",
+   "truth": "safe",
+   "agrees": false,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.9
+   ],
+   "dgx_confs": [
+    0.9,
+    0.8
+   ]
+  },
+  {
+   "contract_id": "01_dappclean_schainsfunctionalityinternal",
+   "laptop_shipped_rule": "GO",
+   "dgx": "GO",
+   "truth": "safe",
+   "agrees": true,
+   "stored_or_gate_verdict": "GO",
+   "laptop_confs": [],
+   "dgx_confs": []
+  },
+  {
+   "contract_id": "01_dappclean_wrapdonft",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "NO-GO",
+   "truth": "safe",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.95
+   ],
+   "dgx_confs": [
+    1.0,
+    0.9,
+    0.95
+   ]
+  },
+  {
+   "contract_id": "01_oz_access_extensions_accesscontroldefaultadminrules",
+   "laptop_shipped_rule": "GO",
+   "dgx": "GO",
+   "truth": "safe",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.9
+   ],
+   "dgx_confs": []
+  },
+  {
+   "contract_id": "01_ozup_utils_multicallupgradeable",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "NO-GO",
+   "truth": "safe",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.9,
+    0.95
+   ],
+   "dgx_confs": [
+    0.9,
+    0.95
+   ]
+  },
+  {
+   "contract_id": "01_ozup_utils_reentrancyguardtransientupgradeable",
+   "laptop_shipped_rule": "GO",
+   "dgx": "GO",
+   "truth": "safe",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.9
+   ],
+   "dgx_confs": []
+  },
+  {
+   "contract_id": "01_solady_accounts_eip7702proxy",
+   "laptop_shipped_rule": "GO",
+   "dgx": "GO",
+   "truth": "safe",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.6
+   ],
+   "dgx_confs": []
+  },
+  {
+   "contract_id": "01_w3bclean_122_contracts_lib_openzeppelin_contracts_contracts_crosschain_polygon_crosschain",
+   "laptop_shipped_rule": "GO",
+   "dgx": "NO-GO",
+   "truth": "safe",
+   "agrees": false,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.7
+   ],
+   "dgx_confs": [
+    0.9,
+    0.9
+   ]
+  },
+  {
+   "contract_id": "01_w3bclean_124_index_coop_notional_trade_module_contracts_product_assetlimithook",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "NO-GO",
+   "truth": "safe",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.95
+   ],
+   "dgx_confs": [
+    0.95
+   ]
+  },
+  {
+   "contract_id": "01_w3bclean_124_index_coop_notional_trade_module_contracts_protocol_integration_claim_compcl",
+   "laptop_shipped_rule": "GO",
+   "dgx": "GO",
+   "truth": "safe",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.9
+   ],
+   "dgx_confs": [
+    0.9
+   ]
+  },
+  {
+   "contract_id": "01_w3bclean_96_timeswap_convenience_contracts_libraries_squareroot",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "NO-GO",
+   "truth": "safe",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.95
+   ],
+   "dgx_confs": [
+    0.6,
+    0.95
+   ]
+  },
+  {
+   "contract_id": "02_dappscan_hacken_hyksos_hyksos_contracts_audit_hyksosbase",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "NO-GO",
+   "truth": "vulnerable",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.9,
+    0.9,
+    0.95
+   ],
+   "dgx_confs": [
+    0.9,
+    1.0
+   ]
+  },
+  {
+   "contract_id": "02_dappscan_incentives_distributionmanager",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "NO-GO",
+   "truth": "vulnerable",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    1.0
+   ],
+   "dgx_confs": [
+    1.0,
+    0.95
+   ]
+  },
+  {
+   "contract_id": "02_dappscan_openzeppelin_basic_attention_token_basic_attention_token_crowdsale_17a5f8440a256",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "NO-GO",
+   "truth": "vulnerable",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.8,
+    0.9,
+    0.9
+   ],
+   "dgx_confs": [
+    0.9,
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "contract_id": "02_dappscan_quillaudits_burst_token_smart_contract_burst_token_33b0e2e7ec14828e000ae95e7d4ce",
+   "laptop_shipped_rule": "GO",
+   "dgx": "NO-GO",
+   "truth": "vulnerable",
+   "agrees": false,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.9
+   ],
+   "dgx_confs": [
+    1.0,
+    0.7
+   ]
+  },
+  {
+   "contract_id": "02_dvl_phantom_permit",
+   "laptop_shipped_rule": "GO",
+   "dgx": "GO",
+   "truth": "vulnerable",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.8
+   ],
+   "dgx_confs": [
+    0.9
+   ]
+  },
+  {
+   "contract_id": "02_dvl_reentrancy",
+   "laptop_shipped_rule": "GO",
+   "dgx": "NO-GO",
+   "truth": "vulnerable",
+   "agrees": false,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.9
+   ],
+   "dgx_confs": [
+    1.0,
+    0.9,
+    0.9,
+    0.9
+   ]
+  },
+  {
+   "contract_id": "02_dvl_self_transfer",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "NO-GO",
+   "truth": "vulnerable",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.8,
+    0.8,
+    0.9,
+    0.95
+   ],
+   "dgx_confs": [
+    1.0,
+    1.0,
+    1.0,
+    0.9,
+    0.95
+   ]
+  },
+  {
+   "contract_id": "02_dvl_signaturereplay",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "NO-GO",
+   "truth": "vulnerable",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.9,
+    1.0
+   ],
+   "dgx_confs": [
+    1.0,
+    0.9,
+    1.0,
+    0.9,
+    1.0
+   ]
+  },
+  {
+   "contract_id": "02_solidifi_time_manipulation_042",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "NO-GO",
+   "truth": "vulnerable",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.9,
+    0.9,
+    0.99
+   ],
+   "dgx_confs": [
+    1.0,
+    0.9,
+    1.0
+   ]
+  },
+  {
+   "contract_id": "02_solidifi_transaction_order_dependence_013",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "NO-GO",
+   "truth": "vulnerable",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    1.0,
+    0.9,
+    0.9
+   ],
+   "dgx_confs": [
+    1.0,
+    0.9,
+    1.0
+   ]
+  },
+  {
+   "contract_id": "02_solidifi_unchecked_low_level_calls_027",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "GO",
+   "truth": "vulnerable",
+   "agrees": false,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    1.0,
+    0.9
+   ],
+   "dgx_confs": [
+    0.8
+   ]
+  },
+  {
+   "contract_id": "02_solidifi_unhandled_exception_015",
+   "laptop_shipped_rule": "NO-GO",
+   "dgx": "NO-GO",
+   "truth": "vulnerable",
+   "agrees": true,
+   "stored_or_gate_verdict": "NO-GO",
+   "laptop_confs": [
+    0.9,
+    0.9,
+    0.8,
+    0.9
+   ],
+   "dgx_confs": [
+    0.8,
+    0.9,
+    0.9
+   ]
+  }
+ ]
+}

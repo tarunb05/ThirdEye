@@ -1,0 +1,28 @@
+{
+  "run_name": "current_thirdeye/etherscan50",
+  "n_items": 50,
+  "n_predictions": 0,
+  "binary": {
+    "tp": 0,
+    "fp": 0,
+    "tn": 0,
+    "fn": 0,
+    "support": 0,
+    "skipped_no_prediction": 50,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "accuracy": 0.0
+  },
+  "per_category": {},
+  "averages": {
+    "macro_precision": 0.0,
+    "macro_recall": 0.0,
+    "macro_f1": 0.0,
+    "micro_precision": 0.0,
+    "micro_recall": 0.0,
+    "micro_f1": 0.0
+  },
+  "categories_normalized_to_dasp10": true,
+  "unmapped_categories": {}
+}

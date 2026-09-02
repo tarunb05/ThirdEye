@@ -1,0 +1,17 @@
+{
+ "n": 230,
+ "agreement": 0.813,
+ "ci95": [
+  0.763,
+  0.863
+ ],
+ "accuracy_laptop": 0.778,
+ "accuracy_dgx": 0.722,
+ "go_to_nogo": 31,
+ "nogo_to_go": 12,
+ "fpr_laptop": 0.273,
+ "fpr_dgx": 0.405,
+ "recall_laptop": 0.835,
+ "recall_dgx": 0.862,
+ "rule": "noisy-OR tau=0.925 replayed on both sides"
+}

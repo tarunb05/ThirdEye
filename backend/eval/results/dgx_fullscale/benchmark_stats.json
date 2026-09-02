@@ -1,0 +1,667 @@
+{
+  "kpis": [
+    {
+      "label": "Vulnerability classes",
+      "value": "8",
+      "sub": "OWASP/DASP specialists"
+    },
+    {
+      "label": "Cost per contract",
+      "value": "$0",
+      "sub": "free local + free hosted tiers"
+    },
+    {
+      "label": "Benchmark contracts",
+      "value": "1089",
+      "sub": "scored, ollama_noarb \u00b7 balanced safe/vulnerable"
+    },
+    {
+      "label": "Recall (vulnerable)",
+      "value": "0.81",
+      "sub": "421/518 caught \u00b7 GPTScan 0.83"
+    },
+    {
+      "label": "False-positive rate (safe)",
+      "value": "29%",
+      "sub": "168/571 audited-safe wrongly flagged \u00b7 was 59% before the fix"
+    },
+    {
+      "label": "Arbitration: FPs corrected",
+      "value": "9/12",
+      "sub": "true positives lost: 12/17"
+    }
+  ],
+  "ablation": {
+    "available": true,
+    "task": "access-control detection",
+    "sample": {
+      "n": 16,
+      "pos": 8,
+      "neg": 8,
+      "seed": 0
+    },
+    "configs": [
+      {
+        "config": "single_llm",
+        "precision": 1.0,
+        "recall": 0.125,
+        "f1": 0.222,
+        "tp": 1,
+        "fp": 0,
+        "tn": 8,
+        "fn": 7
+      },
+      {
+        "config": "council",
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.857,
+        "tp": 6,
+        "fp": 0,
+        "tn": 8,
+        "fn": 2
+      },
+      {
+        "config": "council+arbitration",
+        "precision": 1.0,
+        "recall": 0.125,
+        "f1": 0.222,
+        "tp": 1,
+        "fp": 0,
+        "tn": 8,
+        "fn": 7
+      }
+    ]
+  },
+  "tier_benchmark": {
+    "available": true,
+    "backend": "ollama_noarb",
+    "n_total": 1089,
+    "tiers": [
+      {
+        "label": "Audited libraries (OZ/Solady)",
+        "expected": "safe",
+        "bucket": "01_safe",
+        "n": 166,
+        "scored": 166,
+        "inconclusive": 0,
+        "errored": 0,
+        "tp": 0,
+        "fp": 39,
+        "tn": 127,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0,
+        "accuracy": 0.7650602409638554,
+        "correct_go_rate_on_safe": 0.7650602409638554,
+        "detection_rate_on_vuln": null
+      },
+      {
+        "label": "Audit-reviewed, clean",
+        "expected": "safe",
+        "bucket": "01_safe",
+        "n": 214,
+        "scored": 214,
+        "inconclusive": 0,
+        "errored": 0,
+        "tp": 0,
+        "fp": 95,
+        "tn": 119,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0,
+        "accuracy": 0.5560747663551402,
+        "correct_go_rate_on_safe": 0.5560747663551402,
+        "detection_rate_on_vuln": null
+      },
+      {
+        "label": "Real-world, no bug reported",
+        "expected": "safe",
+        "bucket": "01_safe",
+        "n": 191,
+        "scored": 191,
+        "inconclusive": 0,
+        "errored": 0,
+        "tp": 0,
+        "fp": 80,
+        "tn": 111,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0,
+        "accuracy": 0.581151832460733,
+        "correct_go_rate_on_safe": 0.581151832460733,
+        "detection_rate_on_vuln": null
+      },
+      {
+        "label": "Curated vulnerable (SmartBugs-style)",
+        "expected": "vulnerable",
+        "bucket": "02_vuln_labelled",
+        "n": 214,
+        "scored": 214,
+        "inconclusive": 0,
+        "errored": 0,
+        "tp": 185,
+        "fp": 0,
+        "tn": 0,
+        "fn": 29,
+        "precision": 1.0,
+        "recall": 0.8644859813084113,
+        "f1": 0.9273182957393484,
+        "accuracy": 0.8644859813084113,
+        "correct_go_rate_on_safe": null,
+        "detection_rate_on_vuln": 0.8644859813084113
+      },
+      {
+        "label": "Injected vulnerability",
+        "expected": "vulnerable",
+        "bucket": "02_vuln_labelled",
+        "n": 153,
+        "scored": 153,
+        "inconclusive": 0,
+        "errored": 0,
+        "tp": 137,
+        "fp": 0,
+        "tn": 0,
+        "fn": 16,
+        "precision": 1.0,
+        "recall": 0.8954248366013072,
+        "f1": 0.9448275862068967,
+        "accuracy": 0.8954248366013072,
+        "correct_go_rate_on_safe": null,
+        "detection_rate_on_vuln": 0.8954248366013072
+      },
+      {
+        "label": "Real audit-report findings",
+        "expected": "vulnerable",
+        "bucket": "02_vuln_labelled",
+        "n": 151,
+        "scored": 151,
+        "inconclusive": 0,
+        "errored": 0,
+        "tp": 109,
+        "fp": 0,
+        "tn": 0,
+        "fn": 42,
+        "precision": 1.0,
+        "recall": 0.7218543046357616,
+        "f1": 0.8384615384615385,
+        "accuracy": 0.7218543046357616,
+        "correct_go_rate_on_safe": null,
+        "detection_rate_on_vuln": 0.7218543046357616
+      }
+    ],
+    "safe_aggregate": {
+      "n": 571,
+      "scored": 571,
+      "inconclusive": 0,
+      "errored": 0,
+      "tp": 0,
+      "fp": 214,
+      "tn": 357,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "accuracy": 0.6252189141856392,
+      "correct_go_rate_on_safe": 0.6252189141856392,
+      "detection_rate_on_vuln": null
+    },
+    "vuln_aggregate": {
+      "n": 518,
+      "scored": 518,
+      "inconclusive": 0,
+      "errored": 0,
+      "tp": 431,
+      "fp": 0,
+      "tn": 0,
+      "fn": 87,
+      "precision": 1.0,
+      "recall": 0.832046332046332,
+      "f1": 0.9083245521601686,
+      "accuracy": 0.832046332046332,
+      "correct_go_rate_on_safe": null,
+      "detection_rate_on_vuln": 0.832046332046332
+    },
+    "overall": {
+      "n": 1089,
+      "scored": 1089,
+      "inconclusive": 0,
+      "errored": 0,
+      "tp": 431,
+      "fp": 214,
+      "tn": 357,
+      "fn": 87,
+      "precision": 0.6682170542635659,
+      "recall": 0.832046332046332,
+      "f1": 0.7411865864144453,
+      "accuracy": 0.7235996326905417,
+      "correct_go_rate_on_safe": null,
+      "detection_rate_on_vuln": null
+    },
+    "api_accounting": {
+      "available": true,
+      "contracts": 1089,
+      "total_api_calls": 4125,
+      "calls_per_contract": {
+        "min": 1,
+        "max": 8,
+        "mean": 3.79,
+        "median": 4,
+        "p95": 6
+      },
+      "latency_s_per_contract": {
+        "min": 2.6,
+        "max": 350.3,
+        "mean": 60.2,
+        "median": 52.9
+      },
+      "rate_limit_note": "A single scan makes up to this many LLM calls. Size a per-user limit as (acceptable concurrent scans) x (p95 calls/contract). e.g. p95=6 calls/scan -> allowing 2 scans/user/min ~= 12 calls/user/min."
+    },
+    "verdict_note": "INCONCLUSIVE verdicts are abstentions, excluded from P/R/F1 and reported separately."
+  },
+  "arbitration_ablation": {
+    "available": true,
+    "n_adjudicated": 29,
+    "false_positives_seen": 12,
+    "false_positives_corrected": 9,
+    "true_positives_seen": 17,
+    "true_positives_destroyed": 12,
+    "judge": "cerebras gpt-oss-120b",
+    "note": "Council NO-GO verdicts re-adjudicated by an adversarial red-team/judge pair. Small sample \u2014 counts, not rates, are the honest unit here."
+  },
+  "head_to_head": {
+    "available": true,
+    "n_common": 32,
+    "council": {
+      "tp": 23,
+      "fp": 4,
+      "tn": 4,
+      "fn": 1,
+      "precision": 0.852,
+      "recall": 0.958,
+      "f1": 0.902,
+      "fpr": 0.5
+    },
+    "slither": {
+      "tp": 21,
+      "fp": 1,
+      "tn": 7,
+      "fn": 3,
+      "precision": 0.955,
+      "recall": 0.875,
+      "f1": 0.913,
+      "fpr": 0.125
+    },
+    "coverage": {
+      "council_scored": 1089,
+      "slither_scored": 46
+    },
+    "note": "Same contracts, same ground truth. Coverage is the bigger story: the council scores every contract, while a static analyser abstains on anything that will not compile \u2014 and those abstentions skew toward modern, complex code."
+  },
+  "proposed_methods": {
+    "available": true,
+    "weighted": {
+      "or_gate": {
+        "precision": 0.563,
+        "recall": 0.938,
+        "f1": 0.703,
+        "fpr": 0.648
+      },
+      "or_gate_std": {
+        "precision": 0.021,
+        "recall": 0.02,
+        "f1": 0.017,
+        "fpr": 0.054
+      },
+      "tuned": {
+        "precision": 0.738,
+        "recall": 0.851,
+        "f1": 0.79,
+        "fpr": 0.268
+      },
+      "tuned_std": {
+        "precision": 0.022,
+        "recall": 0.043,
+        "f1": 0.027,
+        "fpr": 0.028
+      },
+      "weighted_variant": {
+        "precision": 0.733,
+        "recall": 0.824,
+        "f1": 0.77,
+        "fpr": 0.274
+      },
+      "weighting_wins": 3,
+      "wins": 9,
+      "n_splits": 10,
+      "median_tau": 0.55,
+      "n_rows": 233,
+      "weights": {
+        "proxy_upgradeability": 0.6666666666666666,
+        "arithmetic": 0.7941176470588235,
+        "reentrancy": 0.8620689655172413,
+        "access_control": 0.7727272727272727,
+        "flashloan_mev": 0.625,
+        "oracle_price_manipulation": 0.6,
+        "business_logic": 0.5254237288135594,
+        "dos_gas": 0.6976744186046512
+      },
+      "extra_llm_calls": 0
+    },
+    "calibrated_arbitration": {
+      "baseline_f1": 0.706,
+      "tuned_f1": 0.705,
+      "tuned_f1_std": 0.02,
+      "baseline_fpr": 0.639,
+      "tuned_fpr": 0.532,
+      "wins": 4,
+      "n_splits": 10,
+      "extra_llm_calls": "2 per finding"
+    },
+    "note": "Weights/thresholds fit on a dev split and scored on a disjoint test split, averaged over random splits. In-sample optima are excluded \u2014 selecting a threshold on the data you report it on inflates every number."
+  },
+  "story": {
+    "available": true,
+    "compounding": [
+      {
+        "specialists": 1,
+        "n": 56,
+        "fpr": 0.143
+      },
+      {
+        "specialists": 2,
+        "n": 171,
+        "fpr": 0.164
+      },
+      {
+        "specialists": 3,
+        "n": 159,
+        "fpr": 0.371
+      },
+      {
+        "specialists": 4,
+        "n": 107,
+        "fpr": 0.542
+      },
+      {
+        "specialists": 5,
+        "n": 55,
+        "fpr": 0.764
+      },
+      {
+        "specialists": 6,
+        "n": 20,
+        "fpr": 0.8
+      }
+    ],
+    "reliability": [
+      {
+        "cls": "reentrancy",
+        "tp": 212,
+        "fp": 20,
+        "precision": 0.914
+      },
+      {
+        "cls": "access_control",
+        "tp": 167,
+        "fp": 35,
+        "precision": 0.827
+      },
+      {
+        "cls": "arithmetic",
+        "tp": 254,
+        "fp": 82,
+        "precision": 0.756
+      },
+      {
+        "cls": "dos_gas",
+        "tp": 252,
+        "fp": 89,
+        "precision": 0.739
+      },
+      {
+        "cls": "flashloan_mev",
+        "tp": 14,
+        "fp": 6,
+        "precision": 0.7
+      },
+      {
+        "cls": "oracle_price_manipulation",
+        "tp": 11,
+        "fp": 7,
+        "precision": 0.611
+      },
+      {
+        "cls": "business_logic",
+        "tp": 252,
+        "fp": 243,
+        "precision": 0.509
+      },
+      {
+        "cls": "proxy_upgradeability",
+        "tp": 7,
+        "fp": 10,
+        "precision": 0.412
+      }
+    ],
+    "n_rows": 1089
+  },
+  "shipped_rule": {
+    "available": true,
+    "n": 1089,
+    "tau": 0.925,
+    "before": {
+      "tp": 468,
+      "fp": 336,
+      "tn": 235,
+      "fn": 50,
+      "precision": 0.582,
+      "recall": 0.903,
+      "f1": 0.708,
+      "fpr": 0.588
+    },
+    "after": {
+      "tp": 421,
+      "fp": 168,
+      "tn": 403,
+      "fn": 97,
+      "precision": 0.715,
+      "recall": 0.813,
+      "f1": 0.761,
+      "fpr": 0.294
+    },
+    "per_tier": {
+      "audit_reviewed_clean": {
+        "n": 214,
+        "before": 143,
+        "after": 79,
+        "fpr_before": 0.668,
+        "fpr_after": 0.369
+      },
+      "audited_library": {
+        "n": 166,
+        "before": 81,
+        "after": 26,
+        "fpr_before": 0.488,
+        "fpr_after": 0.157
+      },
+      "realworld_no_bug_reported": {
+        "n": 191,
+        "before": 112,
+        "after": 63,
+        "fpr_before": 0.586,
+        "fpr_after": 0.33
+      }
+    },
+    "note": "Replayed through the production verdict functions. The shipped rule pools finding confidences as 1 - PROD(1 - conf) and blocks at tau; the previous rule blocked on any surviving finding, which is the same rule at tau -> 0."
+  },
+  "vuln_distribution": {
+    "smartbugs_curated": [
+      {
+        "category": "unchecked_low_level_calls",
+        "count": 75,
+        "pct": 36.2
+      },
+      {
+        "category": "reentrancy",
+        "count": 32,
+        "pct": 15.5
+      },
+      {
+        "category": "bad_randomness",
+        "count": 31,
+        "pct": 15.0
+      },
+      {
+        "category": "arithmetic",
+        "count": 23,
+        "pct": 11.1
+      },
+      {
+        "category": "access_control",
+        "count": 21,
+        "pct": 10.1
+      },
+      {
+        "category": "denial_of_service",
+        "count": 7,
+        "pct": 3.4
+      },
+      {
+        "category": "front_running",
+        "count": 7,
+        "pct": 3.4
+      },
+      {
+        "category": "time_manipulation",
+        "count": 7,
+        "pct": 3.4
+      },
+      {
+        "category": "other",
+        "count": 3,
+        "pct": 1.4
+      },
+      {
+        "category": "short_addresses",
+        "count": 1,
+        "pct": 0.5
+      }
+    ],
+    "web3bugs": [
+      {
+        "category": "SC",
+        "count": 65,
+        "pct": 13.2
+      },
+      {
+        "category": "S6-4",
+        "count": 56,
+        "pct": 11.4
+      },
+      {
+        "category": "O1",
+        "count": 28,
+        "pct": 5.7
+      },
+      {
+        "category": "O5",
+        "count": 26,
+        "pct": 5.3
+      },
+      {
+        "category": "S3-1",
+        "count": 22,
+        "pct": 4.5
+      },
+      {
+        "category": "L1",
+        "count": 19,
+        "pct": 3.9
+      },
+      {
+        "category": "S6-3",
+        "count": 18,
+        "pct": 3.7
+      },
+      {
+        "category": "L7",
+        "count": 17,
+        "pct": 3.5
+      },
+      {
+        "category": "O3",
+        "count": 16,
+        "pct": 3.3
+      },
+      {
+        "category": "S1-1",
+        "count": 15,
+        "pct": 3.0
+      },
+      {
+        "category": "SE-1",
+        "count": 15,
+        "pct": 3.0
+      },
+      {
+        "category": "L8",
+        "count": 15,
+        "pct": 3.0
+      },
+      {
+        "category": "O6",
+        "count": 14,
+        "pct": 2.8
+      },
+      {
+        "category": "S2-1",
+        "count": 14,
+        "pct": 2.8
+      },
+      {
+        "category": "SE-4",
+        "count": 13,
+        "pct": 2.6
+      }
+    ]
+  },
+  "published_baselines": [
+    {
+      "tool": "GPTScan (ICSE'24)",
+      "dataset": "Web3Bugs",
+      "recall": 0.833,
+      "f1": 0.678,
+      "cost": "paid GPT",
+      "note": "primary target"
+    },
+    {
+      "tool": "GPTScan (ICSE'24)",
+      "dataset": "DefiHacks",
+      "recall": 0.714,
+      "f1": 0.8,
+      "cost": "paid GPT",
+      "note": "no public source \u2014 not reproduced"
+    },
+    {
+      "tool": "Static tools (Slither/Mythril)",
+      "dataset": "real-world access control",
+      "recall": 0.05,
+      "f1": null,
+      "cost": "free",
+      "note": "3-8% recall (ACToolBench)"
+    },
+    {
+      "tool": "GPT-4o-mini",
+      "dataset": "real-world access control",
+      "recall": 0.9,
+      "f1": null,
+      "cost": "paid",
+      "note": "high recall, ~951 false positives"
+    }
+  ],
+  "thesis": "Match/beat a paid-GPT ICSE'24 baseline on logic-vuln detection using only free models, and add dynamic exploit-confirmation for precision."
+}

@@ -1,0 +1,93 @@
+{
+ "paired": 36,
+ "scored_both": 20,
+ "mcnemar_b": 2,
+ "mcnemar_c": 12,
+ "p": 0.016156931261181316,
+ "flips": [
+  {
+   "id": "01_dappclean_consensys_modular_interactive_crowdsale_ethereum_libraries_73abc22623e0841b8ea67",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "safe"
+  },
+  {
+   "id": "02_dappscan_controller",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "vulnerable"
+  },
+  {
+   "id": "02_dappscan_hacken_oracula_oracula0x85f3ec4ec49ab6a5901278176235957ef521970d_oracula0x85f3ec",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "vulnerable"
+  },
+  {
+   "id": "02_dappscan_inspex_superlauncher_v_2_v2_core_ba2ce0aedbefd79d6f2154f7ccc4954bba33592a_mainwo",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "vulnerable"
+  },
+  {
+   "id": "02_dappscan_lido",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "vulnerable"
+  },
+  {
+   "id": "02_dappscan_liquidity_amm",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "vulnerable"
+  },
+  {
+   "id": "02_dappscan_quillaudits_amplify_voting_smart_contract_contracts_9dd44ac15cb66685a5beb038065f",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "vulnerable"
+  },
+  {
+   "id": "02_dappscan_rosca",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "vulnerable"
+  },
+  {
+   "id": "02_dappscan_src_features_metatransactionsfeature",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "vulnerable"
+  },
+  {
+   "id": "02_dappscan_treasury_vctreasuryv1",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "vulnerable"
+  },
+  {
+   "id": "02_solidifi_arithmetic_005",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "vulnerable"
+  },
+  {
+   "id": "02_solidifi_reentrancy_019",
+   "a": "NO-GO",
+   "b": "GO",
+   "expected": "vulnerable"
+  },
+  {
+   "id": "02_solidifi_transaction_order_dependence_006",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "vulnerable"
+  },
+  {
+   "id": "02_solidifi_transaction_order_dependence_034",
+   "a": "GO",
+   "b": "NO-GO",
+   "expected": "vulnerable"
+  }
+ ]
+}

@@ -1,0 +1,1208 @@
+{
+ "summary": {
+  "arm": "8b",
+  "logic_model": "llama3.1:8b",
+  "host": "NVIDIA GB10 (DGX Spark), 119GB unified",
+  "n_requested": 24,
+  "n_scored": 24,
+  "n_inconclusive": 0,
+  "verdict_agreement_with_laptop": 0.958,
+  "accuracy_dgx": 0.625,
+  "accuracy_laptop": 0.583,
+  "median_latency_s": 24.4,
+  "median_latency_laptop_s": 57.0,
+  "wall_clock_min": 3.6,
+  "total_api_calls": 361,
+  "by_tier": {
+   "01_safe/audit_reviewed_clean": {
+    "n": 4,
+    "agree": 4,
+    "flips": []
+   },
+   "01_safe/audited_library": {
+    "n": 4,
+    "agree": 3,
+    "flips": [
+     {
+      "id": "01_solady_accounts_eip7702proxy",
+      "laptop": "NO-GO",
+      "dgx": "GO",
+      "expected": "safe"
+     }
+    ]
+   },
+   "01_safe/realworld_no_bug_reported": {
+    "n": 4,
+    "agree": 4,
+    "flips": []
+   },
+   "02_vuln_labelled/audit_report": {
+    "n": 4,
+    "agree": 4,
+    "flips": []
+   },
+   "02_vuln_labelled/curated": {
+    "n": 4,
+    "agree": 4,
+    "flips": []
+   },
+   "02_vuln_labelled/injected": {
+    "n": 4,
+    "agree": 4,
+    "flips": []
+   }
+  },
+  "note": "Separate from the shipped n=233, which was measured on a 4GB laptop GPU. Not merged into it. Agreement is verdict-level on the identical contract ids and seed."
+ },
+ "rows": [
+  {
+   "contract_id": "01_dappclean_erc1724_zkassetmintable",
+   "ground_truth": "likely_safe",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 3,
+   "roles": [
+    "access_control",
+    "arithmetic",
+    "business_logic"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 12,
+   "latency_s": 19.3,
+   "error": null,
+   "verdict_reason": "All 3 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 1,
+   "findings": [],
+   "schema": 2,
+   "baseline_verdict": "GO",
+   "baseline_latency_s": 64.2,
+   "bucket": "01_safe",
+   "tier": "audit_reviewed_clean",
+   "expected": "safe",
+   "agrees": true
+  },
+  {
+   "contract_id": "01_dappclean_wrapdonft",
+   "ground_truth": "likely_safe",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 3,
+   "n_specialists_run": 3,
+   "roles": [
+    "access_control",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 14,
+   "latency_s": 21.0,
+   "error": null,
+   "verdict_reason": "3 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: access control, business logic, dos gas.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "access_control",
+     "severity": "critical",
+     "confidence": 1.0,
+     "source": "council:access_control",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 0.9,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    },
+    {
+     "type": "dos_gas",
+     "severity": "critical",
+     "confidence": 0.95,
+     "source": "council:dos_gas",
+     "model": "gemma3:4b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 39.3,
+   "bucket": "01_safe",
+   "tier": "audit_reviewed_clean",
+   "expected": "safe",
+   "agrees": true
+  },
+  {
+   "contract_id": "01_dappclean_schainsfunctionalityinternal",
+   "ground_truth": "likely_safe",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 3,
+   "roles": [
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 91,
+   "latency_s": 200.1,
+   "error": null,
+   "verdict_reason": "All 3 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 1,
+   "findings": [],
+   "schema": 2,
+   "baseline_verdict": "GO",
+   "baseline_latency_s": 157.4,
+   "bucket": "01_safe",
+   "tier": "audit_reviewed_clean",
+   "expected": "safe",
+   "agrees": true
+  },
+  {
+   "contract_id": "01_dappclean_pools_compoundtempuspool",
+   "ground_truth": "likely_safe",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 2,
+   "n_specialists_run": 3,
+   "roles": [
+    "access_control",
+    "business_logic",
+    "oracle_price_manipulation"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 10,
+   "latency_s": 16.6,
+   "error": null,
+   "verdict_reason": "2 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: business logic, oracle price manipulation.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    },
+    {
+     "type": "oracle_price_manipulation",
+     "severity": "high",
+     "confidence": 0.9,
+     "source": "council:oracle_price_manipulation",
+     "model": "llama3.1:8b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 49.4,
+   "bucket": "01_safe",
+   "tier": "audit_reviewed_clean",
+   "expected": "safe",
+   "agrees": true
+  },
+  {
+   "contract_id": "01_oz_access_extensions_accesscontroldefaultadminrules",
+   "ground_truth": "likely_safe",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 1,
+   "n_specialists_run": 3,
+   "roles": [
+    "access_control",
+    "business_logic",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 9,
+   "latency_s": 18.4,
+   "error": null,
+   "verdict_reason": "1 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: business logic.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 275.8,
+   "bucket": "01_safe",
+   "tier": "audited_library",
+   "expected": "safe",
+   "agrees": true
+  },
+  {
+   "contract_id": "01_solady_accounts_eip7702proxy",
+   "ground_truth": "likely_safe",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 1,
+   "n_specialists_run": 3,
+   "roles": [
+    "access_control",
+    "business_logic",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 8,
+   "latency_s": 18.6,
+   "error": null,
+   "verdict_reason": "1 finding(s) quoted real code but their combined risk 0.800 is below the 0.925 bar: business logic. Reported for review, not blocking.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 0.8,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 67.8,
+   "bucket": "01_safe",
+   "tier": "audited_library",
+   "expected": "safe",
+   "agrees": false
+  },
+  {
+   "contract_id": "01_ozup_utils_multicallupgradeable",
+   "ground_truth": "likely_safe",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 1,
+   "n_specialists_run": 3,
+   "roles": [
+    "business_logic",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 10,
+   "latency_s": 24.3,
+   "error": null,
+   "verdict_reason": "1 finding(s) cleared the evidence gate and their combined risk 0.950 is at or above the 0.925 bar: dos gas.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "dos_gas",
+     "severity": "critical",
+     "confidence": 0.95,
+     "source": "council:dos_gas",
+     "model": "gemma3:4b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 32.0,
+   "bucket": "01_safe",
+   "tier": "audited_library",
+   "expected": "safe",
+   "agrees": true
+  },
+  {
+   "contract_id": "01_ozup_utils_reentrancyguardtransientupgradeable",
+   "ground_truth": "likely_safe",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 1,
+   "n_specialists_run": 2,
+   "roles": [
+    "business_logic",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 12,
+   "latency_s": 31.6,
+   "error": null,
+   "verdict_reason": "1 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: business logic.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 16.8,
+   "bucket": "01_safe",
+   "tier": "audited_library",
+   "expected": "safe",
+   "agrees": true
+  },
+  {
+   "contract_id": "01_w3bclean_122_contracts_lib_openzeppelin_contracts_contracts_crosschain_polygon_crosschain",
+   "ground_truth": "likely_safe",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 2,
+   "n_specialists_run": 3,
+   "roles": [
+    "business_logic",
+    "flashloan_mev",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 10,
+   "latency_s": 24.4,
+   "error": null,
+   "verdict_reason": "2 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: business logic, flashloan mev.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    },
+    {
+     "type": "flashloan_mev",
+     "severity": "high",
+     "confidence": 0.9,
+     "source": "council:flashloan_mev",
+     "model": "llama3.1:8b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 65.0,
+   "bucket": "01_safe",
+   "tier": "realworld_no_bug_reported",
+   "expected": "safe",
+   "agrees": true
+  },
+  {
+   "contract_id": "01_w3bclean_124_index_coop_notional_trade_module_contracts_protocol_integration_claim_compcl",
+   "ground_truth": "likely_safe",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 1,
+   "n_specialists_run": 2,
+   "roles": [
+    "arithmetic",
+    "business_logic"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 4,
+   "latency_s": 15.4,
+   "error": null,
+   "verdict_reason": "1 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: business logic.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 76.5,
+   "bucket": "01_safe",
+   "tier": "realworld_no_bug_reported",
+   "expected": "safe",
+   "agrees": true
+  },
+  {
+   "contract_id": "01_w3bclean_124_index_coop_notional_trade_module_contracts_product_assetlimithook",
+   "ground_truth": "likely_safe",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 2,
+   "n_specialists_run": 4,
+   "roles": [
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 17,
+   "latency_s": 39.7,
+   "error": null,
+   "verdict_reason": "2 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: business logic, dos gas.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    },
+    {
+     "type": "dos_gas",
+     "severity": "critical",
+     "confidence": 0.95,
+     "source": "council:dos_gas",
+     "model": "gemma3:4b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 39.9,
+   "bucket": "01_safe",
+   "tier": "realworld_no_bug_reported",
+   "expected": "safe",
+   "agrees": true
+  },
+  {
+   "contract_id": "01_w3bclean_96_timeswap_convenience_contracts_libraries_squareroot",
+   "ground_truth": "likely_safe",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 1,
+   "n_specialists_run": 2,
+   "roles": [
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 7,
+   "latency_s": 19.2,
+   "error": null,
+   "verdict_reason": "1 finding(s) cleared the evidence gate and their combined risk 0.950 is at or above the 0.925 bar: dos gas.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "dos_gas",
+     "severity": "critical",
+     "confidence": 0.95,
+     "source": "council:dos_gas",
+     "model": "gemma3:4b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 12.2,
+   "bucket": "01_safe",
+   "tier": "realworld_no_bug_reported",
+   "expected": "safe",
+   "agrees": true
+  },
+  {
+   "contract_id": "02_dappscan_quillaudits_burst_token_smart_contract_burst_token_33b0e2e7ec14828e000ae95e7d4ce",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 2,
+   "n_specialists_run": 3,
+   "roles": [
+    "access_control",
+    "arithmetic",
+    "business_logic"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 7,
+   "latency_s": 19.4,
+   "error": null,
+   "verdict_reason": "2 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: arithmetic, business logic.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "arithmetic",
+     "severity": "medium",
+     "confidence": 0.9,
+     "source": "council:arithmetic",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 34.9,
+   "bucket": "02_vuln_labelled",
+   "tier": "audit_report",
+   "expected": "vulnerable",
+   "agrees": true
+  },
+  {
+   "contract_id": "02_dappscan_incentives_distributionmanager",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 2,
+   "n_specialists_run": 3,
+   "roles": [
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 15,
+   "latency_s": 31.8,
+   "error": null,
+   "verdict_reason": "2 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: arithmetic, dos gas.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "arithmetic",
+     "severity": "critical",
+     "confidence": 1.0,
+     "source": "council:arithmetic",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "dos_gas",
+     "severity": "critical",
+     "confidence": 0.95,
+     "source": "council:dos_gas",
+     "model": "gemma3:4b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 44.7,
+   "bucket": "02_vuln_labelled",
+   "tier": "audit_report",
+   "expected": "vulnerable",
+   "agrees": true
+  },
+  {
+   "contract_id": "02_dappscan_openzeppelin_basic_attention_token_basic_attention_token_crowdsale_17a5f8440a256",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 3,
+   "n_specialists_run": 5,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 7,
+   "latency_s": 14.2,
+   "error": null,
+   "verdict_reason": "3 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: access control, arithmetic, reentrancy.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "reentrancy",
+     "severity": "high",
+     "confidence": 0.9,
+     "source": "council:reentrancy",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "access_control",
+     "severity": "critical",
+     "confidence": 1.0,
+     "source": "council:access_control",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "arithmetic",
+     "severity": "critical",
+     "confidence": 1.0,
+     "source": "council:arithmetic",
+     "model": "qwen2.5-coder:7b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 53.5,
+   "bucket": "02_vuln_labelled",
+   "tier": "audit_report",
+   "expected": "vulnerable",
+   "agrees": true
+  },
+  {
+   "contract_id": "02_dappscan_hacken_hyksos_hyksos_contracts_audit_hyksosbase",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 2,
+   "n_specialists_run": 4,
+   "roles": [
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 19,
+   "latency_s": 34.9,
+   "error": null,
+   "verdict_reason": "2 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: access control, arithmetic.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "access_control",
+     "severity": "high",
+     "confidence": 0.9,
+     "source": "council:access_control",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "arithmetic",
+     "severity": "critical",
+     "confidence": 1.0,
+     "source": "council:arithmetic",
+     "model": "qwen2.5-coder:7b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 46.1,
+   "bucket": "02_vuln_labelled",
+   "tier": "audit_report",
+   "expected": "vulnerable",
+   "agrees": true
+  },
+  {
+   "contract_id": "02_dvl_reentrancy",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 4,
+   "n_specialists_run": 4,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 11,
+   "latency_s": 16.7,
+   "error": null,
+   "verdict_reason": "4 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: access control, arithmetic, business logic, reentrancy.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "reentrancy",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:reentrancy",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "access_control",
+     "severity": "medium",
+     "confidence": 0.9,
+     "source": "council:access_control",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "arithmetic",
+     "severity": "low",
+     "confidence": 0.9,
+     "source": "council:arithmetic",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 58.2,
+   "bucket": "02_vuln_labelled",
+   "tier": "curated",
+   "expected": "vulnerable",
+   "agrees": true
+  },
+  {
+   "contract_id": "02_dvl_signaturereplay",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 4,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 16,
+   "latency_s": 30.2,
+   "error": null,
+   "verdict_reason": "4 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: arithmetic, business logic, dos gas, reentrancy.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "reentrancy",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:reentrancy",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "arithmetic",
+     "severity": "high",
+     "confidence": 0.9,
+     "source": "council:arithmetic",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    },
+    {
+     "type": "dos_gas",
+     "severity": "critical",
+     "confidence": 1.0,
+     "source": "council:dos_gas",
+     "model": "gemma3:4b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 60.2,
+   "bucket": "02_vuln_labelled",
+   "tier": "curated",
+   "expected": "vulnerable",
+   "agrees": true
+  },
+  {
+   "contract_id": "02_dvl_phantom_permit",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 2,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 18,
+   "latency_s": 37.8,
+   "error": null,
+   "verdict_reason": "2 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: arithmetic, oracle price manipulation.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "arithmetic",
+     "severity": "high",
+     "confidence": 0.9,
+     "source": "council:arithmetic",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "oracle_price_manipulation",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:oracle_price_manipulation",
+     "model": "llama3.1:8b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 55.8,
+   "bucket": "02_vuln_labelled",
+   "tier": "curated",
+   "expected": "vulnerable",
+   "agrees": true
+  },
+  {
+   "contract_id": "02_dvl_self_transfer",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 5,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 21,
+   "latency_s": 42.1,
+   "error": null,
+   "verdict_reason": "5 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: access control, arithmetic, business logic, dos gas, oracle price manipulation.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "access_control",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:access_control",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "arithmetic",
+     "severity": "critical",
+     "confidence": 1.0,
+     "source": "council:arithmetic",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "business_logic",
+     "severity": "critical",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    },
+    {
+     "type": "oracle_price_manipulation",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:oracle_price_manipulation",
+     "model": "llama3.1:8b"
+    },
+    {
+     "type": "dos_gas",
+     "severity": "critical",
+     "confidence": 0.95,
+     "source": "council:dos_gas",
+     "model": "gemma3:4b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 52.7,
+   "bucket": "02_vuln_labelled",
+   "tier": "curated",
+   "expected": "vulnerable",
+   "agrees": true
+  },
+  {
+   "contract_id": "02_solidifi_transaction_order_dependence_013",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 3,
+   "n_specialists_run": 5,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 13,
+   "latency_s": 30.1,
+   "error": null,
+   "verdict_reason": "3 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: access control, arithmetic, reentrancy.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "reentrancy",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:reentrancy",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "access_control",
+     "severity": "medium",
+     "confidence": 0.9,
+     "source": "council:access_control",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "arithmetic",
+     "severity": "critical",
+     "confidence": 1.0,
+     "source": "council:arithmetic",
+     "model": "qwen2.5-coder:7b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 152.2,
+   "bucket": "02_vuln_labelled",
+   "tier": "injected",
+   "expected": "vulnerable",
+   "agrees": true
+  },
+  {
+   "contract_id": "02_solidifi_time_manipulation_042",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 5,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "flashloan_mev",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 14,
+   "latency_s": 30.8,
+   "error": null,
+   "verdict_reason": "5 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: arithmetic, business logic, dos gas, flashloan mev, reentrancy.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "reentrancy",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:reentrancy",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "arithmetic",
+     "severity": "medium",
+     "confidence": 0.9,
+     "source": "council:arithmetic",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    },
+    {
+     "type": "flashloan_mev",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:flashloan_mev",
+     "model": "llama3.1:8b"
+    },
+    {
+     "type": "dos_gas",
+     "severity": "critical",
+     "confidence": 1.0,
+     "source": "council:dos_gas",
+     "model": "gemma3:4b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 97.6,
+   "bucket": "02_vuln_labelled",
+   "tier": "injected",
+   "expected": "vulnerable",
+   "agrees": true
+  },
+  {
+   "contract_id": "02_solidifi_unchecked_low_level_calls_027",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 2,
+   "n_specialists_run": 5,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 10,
+   "latency_s": 41.3,
+   "error": null,
+   "verdict_reason": "2 finding(s) cleared the evidence gate and their combined risk 0.990 is at or above the 0.925 bar: access control, business logic.",
+   "specialists_errored": 1,
+   "findings": [
+    {
+     "type": "access_control",
+     "severity": "low",
+     "confidence": 0.8,
+     "source": "council:access_control",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 0.95,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 83.2,
+   "bucket": "02_vuln_labelled",
+   "tier": "injected",
+   "expected": "vulnerable",
+   "agrees": true
+  },
+  {
+   "contract_id": "02_solidifi_unhandled_exception_015",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 3,
+   "n_specialists_run": 4,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 6,
+   "latency_s": 22.4,
+   "error": null,
+   "verdict_reason": "3 finding(s) cleared the evidence gate and their combined risk 0.999 is at or above the 0.925 bar: access control, arithmetic, business logic.",
+   "specialists_errored": 0,
+   "findings": [
+    {
+     "type": "access_control",
+     "severity": "medium",
+     "confidence": 0.8,
+     "source": "council:access_control",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "arithmetic",
+     "severity": "medium",
+     "confidence": 0.9,
+     "source": "council:arithmetic",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 0.95,
+     "source": "council:business_logic",
+     "model": "llama3.1:8b"
+    }
+   ],
+   "schema": 2,
+   "baseline_verdict": "NO-GO",
+   "baseline_latency_s": 166.6,
+   "bucket": "02_vuln_labelled",
+   "tier": "injected",
+   "expected": "vulnerable",
+   "agrees": true
+  }
+ ]
+}

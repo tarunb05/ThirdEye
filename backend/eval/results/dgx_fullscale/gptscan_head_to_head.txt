@@ -1,0 +1,40 @@
+[web3bugs loader] skipped 2 contest(s) with no contracts/ folder: ['11', '50']
+[web3bugs] GPTScan comparison set: 63 contests
+
+=== WEB3BUGS (bucket 04) — contest-level ===
+contests scored          63
+contests detected        62
+contest recall           0.984
+S-class bugs covered     205
+bug recall (UPPER bound) 0.995
+median latency/contest   226.9s
+
+Contest-level, any-slice-positive. bug_level_recall is an UPPER BOUND: it credits every S-class bug in a contest whenever any slice of that contest was flagged, which does not prove the flag found THAT bug. No safe class exists here, so precision is not computable and is not reported — it stays on the balanced buckets.
+
+=== HEAD-TO-HEAD vs GPTScan (ICSE'24) ===
+projects we both cover   63
+  gradable for recall    34   (GPTScan had >=1 positive check)
+  outside GPTScan scope  29   (tp=0 and fn=0: no applicable rule)
+
+-- DETECTION on the 34 gradable projects --
+ThirdEye                  33/34   97.1%  [85.1-99.5]
+GPTScan                   31/34   91.2%  [77.0-97.0]
+95% Wilson intervals     OVERLAPPING
+                         -> NO detection difference is demonstrated.
+
+-- SCOPE on the 29 out-of-scope projects --
+These carry a confirmed Web3Bugs S-class bug that GPTScan's ten rule
+types do not target, so it has no applicable check to run.
+ThirdEye still returns a verdict and flags  29/29.
+This is COVERAGE, not recall. It is not evidence of better detection,
+because an any-slice flag on an all-positive set is nearly free.
+
+GPTScan precision        0.571 (tp=40 fp=30) — published, rule-check unit
+GPTScan FPR              0.163 on its own 184 negative checks
+ThirdEye precision       NOT COMPUTABLE here — every project in this bucket is positive.
+
+REMAINING ASYMMETRIES, all favouring us:
+  * our detection is any-slice-positive and NOT type-matched; their tp is.
+  * collapsing to tp>0 hides their misses inside projects we both detect.
+  * the two false-positive figures come from DIFFERENT negative sets and
+    are not a difference; ThirdEye's FPR is measured on buckets 01/02.

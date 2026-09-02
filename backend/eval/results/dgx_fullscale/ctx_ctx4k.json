@@ -1,0 +1,1162 @@
+{
+ "arm": "ctx4k",
+ "num_ctx": 4096,
+ "rows": [
+  {
+   "contract_id": "01_dappclean_angelbase",
+   "ground_truth": "likely_safe",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 2,
+   "n_specialists_run": 6,
+   "roles": [
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "flashloan_mev",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 20,
+   "latency_s": 398.2,
+   "error": null,
+   "verdict_reason": "2 finding(s) cleared the evidence gate and their combined risk 0.960 is at or above the 0.925 bar: flashloan mev, oracle price manipulation.",
+   "specialists_errored": 1,
+   "findings": [
+    {
+     "type": "oracle_price_manipulation",
+     "severity": "critical",
+     "confidence": 0.9,
+     "source": "council:oracle_price_manipulation",
+     "model": "llama3.2:3b"
+    },
+    {
+     "type": "flashloan_mev",
+     "severity": "medium",
+     "confidence": 0.6,
+     "source": "council:flashloan_mev",
+     "model": "llama3.2:3b"
+    }
+   ],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "safe",
+   "tier": "audit_reviewed_clean"
+  },
+  {
+   "contract_id": "02_dappscan_quillaudits_amplify_voting_smart_contract_contracts_9dd44ac15cb66685a5beb038065f",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 7,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "flashloan_mev",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 36,
+   "latency_s": 692.3,
+   "error": null,
+   "verdict_reason": "All 7 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 3,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "02_dappscan_contracts_harvest_harvester",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 2,
+   "n_specialists_run": 4,
+   "roles": [
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 23,
+   "latency_s": 401.4,
+   "error": null,
+   "verdict_reason": "2 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: business logic, oracle price manipulation.",
+   "specialists_errored": 1,
+   "findings": [
+    {
+     "type": "business_logic",
+     "severity": "high",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.2:3b"
+    },
+    {
+     "type": "oracle_price_manipulation",
+     "severity": "critical",
+     "confidence": 0.9,
+     "source": "council:oracle_price_manipulation",
+     "model": "llama3.2:3b"
+    }
+   ],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "01_solady_tokens_erc20",
+   "ground_truth": "likely_safe",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 3,
+   "roles": [
+    "access_control",
+    "business_logic",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 17,
+   "latency_s": 267.0,
+   "error": null,
+   "verdict_reason": "All 3 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 1,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "safe",
+   "tier": "audited_library"
+  },
+  {
+   "contract_id": "02_dappscan_strategy_crabstrategy",
+   "ground_truth": "vulnerable",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 42,
+   "latency_s": 1068.5,
+   "error": null,
+   "verdict_reason": "4/6 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 4,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "02_solidifi_transaction_order_dependence_034",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 5,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 20,
+   "latency_s": 303.8,
+   "error": null,
+   "verdict_reason": "All 5 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 1,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "injected"
+  },
+  {
+   "contract_id": "02_dappscan_treasury_vctreasuryv1",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 7,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "flashloan_mev",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 24,
+   "latency_s": 639.2,
+   "error": null,
+   "verdict_reason": "All 7 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 3,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "02_dappscan_lido",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 7,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 17,
+   "latency_s": 520.3,
+   "error": null,
+   "verdict_reason": "All 7 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 3,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "02_solidifi_transaction_order_dependence_006",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 5,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 16,
+   "latency_s": 554.4,
+   "error": null,
+   "verdict_reason": "All 5 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 1,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "injected"
+  },
+  {
+   "contract_id": "02_solidifi_time_manipulation_030",
+   "ground_truth": "vulnerable",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 5,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 28,
+   "latency_s": 982.0,
+   "error": null,
+   "verdict_reason": "3/5 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 3,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "injected"
+  },
+  {
+   "contract_id": "02_smartbugs_unchecked_low_level_calls_094",
+   "ground_truth": "vulnerable",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 5,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 25,
+   "latency_s": 930.3,
+   "error": null,
+   "verdict_reason": "4/5 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 4,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "curated"
+  },
+  {
+   "contract_id": "02_dappscan_protocol_tokenization_lido_asteth",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 5,
+   "roles": [
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "flashloan_mev",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 9,
+   "latency_s": 393.1,
+   "error": null,
+   "verdict_reason": "All 5 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 2,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "01_dappclean_consensys_modular_interactive_crowdsale_ethereum_libraries_73abc22623e0841b8ea67",
+   "ground_truth": "likely_safe",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 5,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 22,
+   "latency_s": 848.0,
+   "error": null,
+   "verdict_reason": "All 5 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 2,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "safe",
+   "tier": "audit_reviewed_clean"
+  },
+  {
+   "contract_id": "01_oz_utils_math_safecast",
+   "ground_truth": "likely_safe",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 1,
+   "roles": [
+    "business_logic"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 2,
+   "latency_s": 160.8,
+   "error": null,
+   "verdict_reason": "1/1 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 1,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "safe",
+   "tier": "audited_library"
+  },
+  {
+   "contract_id": "02_solidifi_reentrancy_019",
+   "ground_truth": "vulnerable",
+   "verdict": "NO-GO",
+   "predicted": "vulnerable",
+   "n_findings": 1,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 16,
+   "latency_s": 251.7,
+   "error": null,
+   "verdict_reason": "1 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: business logic.",
+   "specialists_errored": 1,
+   "findings": [
+    {
+     "type": "business_logic",
+     "severity": "critical",
+     "confidence": 1.0,
+     "source": "council:business_logic",
+     "model": "llama3.2:3b"
+    }
+   ],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "injected"
+  },
+  {
+   "contract_id": "02_dappscan_iosiro_timvi_smart_contract_audit_timvi_9324706d1160996f7847e1989c8567168261382e",
+   "ground_truth": "vulnerable",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 31,
+   "latency_s": 781.5,
+   "error": null,
+   "verdict_reason": "5/6 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 5,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "02_solidifi_transaction_order_dependence_018",
+   "ground_truth": "vulnerable",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 5,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 35,
+   "latency_s": 850.5,
+   "error": null,
+   "verdict_reason": "3/5 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 3,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "injected"
+  },
+  {
+   "contract_id": "02_dappscan_hacken_oracula_oracula0x85f3ec4ec49ab6a5901278176235957ef521970d_oracula0x85f3ec",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 7,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "flashloan_mev",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 23,
+   "latency_s": 376.6,
+   "error": null,
+   "verdict_reason": "All 7 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 3,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "01_dappclean_shibarouter",
+   "ground_truth": "likely_safe",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 12,
+   "latency_s": 249.3,
+   "error": null,
+   "verdict_reason": "3/6 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 3,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "safe",
+   "tier": "audit_reviewed_clean"
+  },
+  {
+   "contract_id": "02_dappscan_src_features_metatransactionsfeature",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 23,
+   "latency_s": 644.2,
+   "error": null,
+   "verdict_reason": "All 6 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 1,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "01_dappclean_aliumrouter",
+   "ground_truth": "likely_safe",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 25,
+   "latency_s": 751.4,
+   "error": null,
+   "verdict_reason": "3/6 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 3,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "safe",
+   "tier": "audit_reviewed_clean"
+  },
+  {
+   "contract_id": "02_dappscan_liquidity_amm",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "flashloan_mev",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 21,
+   "latency_s": 556.3,
+   "error": null,
+   "verdict_reason": "All 6 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 2,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "02_solidifi_arithmetic_005",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 5,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 27,
+   "latency_s": 809.2,
+   "error": null,
+   "verdict_reason": "All 5 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 2,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "injected"
+  },
+  {
+   "contract_id": "02_dappscan_quillaudits_vidb_v1_0_vidbtoken_vidbtoken",
+   "ground_truth": "vulnerable",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 17,
+   "latency_s": 583.8,
+   "error": null,
+   "verdict_reason": "5/6 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 5,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "02_dappscan_token_dtt",
+   "ground_truth": "vulnerable",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 4,
+   "roles": [
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 22,
+   "latency_s": 703.9,
+   "error": null,
+   "verdict_reason": "2/4 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 2,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "01_ozup_access_extensions_accesscontroldefaultadminrulesupgradeable",
+   "ground_truth": "likely_safe",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 3,
+   "roles": [
+    "access_control",
+    "business_logic",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 14,
+   "latency_s": 376.5,
+   "error": null,
+   "verdict_reason": "All 3 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 0,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "safe",
+   "tier": "audited_library"
+  },
+  {
+   "contract_id": "02_dappscan_schainsinternal",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 5,
+   "roles": [
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 22,
+   "latency_s": 530.0,
+   "error": null,
+   "verdict_reason": "All 5 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 2,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "02_dappscan_exchange_stakingv2",
+   "ground_truth": "vulnerable",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "flashloan_mev",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 21,
+   "latency_s": 446.0,
+   "error": null,
+   "verdict_reason": "3/6 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 3,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "01_solady_utils_g_jsonparserlib",
+   "ground_truth": "likely_safe",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 2,
+   "roles": [
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 6,
+   "latency_s": 150.2,
+   "error": null,
+   "verdict_reason": "1/2 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 1,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "safe",
+   "tier": "audited_library"
+  },
+  {
+   "contract_id": "01_dappclean_protocol_pool_poolconfigurator",
+   "ground_truth": "likely_safe",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "access_control",
+    "business_logic",
+    "oracle_price_manipulation",
+    "flashloan_mev",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 33,
+   "latency_s": 601.8,
+   "error": null,
+   "verdict_reason": "4/6 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 4,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "safe",
+   "tier": "audit_reviewed_clean"
+  },
+  {
+   "contract_id": "02_dappscan_immunebytes_aqar_chain_final_audit_report_code_aq",
+   "ground_truth": "vulnerable",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "oracle_price_manipulation",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 23,
+   "latency_s": 447.0,
+   "error": null,
+   "verdict_reason": "3/6 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 3,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "02_dappscan_quillaudits_amplify_child_token_smart_contract_contracts_31526ea5e5c5a1c308d0065",
+   "ground_truth": "vulnerable",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "flashloan_mev",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 19,
+   "latency_s": 314.5,
+   "error": null,
+   "verdict_reason": "3/6 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 3,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "02_solidifi_transaction_order_dependence_019",
+   "ground_truth": "vulnerable",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 33,
+   "latency_s": 835.2,
+   "error": null,
+   "verdict_reason": "5/6 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 5,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "injected"
+  },
+  {
+   "contract_id": "02_dappscan_controller",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 5,
+   "roles": [
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "flashloan_mev",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 12,
+   "latency_s": 322.0,
+   "error": null,
+   "verdict_reason": "All 5 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 2,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "02_dappscan_rosca",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 6,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas",
+    "proxy_upgradeability"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 15,
+   "latency_s": 404.3,
+   "error": null,
+   "verdict_reason": "All 6 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 1,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "02_dappscan_inspex_superlauncher_v_2_v2_core_ba2ce0aedbefd79d6f2154f7ccc4954bba33592a_mainwo",
+   "ground_truth": "vulnerable",
+   "verdict": "GO",
+   "predicted": "likely_safe",
+   "n_findings": 0,
+   "n_specialists_run": 4,
+   "roles": [
+    "reentrancy",
+    "access_control",
+    "arithmetic",
+    "business_logic"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 11,
+   "latency_s": 372.3,
+   "error": null,
+   "verdict_reason": "All 4 specialists that ran found nothing quote-backed above the confidence bar.",
+   "specialists_errored": 1,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "vulnerable",
+   "tier": "audit_report"
+  },
+  {
+   "contract_id": "01_dappclean_balancer_core_v2_vault_poolregistry",
+   "ground_truth": "likely_safe",
+   "verdict": "INCONCLUSIVE",
+   "predicted": null,
+   "n_findings": 0,
+   "n_specialists_run": 4,
+   "roles": [
+    "access_control",
+    "arithmetic",
+    "business_logic",
+    "dos_gas"
+   ],
+   "arbitration": {
+    "reviewed": 0,
+    "upheld": 0,
+    "dropped": 0
+   },
+   "api_calls": 9,
+   "latency_s": 366.4,
+   "error": null,
+   "verdict_reason": "2/4 specialists failed to run \u2014 result is not trustworthy.",
+   "specialists_errored": 2,
+   "findings": [],
+   "schema": 2,
+   "num_ctx": 4096,
+   "expected": "safe",
+   "tier": "audit_reviewed_clean"
+  }
+ ]
+}

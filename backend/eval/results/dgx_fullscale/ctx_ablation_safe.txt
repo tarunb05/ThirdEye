@@ -1,0 +1,25 @@
+
+=== CONTEXT ABLATION: ctx4k_safe vs ctx16k_safe ===
+paired contracts        21   (21 in ctx4k_safe, 70 in ctx16k_safe)
+scored in BOTH arms     11
+  inconclusive ctx4k_safe 10/21  47.6% [28.3, 67.6]
+  inconclusive ctx16k_safe 0/21  0.0% [0.0, 15.5]
+  accuracy     ctx4k_safe 8/11  72.7% [43.4, 90.3]
+  accuracy     ctx16k_safe 4/11  36.4% [15.2, 64.6]
+  FPR          ctx4k_safe 3/11  27.3% [9.7, 56.6]
+  FPR          ctx16k_safe 7/11  63.6% [35.4, 84.8]
+
+median latency ctx4k_safe   206.8s
+  median latency ctx16k_safe    69.8s
+  ctx16k_safe faster on   9/11 paired contracts, median speedup x2.81
+  sign test               p = 0.06543  (not significant)
+
+Discordant pairs        ctx4k_safe-only-correct=4  ctx16k_safe-only-correct=0
+McNemar                 chi2=2.25 p=0.1336 (only 4 discordant pairs - underpowered, indicative only)
+Verdict                 NOT significant - truncation did not measurably change correctness
+
+verdict flips           4/11  (36.4% of paired contracts)
+    GO     -> NO-GO  (truth safe)  01_dappclean_exchanger
+    GO     -> NO-GO  (truth safe)  01_dappclean_modules_staking_pooledstaking
+    GO     -> NO-GO  (truth safe)  01_ozup_governance_governorupgradeable
+    GO     -> NO-GO  (truth safe)  01_solady_tokens_ext_zksync_erc721
