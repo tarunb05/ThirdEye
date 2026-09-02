@@ -1,0 +1,185 @@
+{
+ "contract_id": "02_smartbugs_access_control_001",
+ "label": "vulnerable",
+ "routed_roles": [
+  "reentrancy",
+  "access_control",
+  "arithmetic",
+  "business_logic",
+  "dos_gas",
+  "proxy_upgradeability"
+ ],
+ "ground_truth": "vulnerable",
+ "duration_s": 70.4,
+ "code": "// === 02_smartbugs_access_control_001.sol ===\n/*\n * @source: https://github.com/sigp/solidity-security-blog\n * @author: Suhabe Bugrara\n * @vulnerable_at_lines: 31,38\n */\n\n//added pragma version\npragma solidity ^0.4.22;\n\ncontract FibonacciBalance {\n\n    address public fibonacciLibrary;\n    // the current fibonacci number to withdraw\n    uint public calculatedFibNumber;\n    // the starting fibonacci sequence number\n    uint public start = 3;\n    uint public withdrawalCounter;\n    // the fibonancci function selector\n    bytes4 constant fibSig = bytes4(sha3(\"setFibonacci(uint256)\"));\n\n    // constructor - loads the contract with ether\n    constructor(address _fibonacciLibrary) public payable {\n        fibonacciLibrary = _fibonacciLibrary;\n    }\n\n    function withdraw() {\n        withdrawalCounter += 1;\n        // calculate the fibonacci number for the current withdrawal user\n        // this sets calculatedFibNumber\n        // <yes> <report> ACCESS_CONTROL\n        require(fibonacciLibrary.delegatecall(fibSig, withdrawalCounter));\n        msg.sender.transfer(calculatedFibNumber * 1 ether);\n    }\n\n    // allow users to call fibonacci library functions\n    function() public {\n        // <yes> <report> ACCESS_CONTROL\n        require(fibonacciLibrary.delegatecall(msg.data));\n    }\n}\n\n// library contract - calculates fibonacci-like numbers;\ncontract FibonacciLib {\n    // initializing the standard fibonacci sequence;\n    uint public start;\n    uint public calculatedFibNumber;\n\n    // modify the zeroth number in the sequence\n    function setStart(uint _start) public {\n        start = _start;\n    }\n\n    function setFibonacci(uint n) public {\n        calculatedFibNumber = fibonacci(n);\n    }\n\n    function fibonacci(uint n) internal returns (uint) {\n        if (n == 0) return start;\n        else if (n == 1) return start + 1;\n        else return fibonacci(n - 1) + fibonacci(n - 2);\n    }\n}\n",
+ "events": [
+  {
+   "event": "start",
+   "tier": "ollama",
+   "specialists": [
+    {
+     "role": "reentrancy",
+     "provider": "ollama",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "role": "access_control",
+     "provider": "ollama",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "role": "arithmetic",
+     "provider": "ollama",
+     "model": "qwen2.5-coder:7b"
+    },
+    {
+     "role": "business_logic",
+     "provider": "ollama",
+     "model": "llama3.2:3b"
+    },
+    {
+     "role": "dos_gas",
+     "provider": "ollama",
+     "model": "gemma3:4b"
+    },
+    {
+     "role": "proxy_upgradeability",
+     "provider": "ollama",
+     "model": "qwen2.5-coder:7b"
+    }
+   ],
+   "t": 0.0
+  },
+  {
+   "event": "specialist_done",
+   "role": "arithmetic",
+   "model": "qwen2.5-coder:7b",
+   "provider": "ollama",
+   "found": true,
+   "confidence": 0.9,
+   "severity": "medium",
+   "evidence_quote": "calculatedFibNumber = fibonacci(n);",
+   "llm_error": false,
+   "t": 20.88
+  },
+  {
+   "event": "specialist_done",
+   "role": "access_control",
+   "model": "qwen2.5-coder:7b",
+   "provider": "ollama",
+   "found": true,
+   "confidence": 0.9,
+   "severity": "medium",
+   "evidence_quote": "<yes> <report> ACCESS_CONTROL\nrequire(fibonacciLibrary.delegatecall(fibSig, withdrawalCounter));\nrequire(fibonacciLibrary.delegatecall(msg.data));",
+   "llm_error": false,
+   "t": 31.66
+  },
+  {
+   "event": "specialist_done",
+   "role": "proxy_upgradeability",
+   "model": "qwen2.5-coder:7b",
+   "provider": "ollama",
+   "found": true,
+   "confidence": 0.9,
+   "severity": "medium",
+   "evidence_quote": "",
+   "llm_error": false,
+   "t": 40.02
+  },
+  {
+   "event": "specialist_done",
+   "role": "reentrancy",
+   "model": "qwen2.5-coder:7b",
+   "provider": "ollama",
+   "found": true,
+   "confidence": 1.0,
+   "severity": "critical",
+   "evidence_quote": "msg.sender.transfer(calculatedFibNumber * 1 ether);",
+   "llm_error": false,
+   "t": 50.02
+  },
+  {
+   "event": "specialist_done",
+   "role": "business_logic",
+   "model": "llama3.2:3b",
+   "provider": "ollama",
+   "found": true,
+   "confidence": 0.9,
+   "severity": "critical",
+   "evidence_quote": "",
+   "llm_error": false,
+   "t": 59.09
+  },
+  {
+   "event": "specialist_done",
+   "role": "dos_gas",
+   "model": "gemma3:4b",
+   "provider": "ollama",
+   "found": true,
+   "confidence": 0.95,
+   "severity": "critical",
+   "evidence_quote": "require(fibonacciLibrary.delegatecall(withdrawalCounter));",
+   "llm_error": false,
+   "t": 70.36
+  },
+  {
+   "event": "final",
+   "result": {
+    "final_verdict": "NO-GO",
+    "verdict_reason": "2 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: arithmetic, reentrancy.",
+    "vulnerabilities": [
+     {
+      "type": "arithmetic",
+      "line": null,
+      "severity": "medium",
+      "confidence": 0.9,
+      "description": "Confirmed by arithmetic specialist (qwen2.5-coder:7b). Evidence: calculatedFibNumber = fibonacci(n);",
+      "evidence_quote": "calculatedFibNumber = fibonacci(n);",
+      "proposed_property": "If the calculatedFibNumber exceeds the maximum value of a uint, an overflow occurs.",
+      "source": "council:arithmetic",
+      "model": "qwen2.5-coder:7b",
+      "provider": "ollama",
+      "dynamic_status": "SUSPECTED"
+     },
+     {
+      "type": "reentrancy",
+      "line": null,
+      "severity": "critical",
+      "confidence": 1.0,
+      "description": "Confirmed by reentrancy specialist (qwen2.5-coder:7b). Evidence: msg.sender.transfer(calculatedFibNumber * 1 ether);",
+      "evidence_quote": "msg.sender.transfer(calculatedFibNumber * 1 ether);",
+      "proposed_property": "If the external call to msg.sender fails, the contract will not update its state, leaving it vulnerable to reentrancy attacks.",
+      "source": "council:reentrancy",
+      "model": "qwen2.5-coder:7b",
+      "provider": "ollama",
+      "dynamic_status": "SUSPECTED"
+     }
+    ],
+    "summary": "Analysis of FibonacciBalance: 6 model-diverse specialists (gemma3:4b, llama3.2:3b, qwen2.5-coder:7b) ran, 6 raised a finding, 2 cleared the evidence gate. Verdict: NO-GO.",
+    "raven_note": "Raven flagged FibonacciBalance on: arithmetic, reentrancy. Each finding quotes real code from the contract, and together they clear the confidence bar.",
+    "contract_name": "FibonacciBalance",
+    "stats": {
+     "models_run": 3,
+     "specialists_run": 6,
+     "specialists_found": 6,
+     "specialists_confirmed": 2,
+     "specialists_errored": 0,
+     "contract_risk": 1.0,
+     "risk_tau": 0.925,
+     "findings_suppressed": 0,
+     "similar_in_db": 0,
+     "llm_error_detected": false,
+     "tier": "ollama",
+     "models_used": [
+      "gemma3:4b",
+      "llama3.2:3b",
+      "qwen2.5-coder:7b"
+     ]
+    },
+    "routing": null
+   },
+   "t": 70.36
+  }
+ ],
+ "recorded_at": "2026-08-19 13:20:30"
+}

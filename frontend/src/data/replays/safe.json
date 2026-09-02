@@ -1,0 +1,80 @@
+{
+ "contract_id": "01_oz_access_accesscontrol",
+ "label": "safe",
+ "routed_roles": [
+  "business_logic"
+ ],
+ "ground_truth": "likely_safe",
+ "duration_s": 11.7,
+ "code": "// === 01_oz_access_accesscontrol.sol ===\n// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts (last updated v5.0.0) (access/AccessControl.sol)\n\npragma solidity ^0.8.20;\n\nimport {IAccessControl} from \"./IAccessControl.sol\";\nimport {Context} from \"../utils/Context.sol\";\nimport {ERC165} from \"../utils/introspection/ERC165.sol\";\n\n/**\n * @dev Contract module that allows children to implement role-based access\n * control mechanisms. This is a lightweight version that doesn't allow enumerating role\n * members except through off-chain means by accessing the contract event logs. Some\n * applications may benefit from on-chain enumerability, for those cases see\n * {AccessControlEnumerable}.\n *\n * Roles are referred to by their `bytes32` identifier. These should be exposed\n * in the external API and be unique. The best way to achieve this is by\n * using `public constant` hash digests:\n *\n * ```solidity\n * bytes32 public constant MY_ROLE = keccak256(\"MY_ROLE\");\n * ```\n *\n * Roles can be used to represent a set of permissions. To restrict access to a\n * function call, use {hasRole}:\n *\n * ```solidity\n * function foo() public {\n *     require(hasRole(MY_ROLE, msg.sender));\n *     ...\n * }\n * ```\n *\n * Roles can be granted and revoked dynamically via the {grantRole} and\n * {revokeRole} functions. Each role has an associated admin role, and only\n * accounts that have a role's admin role can call {grantRole} and {revokeRole}.\n *\n * By default, the admin role for all roles is `DEFAULT_ADMIN_ROLE`, which means\n * that only accounts with this role will be able to grant or revoke other\n * roles. More complex role relationships can be created by using\n * {_setRoleAdmin}.\n *\n * WARNING: The `DEFAULT_ADMIN_ROLE` is also its own admin: it has permission to\n * grant and revoke this role. Extra precautions should be taken to secure\n * accounts that have been granted it. We recommend using {AccessControlDefaultAdminRules}\n * to enforce additional security measures for this role.\n */\nabstract contract AccessControl is Context, IAccessControl, ERC165 {\n    struct RoleData {\n        mapping(address account => bool) hasRole;\n        bytes32 adminRole;\n    }\n\n    mapping(bytes32 role => RoleData) private _roles;\n\n    bytes32 public constant DEFAULT_ADMIN_ROLE = 0x00;\n\n    /**\n     * @dev Modifier that checks that an account has a specific role. Reverts\n     * with an {AccessControlUnauthorizedAccount} error including the required role.\n     */\n    modifier onlyRole(bytes32 role) {\n        _checkRole(role);\n        _;\n    }\n\n    /**\n     * @dev See {IERC165-supportsInterface}.\n     */\n    function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {\n        return interfaceId == type(IAccessControl).interfaceId || super.supportsInterface(interfaceId);\n    }\n\n    /**\n     * @dev Returns `true` if `account` has been granted `role`.\n     */\n    function hasRole(bytes32 role, address account) public view virtual returns (bool) {\n        return _roles[role].hasRole[account];\n    }\n\n    /**\n     * @dev Reverts with an {AccessControlUnauthorizedAccount} error if `_msgSender()`\n     * is missing `role`. Overriding this function changes the behavior of the {onlyRole} modifier.\n     */\n    function _checkRole(bytes32 role) internal view virtual {\n        _checkRole(role, _msgSender());\n    }\n\n    /**\n     * @dev Reverts with an {AccessControlUnauthorizedAccount} error if `account`\n     * is missing `role`.\n     */\n    function _checkRole(bytes32 role, address account) internal view virtual {\n        if (!hasRole(role, account)) {\n            revert AccessControlUnauthorizedAccount(account, role);\n        }\n    }\n\n    /**\n     * @dev Returns the admin role that controls `role`. See {grantRole} and\n     * {revokeRole}.\n     *\n     * To change a role's admin, use {_setRoleAdmin}.\n     */\n    function getRoleAdmin(bytes32 role) public view virtual returns (bytes32) {\n        return _roles[role].adminRole;\n    }\n\n    /**\n     * @dev Grants `role` to `account`.\n     *\n     * If `account` had not been already granted `role`, emits a {RoleGranted}\n     * event.\n     *\n     * Requirements:\n     *\n     * - the caller must have ``role``'s admin role.\n     *\n     * May emit a {RoleGranted} event.\n     */\n    function grantRole(bytes32 role, address account) public virtual onlyRole(getRoleAdmin(role)) {\n        _grantRole(role, account);\n    }\n\n    /**\n     * @dev Revokes `role` from `account`.\n     *\n     * If `account` had been granted `role`, emits a {RoleRevoked} event.\n     *\n     * Requirements:\n     *\n     * - the caller must have ``role``'s admin role.\n     *\n     * May emit a {RoleRevoked} event.\n     */\n    function revokeRole(bytes32 role, address account) public virtual onlyRole(getRoleAdmin(role)) {\n        _revokeRole(role, account);\n    }\n\n    /**\n     * @dev Revokes `role` from the calling account.\n     *\n     * Roles are often managed via {grantRole} and {revokeRole}: this function's\n     * purpose is to provide a mechanism for accounts to lose their privileges\n     * if they are compromised (such as when a trusted device is misplaced).\n     *\n     * If the calling account had been revoked `role`, emits a {RoleRevoked}\n     * event.\n     *\n     * Requirements:\n     *\n     * - the caller must be `callerConfirmation`.\n     *\n     * May emit a {RoleRevoked} event.\n     */\n    function renounceRole(bytes32 role, address callerConfirmation) public virtual {\n        if (callerConfirmation != _msgSender()) {\n            revert AccessControlBadConfirmation();\n        }\n\n        _revokeRole(role, callerConfirmation);\n    }\n\n    /**\n     * @dev Sets `adminRole` as ``role``'s admin role.\n     *\n     * Emits a {RoleAdminChanged} event.\n     */\n    function _setRoleAdmin(bytes32 role, bytes32 adminRole) internal virtual {\n        bytes32 previousAdminRole = getRoleAdmin(role);\n        _roles[role].adminRole = adminRole;\n        emit RoleAdminChanged(role, previousAdminRole, adminRole);\n    }\n\n    /**\n     * @dev Attempts to grant `role` to `account` and returns a boolean indicating if `role` was granted.\n     *\n     * Internal function without access restriction.\n     *\n     * May emit a {RoleGranted} event.\n     */\n    function _grantRole(bytes32 role, address account) internal virtual returns (bool) {\n        if (!hasRole(role, account)) {\n            _roles[role].hasRole[account] = true;\n            emit RoleGranted(role, account, _msgSender());\n            return true;\n        } else {\n            return false;\n        }\n    }\n\n    /**\n     * @dev Attempts to revoke `role` to `account` and returns a boolean indicating if `role` was revoked.\n     *\n     * Internal function without access restriction.\n     *\n     * May emit a {RoleRevoked} event.\n     */\n    function _revokeRole(bytes32 role, address account) internal virtual returns (bool) {\n        if (hasRole(role, account)) {\n            _roles[role].hasRole[account] = false;\n            emit RoleRevoked(role, account, _msgSender());\n            return true;\n        } else {\n            return false;\n        }\n    }\n}\n",
+ "events": [
+  {
+   "event": "start",
+   "tier": "ollama",
+   "specialists": [
+    {
+     "role": "business_logic",
+     "provider": "ollama",
+     "model": "llama3.2:3b"
+    }
+   ],
+   "t": 0.0
+  },
+  {
+   "event": "specialist_done",
+   "role": "business_logic",
+   "model": "llama3.2:3b",
+   "provider": "ollama",
+   "found": true,
+   "confidence": 0.6,
+   "severity": "medium",
+   "evidence_quote": "if (!hasRole(role, account)) {\n    _roles[role].hasRole[account] = true;\n    emit RoleGranted(role, account, _msgSender());\n    return true;\n}",
+   "llm_error": false,
+   "t": 11.69
+  },
+  {
+   "event": "final",
+   "result": {
+    "final_verdict": "GO",
+    "verdict_reason": "1 finding(s) quoted real code but their combined risk 0.600 is below the 0.925 bar: business logic. Reported for review, not blocking.",
+    "vulnerabilities": [
+     {
+      "type": "business_logic",
+      "line": null,
+      "severity": "medium",
+      "confidence": 0.6,
+      "description": "Confirmed by business_logic specialist (llama3.2:3b). Evidence: if (!hasRole(role, account)) {\n    _roles[role].hasRole[account] = true;\n    emit RoleGranted(role, account, _msgSender());\n    return true;\n}",
+      "evidence_quote": "if (!hasRole(role, account)) {\n    _roles[role].hasRole[account] = true;\n    emit RoleGranted(role, account, _msgSender());\n    return true;\n}",
+      "proposed_property": "The contract grants a role to an address without checking if the address has already been granted the same role.",
+      "source": "council:business_logic",
+      "model": "llama3.2:3b",
+      "provider": "ollama",
+      "dynamic_status": "SUSPECTED"
+     }
+    ],
+    "summary": "Analysis of event: 1 model-diverse specialists (llama3.2:3b) ran, 1 raised a finding, 1 cleared the evidence gate. Verdict: GO.",
+    "raven_note": "Raven noted 1 low-confidence observation(s) on event (business logic) that did not meet the bar to block. Worth a human read, not a stop-ship.",
+    "contract_name": "event",
+    "stats": {
+     "models_run": 1,
+     "specialists_run": 1,
+     "specialists_found": 1,
+     "specialists_confirmed": 1,
+     "specialists_errored": 0,
+     "contract_risk": 0.6,
+     "risk_tau": 0.925,
+     "findings_suppressed": 0,
+     "similar_in_db": 0,
+     "llm_error_detected": false,
+     "tier": "ollama",
+     "models_used": [
+      "llama3.2:3b"
+     ]
+    },
+    "routing": null
+   },
+   "t": 11.69
+  }
+ ],
+ "recorded_at": "2026-08-19 13:19:18"
+}
