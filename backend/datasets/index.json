@@ -1,0 +1,2718 @@
+{
+  "source": "etherscan-verified",
+  "total": 50,
+  "contracts": [
+    {
+      "id": "eth-001",
+      "filename": "eth-001_Diem.sol",
+      "sol_path": "etherscan_verified/eth-001_Diem.sol",
+      "source": "etherscan",
+      "contract_name": "using",
+      "xlsx_name": "Diem",
+      "etherscan_address": "0x06A9715d41b3aF6ed28BC9F91A774537D6032C3F",
+      "report_url": "https://etherscan.io/address/0x06a9715d41b3af6ed28bc9f91a774537d6032c3f#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.4.16",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of using. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.000748",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-002",
+      "filename": "eth-002_spok.sol",
+      "sol_path": "etherscan_verified/eth-002_spok.sol",
+      "source": "etherscan",
+      "contract_name": "spok",
+      "xlsx_name": "spok",
+      "etherscan_address": "0x22608955dCF7d8fe4C5Fb1fd61c79caBdF1c90Fc",
+      "report_url": "https://etherscan.io/address/0x22608955dcf7d8fe4c5fb1fd61c79cabdf1c90fc#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_loop": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.23",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of spok. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.005168",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-003",
+      "filename": "eth-003_djung.sol",
+      "sol_path": "etherscan_verified/eth-003_djung.sol",
+      "source": "etherscan",
+      "contract_name": "using",
+      "xlsx_name": "DJUNG",
+      "etherscan_address": "0x5B47cE48534A397ca7Fe8eaCF4B0391A344d8F09",
+      "report_url": "https://etherscan.io/address/0x5b47ce48534a397ca7fe8eacf4b0391a344d8f09#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_erc20": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.4.16",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of using. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.018140",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-004",
+      "filename": "eth-004_DjungelSkog.sol",
+      "sol_path": "etherscan_verified/eth-004_DjungelSkog.sol",
+      "source": "etherscan",
+      "contract_name": "using",
+      "xlsx_name": "DjungelSkog",
+      "etherscan_address": "0xa71803D09Ca83AB2299eA69F13aA16D0d46C4da0",
+      "report_url": "https://etherscan.io/address/0xa71803d09ca83ab2299ea69f13aa16d0d46c4da0#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_modifier": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.4.16",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of using. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.030975",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-005",
+      "filename": "eth-005_AgeOfWarLeaderboard.sol",
+      "sol_path": "etherscan_verified/eth-005_AgeOfWarLeaderboard.sol",
+      "source": "etherscan",
+      "contract_name": "AgeOfWarLeaderboard",
+      "xlsx_name": "AgeOfWarLeaderboard",
+      "etherscan_address": "0xAEF5AAa8325AE41f93A1082f315972b7f669eFFe",
+      "report_url": "https://etherscan.io/address/0xAEF5AAa8325AE41f93A1082f315972b7f669eFFe#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_require": true,
+        "has_loop": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.24",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of AgeOfWarLeaderboard. No LLM run.",
+        "raven_note": null,
+        "contract_name": "AgeOfWarLeaderboard",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.030975",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-006",
+      "filename": "eth-006_Token.sol",
+      "sol_path": "etherscan_verified/eth-006_Token.sol",
+      "source": "etherscan",
+      "contract_name": "Token",
+      "xlsx_name": "Token",
+      "etherscan_address": "0x3cdE2032C0538bB49d0c41cdCa599d22D8e9cCce",
+      "report_url": "https://etherscan.io/address/0x3cde2032c0538bb49d0c41cdca599d22d8e9ccce#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.0",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of Token. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.039562",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-007",
+      "filename": "eth-007_Contract.sol",
+      "sol_path": "etherscan_verified/eth-007_Contract.sol",
+      "source": "etherscan",
+      "contract_name": "Contract",
+      "xlsx_name": "Contract",
+      "etherscan_address": "0x1c2973b205e6Ce4AceE33Ebf350A6900C7B5FC2f",
+      "report_url": "https://etherscan.io/address/0x1c2973b205e6Ce4AceE33Ebf350A6900C7B5FC2f#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_loop": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.23",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of Contract. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.047607",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-008",
+      "filename": "eth-008_LeAnime_Encoding_Traits.sol",
+      "sol_path": "etherscan_verified/eth-008_LeAnime_Encoding_Traits.sol",
+      "source": "etherscan",
+      "contract_name": "LeAnime_Encoding_Traits",
+      "xlsx_name": "LeAnime_Encoding_Traits",
+      "etherscan_address": "0x4cCa1a1c89CaF04467716aDB9b341055A9D6d89C",
+      "report_url": "https://etherscan.io/address/0x4cCa1a1c89CaF04467716aDB9b341055A9D6d89C#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_loop": true
+      },
+      "solidity_version": "0.8.17",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of LeAnime_Encoding_Traits. No LLM run.",
+        "raven_note": null,
+        "contract_name": "LeAnime_Encoding_Traits",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.052077",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-009",
+      "filename": "eth-009_TokenSPOKJ8HDLR9T7T.sol",
+      "sol_path": "etherscan_verified/eth-009_TokenSPOKJ8HDLR9T7T.sol",
+      "source": "etherscan",
+      "contract_name": "TokenSPOKJ8HDLR9T7T",
+      "xlsx_name": "TokenSPOKJ8HDLR9T7T",
+      "etherscan_address": "0xc5FE8dDdA8fdECF9a15078AA1a71B496Bb1328b5",
+      "report_url": "https://etherscan.io/address/0xc5fe8ddda8fdecf9a15078aa1a71b496bb1328b5#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.24",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of TokenSPOKJ8HDLR9T7T. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.060705",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-010",
+      "filename": "eth-010_PUNCH.sol",
+      "sol_path": "etherscan_verified/eth-010_PUNCH.sol",
+      "source": "etherscan",
+      "contract_name": "setting",
+      "xlsx_name": "PUNCH",
+      "etherscan_address": "0x106C111ef9e51B7E23776Fc356d11eFf7D419Db3",
+      "report_url": "https://etherscan.io/address/0x106C111ef9e51B7E23776Fc356d11eFf7D419Db3#code",
+      "auto_label": "vulnerable",
+      "vuln_types": [
+        "tx_origin_auth"
+      ],
+      "expected_severity": "MEDIUM",
+      "features": {
+        "has_external_call": true,
+        "has_call_value": true,
+        "has_tx_origin": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.17",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "NO-GO",
+        "vulnerabilities": [
+          {
+            "type": "tx_origin_auth",
+            "severity": "medium",
+            "confidence": 0.75,
+            "description": "Detected via static pattern analysis",
+            "source": "static"
+          }
+        ],
+        "summary": "Static analysis of setting. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 1,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.082017",
+      "comparison": {
+        "match": true,
+        "expected_label": "vulnerable",
+        "predicted_label": "vulnerable",
+        "expected_verdict": "NO-GO",
+        "predicted_verdict": "NO-GO",
+        "expected_vuln_types": [
+          "tx_origin_auth"
+        ],
+        "predicted_vuln_types": [
+          "tx_origin_auth"
+        ],
+        "type_overlap": [
+          "tx_origin_auth"
+        ]
+      }
+    },
+    {
+      "id": "eth-011",
+      "filename": "eth-011_POS_is_ATM_Phone.sol",
+      "sol_path": "etherscan_verified/eth-011_POS_is_ATM_Phone.sol",
+      "source": "etherscan",
+      "contract_name": "using",
+      "xlsx_name": "POS_is_ATM_Phone",
+      "etherscan_address": "0xf2732CCc67460E2731C6c9ff8b2Fd6E5C8A2DE96",
+      "report_url": "https://etherscan.io/address/0xf2732CCc67460E2731C6c9ff8b2Fd6E5C8A2DE96#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_require": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.4.16",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of using. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.098777",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-012",
+      "filename": "eth-012_POS_is_ATM.sol",
+      "sol_path": "etherscan_verified/eth-012_POS_is_ATM.sol",
+      "source": "etherscan",
+      "contract_name": "using",
+      "xlsx_name": "POS_is_ATM",
+      "etherscan_address": "0x427c94dE911A3c8918EA605A228B89965B73A777",
+      "report_url": "https://etherscan.io/address/0x427c94dE911A3c8918EA605A228B89965B73A777#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_require": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.4.16",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of using. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.120360",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-013",
+      "filename": "eth-013_TokenSpender.sol",
+      "sol_path": "etherscan_verified/eth-013_TokenSpender.sol",
+      "source": "etherscan",
+      "contract_name": "spender",
+      "xlsx_name": "TokenSpender",
+      "etherscan_address": "0x19c62f3839B56CDB26320A8E0817FB3a9554c5Ec",
+      "report_url": "https://etherscan.io/address/0x19c62f3839B56CDB26320A8E0817FB3a9554c5Ec#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_call_value": true,
+        "has_withdraw": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.8.20",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of spender. No LLM run.",
+        "raven_note": null,
+        "contract_name": "spender",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.122329",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-014",
+      "filename": "eth-014_founderSeries1155.sol",
+      "sol_path": "etherscan_verified/eth-014_founderSeries1155.sol",
+      "source": "etherscan",
+      "contract_name": "interfaces",
+      "xlsx_name": "founderSeries1155",
+      "etherscan_address": "0x834aeEca3FF10584bEc163433167a0C4DE007876",
+      "report_url": "https://etherscan.io/address/0x834aeEca3FF10584bEc163433167a0C4DE007876#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_erc20": true,
+        "has_loop": true
+      },
+      "solidity_version": "0.4.16",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of interfaces. No LLM run.",
+        "raven_note": null,
+        "contract_name": "interfaces",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.170294",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-015",
+      "filename": "eth-015_FLASHUSDTContract.sol",
+      "sol_path": "etherscan_verified/eth-015_FLASHUSDTContract.sol",
+      "source": "etherscan",
+      "contract_name": "FLASHUSDTContract",
+      "xlsx_name": "FLASHUSDTContract",
+      "etherscan_address": "0x14579DD22B31c7D1e8238C6E6dbD5BA880d7E508",
+      "report_url": "https://etherscan.io/address/0x14579DD22B31c7D1e8238C6E6dbD5BA880d7E508#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_call_value": true,
+        "has_withdraw": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.8.20",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of FLASHUSDTContract. No LLM run.",
+        "raven_note": null,
+        "contract_name": "FLASHUSDTContract",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.174201",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-016",
+      "filename": "eth-016_FlashUSDTLiquidityBot.sol",
+      "sol_path": "etherscan_verified/eth-016_FlashUSDTLiquidityBot.sol",
+      "source": "etherscan",
+      "contract_name": "FlashUSDTLiquidityBot",
+      "xlsx_name": "FlashUSDTLiquidityBot",
+      "etherscan_address": "0x74B2aaCBa91f8b5Dac2DBB6546B401bE38baA67F",
+      "report_url": "https://etherscan.io/address/0x74B2aaCBa91f8b5Dac2DBB6546B401bE38baA67F#code",
+      "auto_label": "vulnerable",
+      "vuln_types": [
+        "unprotected_withdraw"
+      ],
+      "expected_severity": "HIGH",
+      "features": {
+        "has_external_call": true,
+        "has_call_value": true,
+        "has_withdraw": true,
+        "has_require": true,
+        "has_payable": true,
+        "has_loop": true
+      },
+      "solidity_version": "0.8.30",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "NO-GO",
+        "vulnerabilities": [
+          {
+            "type": "unprotected_withdraw",
+            "severity": "high",
+            "confidence": 0.75,
+            "description": "Detected via static pattern analysis",
+            "source": "static"
+          }
+        ],
+        "summary": "Static analysis of FlashUSDTLiquidityBot. No LLM run.",
+        "raven_note": null,
+        "contract_name": "FlashUSDTLiquidityBot",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 1,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.191037",
+      "comparison": {
+        "match": true,
+        "expected_label": "vulnerable",
+        "predicted_label": "vulnerable",
+        "expected_verdict": "NO-GO",
+        "predicted_verdict": "NO-GO",
+        "expected_vuln_types": [
+          "unprotected_withdraw"
+        ],
+        "predicted_vuln_types": [
+          "unprotected_withdraw"
+        ],
+        "type_overlap": [
+          "unprotected_withdraw"
+        ]
+      }
+    },
+    {
+      "id": "eth-017",
+      "filename": "eth-017_LOOTToken.sol",
+      "sol_path": "etherscan_verified/eth-017_LOOTToken.sol",
+      "source": "etherscan",
+      "contract_name": "using",
+      "xlsx_name": "LOOTToken",
+      "etherscan_address": "0x904644fD066c3A1fda5df33efa19293023E9465e",
+      "report_url": "https://etherscan.io/address/0x904644fd066c3a1fda5df33efa19293023e9465e#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_call_value": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_loop": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.4.16",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of using. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.247595",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-018",
+      "filename": "eth-018_ABRXToken.sol",
+      "sol_path": "etherscan_verified/eth-018_ABRXToken.sol",
+      "source": "etherscan",
+      "contract_name": "using",
+      "xlsx_name": "ABRXToken",
+      "etherscan_address": "0x4DC986254ED74A69E1647315456eE42BD82dd9b3",
+      "report_url": "https://etherscan.io/address/0x4dc986254ed74a69e1647315456ee42bd82dd9b3#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_call_value": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_loop": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.4.16",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of using. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.285106",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-019",
+      "filename": "eth-019_ERC20Rescuer.sol",
+      "sol_path": "etherscan_verified/eth-019_ERC20Rescuer.sol",
+      "source": "etherscan",
+      "contract_name": "ERC20Rescuer",
+      "xlsx_name": "ERC20Rescuer",
+      "etherscan_address": "0xeeAb9BadF8E05DF23aE41d466D46808b812B0E19",
+      "report_url": "https://etherscan.io/address/0xeeAb9BadF8E05DF23aE41d466D46808b812B0E19#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_require": true,
+        "has_loop": true
+      },
+      "solidity_version": "0.8.20",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of ERC20Rescuer. No LLM run.",
+        "raven_note": null,
+        "contract_name": "ERC20Rescuer",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.290678",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-020",
+      "filename": "eth-020_PredictionWager.sol",
+      "sol_path": "etherscan_verified/eth-020_PredictionWager.sol",
+      "source": "etherscan",
+      "contract_name": "PredictionWager",
+      "xlsx_name": "PredictionWager",
+      "etherscan_address": "0x8687ABC5B87efeC00da4Cf3e8C150fb9BfD0F777",
+      "report_url": "https://etherscan.io/address/0x8687abc5b87efec00da4cf3e8c150fb9bfd0f777#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_mapping": true,
+        "has_require": true,
+        "has_erc20": true,
+        "has_loop": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.24",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of PredictionWager. No LLM run.",
+        "raven_note": null,
+        "contract_name": "PredictionWager",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.291939",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-021",
+      "filename": "eth-021_LILJAK.sol",
+      "sol_path": "etherscan_verified/eth-021_LILJAK.sol",
+      "source": "etherscan",
+      "contract_name": "setting",
+      "xlsx_name": "LILJAK",
+      "etherscan_address": "0x6C575CE583bEC72e0db5D15000823EbF4812D728",
+      "report_url": "https://etherscan.io/address/0x6c575ce583bec72e0db5d15000823ebf4812d728#code",
+      "auto_label": "vulnerable",
+      "vuln_types": [
+        "tx_origin_auth"
+      ],
+      "expected_severity": "MEDIUM",
+      "features": {
+        "has_external_call": true,
+        "has_call_value": true,
+        "has_tx_origin": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.17",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "NO-GO",
+        "vulnerabilities": [
+          {
+            "type": "tx_origin_auth",
+            "severity": "medium",
+            "confidence": 0.75,
+            "description": "Detected via static pattern analysis",
+            "source": "static"
+          }
+        ],
+        "summary": "Static analysis of setting. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 1,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.303117",
+      "comparison": {
+        "match": true,
+        "expected_label": "vulnerable",
+        "predicted_label": "vulnerable",
+        "expected_verdict": "NO-GO",
+        "predicted_verdict": "NO-GO",
+        "expected_vuln_types": [
+          "tx_origin_auth"
+        ],
+        "predicted_vuln_types": [
+          "tx_origin_auth"
+        ],
+        "type_overlap": [
+          "tx_origin_auth"
+        ]
+      }
+    },
+    {
+      "id": "eth-022",
+      "filename": "eth-022_MyToken.sol",
+      "sol_path": "etherscan_verified/eth-022_MyToken.sol",
+      "source": "etherscan",
+      "contract_name": "MyToken",
+      "xlsx_name": "MyToken",
+      "etherscan_address": "0xa6Cc7741F97cd2dBf65412F6Be45617231B8003E",
+      "report_url": "https://etherscan.io/address/0xa6Cc7741F97cd2dBf65412F6Be45617231B8003E#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_require": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.8.20",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of MyToken. No LLM run.",
+        "raven_note": null,
+        "contract_name": "MyToken",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.306363",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-023",
+      "filename": "eth-023_melon.sol",
+      "sol_path": "etherscan_verified/eth-023_melon.sol",
+      "source": "etherscan",
+      "contract_name": "melon",
+      "xlsx_name": "melon",
+      "etherscan_address": "0xc4ADBD928A10990c6F41d4422d722f113D3FA5d3",
+      "report_url": "https://etherscan.io/address/0xc4adbd928a10990c6f41d4422d722f113d3fa5d3#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_loop": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.23",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of melon. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.307368",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-024",
+      "filename": "eth-024_DevToken.sol",
+      "sol_path": "etherscan_verified/eth-024_DevToken.sol",
+      "source": "etherscan",
+      "contract_name": "DevToken",
+      "xlsx_name": "DevToken",
+      "etherscan_address": "0x39D0A073F3268F514FD583e654622B66a4aaCA02",
+      "report_url": "https://etherscan.io/address/0x39d0a073f3268f514fd583e654622b66a4aaca02#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.8.0",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of DevToken. No LLM run.",
+        "raven_note": null,
+        "contract_name": "DevToken",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.315222",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-025",
+      "filename": "eth-025_TokenVault.sol",
+      "sol_path": "etherscan_verified/eth-025_TokenVault.sol",
+      "source": "etherscan",
+      "contract_name": "interfaces",
+      "xlsx_name": "TokenVault",
+      "etherscan_address": "0x59BB6fa239eCc08aA6E1739970A8878A6c83A67d",
+      "report_url": "https://etherscan.io/address/0x59bb6fa239ecc08aa6e1739970a8878a6c83a67d#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_call_value": true,
+        "has_mapping": true,
+        "has_withdraw": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.4.16",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of interfaces. No LLM run.",
+        "raven_note": null,
+        "contract_name": "interfaces",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.323549",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-026",
+      "filename": "eth-026_BITE0BNK_Absolute.sol",
+      "sol_path": "etherscan_verified/eth-026_BITE0BNK_Absolute.sol",
+      "source": "etherscan",
+      "contract_name": "BITE0BNK_Absolute",
+      "xlsx_name": "BITE0BNK_Absolute",
+      "etherscan_address": "0x059adCb7530af94c60b339b57a5f94939C381490",
+      "report_url": "https://etherscan.io/address/0x059adCb7530af94c60b339b57a5f94939C381490#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_require": true
+      },
+      "solidity_version": "0.8.20",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of BITE0BNK_Absolute. No LLM run.",
+        "raven_note": null,
+        "contract_name": "BITE0BNK_Absolute",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.323549",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-027",
+      "filename": "eth-027_USDT.sol",
+      "sol_path": "etherscan_verified/eth-027_USDT.sol",
+      "source": "etherscan",
+      "contract_name": "USDT",
+      "xlsx_name": "USDT",
+      "etherscan_address": "0x0f3E5f4cB4d44848FDe7e39aC9bbf62C0E282846",
+      "report_url": "https://etherscan.io/address/0x0f3E5f4cB4d44848FDe7e39aC9bbf62C0E282846#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.4.18",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of USDT. No LLM run.",
+        "raven_note": null,
+        "contract_name": "USDT",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.325863",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-028",
+      "filename": "eth-028_LeAnime_Encoding_Converter.sol",
+      "sol_path": "etherscan_verified/eth-028_LeAnime_Encoding_Converter.sol",
+      "source": "etherscan",
+      "contract_name": "LeAnime_Encoding_Converter",
+      "xlsx_name": "LeAnime_Encoding_Converter",
+      "etherscan_address": "0xA23a1c67e5C5e744539EF7679a571212B59B8016",
+      "report_url": "https://etherscan.io/address/0xA23a1c67e5C5e744539EF7679a571212B59B8016#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_loop": true
+      },
+      "solidity_version": "0.8.17",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of LeAnime_Encoding_Converter. No LLM run.",
+        "raven_note": null,
+        "contract_name": "LeAnime_Encoding_Converter",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.328070",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-029",
+      "filename": "eth-029_REMILIO.sol",
+      "sol_path": "etherscan_verified/eth-029_REMILIO.sol",
+      "source": "etherscan",
+      "contract_name": "REMILIO",
+      "xlsx_name": "REMILIO",
+      "etherscan_address": "0x55f0Cca70461D147419cbE9ecE614D08c8a7197F",
+      "report_url": "https://etherscan.io/address/0x55f0Cca70461D147419cbE9ecE614D08c8a7197F#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.22",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of REMILIO. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.332230",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-030",
+      "filename": "eth-030_Eth1.sol",
+      "sol_path": "etherscan_verified/eth-030_Eth1.sol",
+      "source": "etherscan",
+      "contract_name": "using",
+      "xlsx_name": "Eth1",
+      "etherscan_address": "0x83Ef838C56826512b669985ECE041964C0834f6F",
+      "report_url": "https://etherscan.io/address/0x83Ef838C56826512b669985ECE041964C0834f6F#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.8.4",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of using. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.339595",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-031",
+      "filename": "eth-031_PioneerSeries1155.sol",
+      "sol_path": "etherscan_verified/eth-031_PioneerSeries1155.sol",
+      "source": "etherscan",
+      "contract_name": "interfaces",
+      "xlsx_name": "PioneerSeries1155",
+      "etherscan_address": "0x28eCf85AF218412Db09Dc3c050ab5F1B6f386F57",
+      "report_url": "https://etherscan.io/address/0x28ecf85af218412db09dc3c050ab5f1b6f386f57#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_erc20": true,
+        "has_loop": true
+      },
+      "solidity_version": "0.4.16",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of interfaces. No LLM run.",
+        "raven_note": null,
+        "contract_name": "interfaces",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.374339",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-032",
+      "filename": "eth-032_PEANUT.sol",
+      "sol_path": "etherscan_verified/eth-032_PEANUT.sol",
+      "source": "etherscan",
+      "contract_name": "using",
+      "xlsx_name": "PEANUT",
+      "etherscan_address": "0xa78Abb1039e48276fB8bdA62a0Bf2a09C689B8ff",
+      "report_url": "https://etherscan.io/address/0xa78Abb1039e48276fB8bdA62a0Bf2a09C689B8ff#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.8.20",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of using. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.377803",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-033",
+      "filename": "eth-033_wako.sol",
+      "sol_path": "etherscan_verified/eth-033_wako.sol",
+      "source": "etherscan",
+      "contract_name": "wako",
+      "xlsx_name": "wako",
+      "etherscan_address": "0x613BE6c6c7DC65507d494999033a5dE7eC5b0FA0",
+      "report_url": "https://etherscan.io/address/0x613be6c6c7dc65507d494999033a5de7ec5b0fa0#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_loop": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.23",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of wako. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.384092",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-034",
+      "filename": "eth-034_PEJAK.sol",
+      "sol_path": "etherscan_verified/eth-034_PEJAK.sol",
+      "source": "etherscan",
+      "contract_name": "PEJAK",
+      "xlsx_name": "PEJAK",
+      "etherscan_address": "0x35B88549629dd216961bbd45830aBB7E899f479e",
+      "report_url": "https://etherscan.io/address/0x35b88549629dd216961bbd45830abb7e899f479e#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.0",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of PEJAK. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.387029",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-035",
+      "filename": "eth-035_ARAMCO_Presale_Final.sol",
+      "sol_path": "etherscan_verified/eth-035_ARAMCO_Presale_Final.sol",
+      "source": "etherscan",
+      "contract_name": "setting",
+      "xlsx_name": "ARAMCO_Presale_Final",
+      "etherscan_address": "0x7483B20F20EB5782d5E060cb2Db262CBdd797039",
+      "report_url": "https://etherscan.io/address/0x7483B20F20EB5782d5E060cb2Db262CBdd797039#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_call_value": true,
+        "has_mapping": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_loop": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.20",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of setting. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.401626",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-036",
+      "filename": "eth-036_FIN.sol",
+      "sol_path": "etherscan_verified/eth-036_FIN.sol",
+      "source": "etherscan",
+      "contract_name": "FIN",
+      "xlsx_name": "FIN",
+      "etherscan_address": "0x1205110288ECe4cBc9ff63dF6765FF1181c20b79",
+      "report_url": "https://etherscan.io/address/0x1205110288ece4cbc9ff63df6765ff1181c20b79#code",
+      "auto_label": "vulnerable",
+      "vuln_types": [
+        "tx_origin_auth"
+      ],
+      "expected_severity": "MEDIUM",
+      "features": {
+        "has_external_call": true,
+        "has_tx_origin": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.30",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "NO-GO",
+        "vulnerabilities": [
+          {
+            "type": "tx_origin_auth",
+            "severity": "medium",
+            "confidence": 0.75,
+            "description": "Detected via static pattern analysis",
+            "source": "static"
+          }
+        ],
+        "summary": "Static analysis of FIN. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 1,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.410318",
+      "comparison": {
+        "match": true,
+        "expected_label": "vulnerable",
+        "predicted_label": "vulnerable",
+        "expected_verdict": "NO-GO",
+        "predicted_verdict": "NO-GO",
+        "expected_vuln_types": [
+          "tx_origin_auth"
+        ],
+        "predicted_vuln_types": [
+          "tx_origin_auth"
+        ],
+        "type_overlap": [
+          "tx_origin_auth"
+        ]
+      }
+    },
+    {
+      "id": "eth-037",
+      "filename": "eth-037_Counter.sol",
+      "sol_path": "etherscan_verified/eth-037_Counter.sol",
+      "source": "etherscan",
+      "contract_name": "Counter",
+      "xlsx_name": "Counter",
+      "etherscan_address": "0x88b89c41C4d8AFD5a15ab3219577f5f23b23211d",
+      "report_url": "https://etherscan.io/address/0x88b89c41C4d8AFD5a15ab3219577f5f23b23211d#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_require": true
+      },
+      "solidity_version": "0.8.24",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of Counter. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Counter",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.410318",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-038",
+      "filename": "eth-038_Groth16Verifier.sol",
+      "sol_path": "etherscan_verified/eth-038_Groth16Verifier.sol",
+      "source": "etherscan",
+      "contract_name": "Groth16Verifier",
+      "xlsx_name": "Groth16Verifier",
+      "etherscan_address": "0xcBa5cDd8109570477D53cdc67669CDAAa8378e59",
+      "report_url": "https://etherscan.io/address/0xcba5cdd8109570477d53cdc67669cdaaa8378e59#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {},
+      "solidity_version": "0.7.0",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of Groth16Verifier. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Groth16Verifier",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.414828",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-039",
+      "filename": "eth-039_Groth16DepositVerifier.sol",
+      "sol_path": "etherscan_verified/eth-039_Groth16DepositVerifier.sol",
+      "source": "etherscan",
+      "contract_name": "Groth16DepositVerifier",
+      "xlsx_name": "Groth16DepositVerifier",
+      "etherscan_address": "0xb4913EaDC14599a711E9718FAFa83c75A537A07a",
+      "report_url": "https://etherscan.io/address/0xb4913eadc14599a711e9718fafa83c75a537a07a#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {},
+      "solidity_version": "0.7.0",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of Groth16DepositVerifier. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Groth16DepositVerifier",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.423263",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-040",
+      "filename": "eth-040_GIRAFFES.sol",
+      "sol_path": "etherscan_verified/eth-040_GIRAFFES.sol",
+      "source": "etherscan",
+      "contract_name": "using",
+      "xlsx_name": "GIRAFFES",
+      "etherscan_address": "0x66885aFEafb6E3835c74Da92888b1e41AcBC045B",
+      "report_url": "https://etherscan.io/address/0x66885aFEafb6E3835c74Da92888b1e41AcBC045B#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.8.20",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of using. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.431376",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-041",
+      "filename": "eth-041_AlwaysAllowValidator.sol",
+      "sol_path": "etherscan_verified/eth-041_AlwaysAllowValidator.sol",
+      "source": "etherscan",
+      "contract_name": "AlwaysAllowValidator",
+      "xlsx_name": "AlwaysAllowValidator",
+      "etherscan_address": "0x881126aae0f5B5d4d6DB3afeA71f95504fa68b04",
+      "report_url": "https://etherscan.io/address/0x881126aae0f5b5d4d6db3afea71f95504fa68b04#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {},
+      "solidity_version": "0.8.20",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of AlwaysAllowValidator. No LLM run.",
+        "raven_note": null,
+        "contract_name": "AlwaysAllowValidator",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.433849",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-042",
+      "filename": "eth-042_ROCKPEPE.sol",
+      "sol_path": "etherscan_verified/eth-042_ROCKPEPE.sol",
+      "source": "etherscan",
+      "contract_name": "setting",
+      "xlsx_name": "ROCKPEPE",
+      "etherscan_address": "0xbfd70DF511A8e1462170F94A3296FD817CC82ED8",
+      "report_url": "https://etherscan.io/address/0xbfd70DF511A8e1462170F94A3296FD817CC82ED8#code",
+      "auto_label": "vulnerable",
+      "vuln_types": [
+        "tx_origin_auth"
+      ],
+      "expected_severity": "MEDIUM",
+      "features": {
+        "has_external_call": true,
+        "has_call_value": true,
+        "has_tx_origin": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.17",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "NO-GO",
+        "vulnerabilities": [
+          {
+            "type": "tx_origin_auth",
+            "severity": "medium",
+            "confidence": 0.75,
+            "description": "Detected via static pattern analysis",
+            "source": "static"
+          }
+        ],
+        "summary": "Static analysis of setting. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 1,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.444647",
+      "comparison": {
+        "match": true,
+        "expected_label": "vulnerable",
+        "predicted_label": "vulnerable",
+        "expected_verdict": "NO-GO",
+        "predicted_verdict": "NO-GO",
+        "expected_vuln_types": [
+          "tx_origin_auth"
+        ],
+        "predicted_vuln_types": [
+          "tx_origin_auth"
+        ],
+        "type_overlap": [
+          "tx_origin_auth"
+        ]
+      }
+    },
+    {
+      "id": "eth-043",
+      "filename": "eth-043_OPTIPEPE.sol",
+      "sol_path": "etherscan_verified/eth-043_OPTIPEPE.sol",
+      "source": "etherscan",
+      "contract_name": "OPTIPEPE",
+      "xlsx_name": "OPTIPEPE",
+      "etherscan_address": "0x199d97eE6926f900A2146b6532CA99F343C5a193",
+      "report_url": "https://etherscan.io/address/0x199d97eE6926f900A2146b6532CA99F343C5a193#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.0",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of OPTIPEPE. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.448895",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-044",
+      "filename": "eth-044_PEPE2026.sol",
+      "sol_path": "etherscan_verified/eth-044_PEPE2026.sol",
+      "source": "etherscan",
+      "contract_name": "PEPE2026",
+      "xlsx_name": "PEPE2026",
+      "etherscan_address": "0x2895a26F8f50FaB99b876F248F134548537475A5",
+      "report_url": "https://etherscan.io/address/0x2895a26F8f50FaB99b876F248F134548537475A5#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.0",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of PEPE2026. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.454187",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-045",
+      "filename": "eth-045_lets_play.sol",
+      "sol_path": "etherscan_verified/eth-045_lets_play.sol",
+      "source": "etherscan",
+      "contract_name": "lets_play",
+      "xlsx_name": "lets_play",
+      "etherscan_address": "0x335B9e3E8fbB9C08Dcb575C3E33c15ac9888a911",
+      "report_url": "https://etherscan.io/address/0x335B9e3E8fbB9C08Dcb575C3E33c15ac9888a911#code",
+      "auto_label": "vulnerable",
+      "vuln_types": [
+        "tx_origin_auth"
+      ],
+      "expected_severity": "MEDIUM",
+      "features": {
+        "has_external_call": true,
+        "has_tx_origin": true,
+        "has_mapping": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_loop": true
+      },
+      "solidity_version": "0.8.0",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "NO-GO",
+        "vulnerabilities": [
+          {
+            "type": "tx_origin_auth",
+            "severity": "medium",
+            "confidence": 0.75,
+            "description": "Detected via static pattern analysis",
+            "source": "static"
+          }
+        ],
+        "summary": "Static analysis of lets_play. No LLM run.",
+        "raven_note": null,
+        "contract_name": "lets_play",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 1,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.456006",
+      "comparison": {
+        "match": true,
+        "expected_label": "vulnerable",
+        "predicted_label": "vulnerable",
+        "expected_verdict": "NO-GO",
+        "predicted_verdict": "NO-GO",
+        "expected_vuln_types": [
+          "tx_origin_auth"
+        ],
+        "predicted_vuln_types": [
+          "tx_origin_auth"
+        ],
+        "type_overlap": [
+          "tx_origin_auth"
+        ]
+      }
+    },
+    {
+      "id": "eth-046",
+      "filename": "eth-046_custodian_Bank.sol",
+      "sol_path": "etherscan_verified/eth-046_custodian_Bank.sol",
+      "source": "etherscan",
+      "contract_name": "custodian_Bank",
+      "xlsx_name": "custodian_Bank",
+      "etherscan_address": "0xF50c94986DB1883C551B4AfeB0Df6869e88C4263",
+      "report_url": "https://etherscan.io/address/0xF50c94986DB1883C551B4AfeB0Df6869e88C4263#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_call_value": true,
+        "has_mapping": true,
+        "has_payable": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.7.6",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of custodian_Bank. No LLM run.",
+        "raven_note": null,
+        "contract_name": "custodian_Bank",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.456780",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-047",
+      "filename": "eth-047_SolanaProtocol.sol",
+      "sol_path": "etherscan_verified/eth-047_SolanaProtocol.sol",
+      "source": "etherscan",
+      "contract_name": "using",
+      "xlsx_name": "SolanaProtocol",
+      "etherscan_address": "0x3f5B20A43384f0233eD868b1eE80ebABa1B84B24",
+      "report_url": "https://etherscan.io/address/0x3f5b20a43384f0233ed868b1ee80ebaba1b84b24#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.4.16",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of using. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.464615",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-048",
+      "filename": "eth-048_ROSE.sol",
+      "sol_path": "etherscan_verified/eth-048_ROSE.sol",
+      "source": "etherscan",
+      "contract_name": "using",
+      "xlsx_name": "ROSE",
+      "etherscan_address": "0x78DE86A2C1F9eF9cd542ef9DEfe4181F82fb9364",
+      "report_url": "https://etherscan.io/address/0x78DE86A2C1F9eF9cd542ef9DEfe4181F82fb9364#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_erc20": true
+      },
+      "solidity_version": "0.8.20",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of using. No LLM run.",
+        "raven_note": null,
+        "contract_name": "is",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.468177",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-049",
+      "filename": "eth-049_KEK.sol",
+      "sol_path": "etherscan_verified/eth-049_KEK.sol",
+      "source": "etherscan",
+      "contract_name": "KEK",
+      "xlsx_name": "KEK",
+      "etherscan_address": "0xAb644035BCa117393aDEC1a4a260E69ef0947b27",
+      "report_url": "https://etherscan.io/address/0xAb644035BCa117393aDEC1a4a260E69ef0947b27#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_external_call": true,
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_payable": true,
+        "has_erc20": true,
+        "has_loop": true,
+        "has_block_timestamp": true
+      },
+      "solidity_version": "0.8.25",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of KEK. No LLM run.",
+        "raven_note": null,
+        "contract_name": "Context",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.476566",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    },
+    {
+      "id": "eth-050",
+      "filename": "eth-050_TehonoFactory.sol",
+      "sol_path": "etherscan_verified/eth-050_TehonoFactory.sol",
+      "source": "etherscan",
+      "contract_name": "interfaces",
+      "xlsx_name": "TehonoFactory",
+      "etherscan_address": "0xf1ffbfe969281E970bdAc4F3E00EA56eA5210685",
+      "report_url": "https://etherscan.io/address/0xf1ffbfe969281E970bdAc4F3E00EA56eA5210685#code",
+      "auto_label": "likely_safe",
+      "vuln_types": [],
+      "expected_severity": null,
+      "features": {
+        "has_mapping": true,
+        "has_balance_update": true,
+        "has_onlyowner": true,
+        "has_require": true,
+        "has_modifier": true,
+        "has_erc20": true,
+        "has_loop": true
+      },
+      "solidity_version": "0.4.16",
+      "notes": "from contractsVerified page; verified contract, vulnerabilities not checked yet",
+      "analysis_result": {
+        "final_verdict": "GO",
+        "vulnerabilities": [],
+        "summary": "Static analysis of interfaces. No LLM run.",
+        "raven_note": null,
+        "contract_name": "interfaces",
+        "stats": {
+          "models_run": 0,
+          "raw_llm_findings": 0,
+          "slither_findings": 0,
+          "final_findings": 0,
+          "similar_in_db": 0
+        },
+        "slither": {
+          "status": "skipped"
+        },
+        "mode": "static_only"
+      },
+      "analysis_timestamp": "2026-04-22T08:46:09.505815",
+      "comparison": {
+        "match": true,
+        "expected_label": "likely_safe",
+        "predicted_label": "likely_safe",
+        "expected_verdict": "GO",
+        "predicted_verdict": "GO",
+        "expected_vuln_types": [],
+        "predicted_vuln_types": [],
+        "type_overlap": []
+      }
+    }
+  ],
+  "last_run": "2026-04-22T08:46:09.505815",
+  "run_stats": {
+    "total_processed": 50,
+    "correct_verdicts": 50,
+    "accuracy": 1.0,
+    "mode": "static_only"
+  }
+}
