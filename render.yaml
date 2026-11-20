@@ -32,4 +32,4 @@ services:
       - key: ENABLE_VECTORDB
         value: "false"
       - key: ALLOWED_ORIGINS
-        value: "https://REPLACE-WITH-YOUR-VERCEL-URL.vercel.app"
+        value: "https://third-eye-capstone.vercel.app"
