@@ -1,6 +1,6 @@
-# Argus — smart-contract auditor as a PR gate.
+# ThirdEye — smart-contract auditor as a PR gate.
 #
-# On every pull request that touches Solidity, this workflow runs the Argus
+# On every pull request that touches Solidity, this workflow runs the ThirdEye
 # council over the changed .sol files and uploads the results as SARIF so they
 # appear inline in the PR's "Files changed" / Security tab.
 #
@@ -8,9 +8,18 @@
 # the real scan runs against the HOSTED tier (LLM_BACKEND=groq) and REQUIRES a
 # repository secret named GROQ_API_KEY. If that secret is absent (e.g. on forks
 # or before it's configured) the scan step is SKIPPED rather than failing the
-# build — Argus is advisory until the key is set up. See the `if:` guard below.
+# build — the gate is advisory until the key is set up. See the `if:` guards.
+#
+# Two defects were fixed here on 2026-09-01, both of which made the gate a
+# no-op rather than a failure, which is why neither was noticed:
+#   1. The scan invoked `argus_cli.py`, which has not existed since the CLI was
+#      renamed to `thirdeye_cli.py`. Every run died at the interpreter.
+#   2. The skip guard read `secrets.GROQ_API_KEY` directly in a step-level
+#      `if:`. The `secrets` context is not available there, so the guard did
+#      not evaluate as intended. Secrets are now mapped to a job-level `env`
+#      and the guards test `env.HAS_KEY`, which is the supported pattern.
 
-name: Argus contract audit
+name: ThirdEye contract audit
 
 on:
   pull_request:
@@ -25,8 +34,12 @@ permissions:
   pull-requests: read
 
 jobs:
-  argus-scan:
+  contract-audit:
     runs-on: ubuntu-latest
+    # Mapping the secret here is what makes it visible to `env.HAS_KEY` in the
+    # step-level `if:` conditions below. Never echo this value.
+    env:
+      HAS_KEY: ${{ secrets.GROQ_API_KEY != '' }}
     steps:
       - name: Checkout (with history so we can diff against the base)
         uses: actions/checkout@v4
@@ -39,8 +52,8 @@ jobs:
           python-version: "3.11"
 
       - name: Install backend dependencies
-        # argus_cli.py + council only need httpx and python-dotenv at runtime;
-        # we install just those to keep CI fast (no reportlab/fastapi needed).
+        # thirdeye_cli.py + council only need httpx and python-dotenv at
+        # runtime; we install just those to keep CI fast (no reportlab/fastapi).
         run: python -m pip install --upgrade pip httpx python-dotenv
 
       - name: Collect changed .sol files
@@ -58,12 +71,10 @@ jobs:
             echo "has_files=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Run Argus council on changed contracts
-        # Two guards:
-        #   1. there were actually changed .sol files, AND
-        #   2. the GROQ_API_KEY secret exists (no key -> skip, don't fail).
-        if: steps.changed.outputs.has_files == 'true' && secrets.GROQ_API_KEY != ''
-        # Belt-and-braces: even with a key, a NO-GO verdict makes argus_cli exit
+      - name: Run ThirdEye council on changed contracts
+        # Two guards: there were changed .sol files, AND the key exists.
+        if: steps.changed.outputs.has_files == 'true' && env.HAS_KEY == 'true'
+        # Belt-and-braces: even with a key, a NO-GO verdict makes the CLI exit
         # 1. We capture that as a finding (uploaded via SARIF) rather than
         # hard-failing the whole pipeline here; flip continue-on-error to false
         # once you want NO-GO to block merges.
@@ -72,33 +83,32 @@ jobs:
         env:
           LLM_BACKEND: groq
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          # Deterministic-ish runs across re-triggers.
           PYTHONUNBUFFERED: "1"
         run: |
-          # argus_cli expects paths relative to backend/, but changed files are
-          # repo-relative — prefix with ../ so they resolve from inside backend/.
+          # thirdeye_cli expects paths relative to backend/, but changed files
+          # are repo-relative — prefix with ../ so they resolve from backend/.
           set -o pipefail
           STATUS=0
           # Scan each changed contract; merge would need per-file SARIF, so we
           # scan them one at a time and keep the last (single-file PRs are the
           # common case). For multi-file PRs, extend to merge SARIF runs.
           for f in ${{ steps.changed.outputs.files }}; do
-            echo "::group::Argus scan $f"
-            python argus_cli.py scan "../$f" --sarif "../argus.sarif" --backend groq || STATUS=$?
+            echo "::group::ThirdEye scan $f"
+            python thirdeye_cli.py scan "../$f" --sarif "../thirdeye.sarif" --backend groq || STATUS=$?
             echo "::endgroup::"
           done
-          echo "Argus exit status: $STATUS (1 = NO-GO verdict)"
+          echo "ThirdEye exit status: $STATUS (1 = NO-GO verdict)"
 
       - name: Upload SARIF to GitHub code scanning
         # Only if the scan actually produced a SARIF file (i.e. it ran).
-        if: ${{ hashFiles('argus.sarif') != '' }}
+        if: ${{ hashFiles('thirdeye.sarif') != '' }}
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: argus.sarif
-          category: argus
+          sarif_file: thirdeye.sarif
+          category: thirdeye
 
       - name: Note when the scan was skipped
-        if: steps.changed.outputs.has_files == 'true' && secrets.GROQ_API_KEY == ''
+        if: steps.changed.outputs.has_files == 'true' && env.HAS_KEY != 'true'
         run: |
-          echo "::warning::Argus scan skipped — repository secret GROQ_API_KEY is not set."
+          echo "::warning::ThirdEye scan skipped — repository secret GROQ_API_KEY is not set."
           echo "Add GROQ_API_KEY in Settings → Secrets → Actions to enable the audit gate."
