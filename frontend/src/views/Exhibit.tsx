@@ -3,7 +3,7 @@ import { EX, MONO, SERIF, SANS, T, M } from "../lib/exhibit-theme";
 import { Reveal, StatCard, IntervalBar, CountBar } from "../components/exhibit/Measure";
 import { TryIt } from "../components/exhibit/TryIt";
 import { BENCHMARK_SNAPSHOT } from "../data/benchmark";
-import { PARITY, CAPACITY, SLITHER, GPTSCAN, HEADTOHEAD as H2H, CTXABLATION as CTX } from "../data/newfindings";
+import { PARITY, CAPACITY, SLITHER, GPTSCAN, HEADTOHEAD as H2H, CTXABLATION as CTX, CALIBRATION as CAL } from "../data/newfindings";
 import { fmtCI, ci95, separated } from "../lib/stats";
 
 /** The exhibit, framed as a MEASUREMENT paper rather than a product.
@@ -57,6 +57,7 @@ export function Exhibit({ onOpenApp }: { onOpenApp?: () => void }) {
       <WhatItRevealed />
       <BaselineAbstains />
       <PriorWork />
+      <Calibration />
       <NotReproducible />
       <CapabilityDoesntFix />
       <SilentTruncation />
@@ -558,12 +559,107 @@ function PriorWork() {
   );
 }
 
-/* ─── 06 reproducibility ───────────────────────────────────────────── */
+/* ─── 06 calibration ───────────────────────────────────────────────
+   Added after verifying Durieux et al. (ICSE'20) and the Slither paper
+   against their full text. Before this section the page reported 29.9%
+   with no external reference band, which invited the reading "that is a
+   bad number" — when the actual finding is that the band is 20x wide and
+   the rates in it are not computed the same way. */
+
+function Calibration() {
+  return (
+    <Section
+      n="06" kicker="Calibration"
+      title="Published false-alarm rates for this task span 4.39% to 97.50% — and one pair of those is the same tool."
+      lede="A rate means nothing without a reference band. Every figure below was checked against the source paper's own text, and each is shown with the negative class it was computed on and the denominator it used. Two of them are not the same quantity."
+    >
+      <div style={{ overflowX: "auto", maxWidth: "100%", minWidth: 0 }}>
+        <table style={{ borderCollapse: "collapse", width: "100%", minWidth: 560, fontSize: 13.5 }}>
+          <thead>
+            <tr style={{ borderBottom: `2px solid ${EX.ink}` }}>
+              {["Source", "Rate", "", "Negative class", "Denominator"].map((h, i) => (
+                <th key={h || i} style={{ textAlign: i === 1 ? "right" : "left", padding: "10px 8px", fontFamily: MONO, fontSize: 10.5, letterSpacing: ".1em", color: EX.inkMuted, textTransform: "uppercase", fontWeight: 400 }}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {CAL.rows.map((r) => (
+              <tr key={r.tool} style={{ borderBottom: `1px solid ${EX.hairline}`, background: r.ours ? EX.surfaceLift : "transparent" }}>
+                <td style={{ padding: "11px 8px", fontWeight: r.ours ? 600 : 400, color: EX.ink }}>{r.tool}</td>
+                <td style={{ padding: "11px 8px", textAlign: "right", fontFamily: MONO, whiteSpace: "nowrap" }}>{(r.rate * 100).toFixed(2)}%</td>
+                <td style={{ padding: "11px 8px", width: 160 }}>
+                  <div aria-hidden style={{ height: 8, background: EX.hairline, position: "relative" }}>
+                    <div style={{ position: "absolute", inset: 0, width: `${r.rate * 100}%`, background: r.ours ? EX.ink : EX.slate }} />
+                  </div>
+                </td>
+                <td style={{ padding: "11px 8px", color: EX.inkMuted }}>{r.negatives}</td>
+                <td style={{ padding: "11px 8px", fontFamily: MONO, fontSize: 11.5, color: r.comparable ? EX.inkMuted : EX.ink }}>
+                  {r.denom}{r.comparable ? "" : " †"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p style={{ fontSize: T.micro, fontFamily: MONO, color: EX.inkMuted, margin: "10px 0 0" }}>
+        † not FP/(FP+TN) — must not be differenced against the rows that are. Verified {CAL.verified}.
+      </p>
+
+      <Evidence items={[
+        { k: "The spread is between protocols, not tools", v: `GPTScan reports ${(CAL.rows[0].rate * 100).toFixed(2)}% on its own curated negatives and is independently measured at ${(CAL.rows[6].rate * 100).toFixed(2)}% on contest code — a 22x move for the SAME tool, with no change to the tool. No difference any of these papers claims as a result is anywhere near that large.` },
+        { k: "We reproduce it under control", v: `Holding the tool, seed, model digests and machine fixed and varying only how the safe label was obtained moves our own rate from ${(CAL.rows[2].rate * 100).toFixed(1)}% to ${(CAL.rows[5].rate * 100).toFixed(1)}%, with non-overlapping intervals. That is the same effect, isolated to one variable.` },
+        { k: "The most-trusted number uses a different denominator", v: "Slither's 10.9% is the share of FLAGGED contracts manual review found wrong — 1 - precision — from a sample of at least 50, on the reentrancy detector alone, with no true-negative set. It cannot be converted to FP/(FP+TN) from the published data, and it is nonetheless the figure LLM tools get held against." },
+        { k: "What we do not claim", v: `Not that ${(CAL.rows[3].rate * 100).toFixed(1)}% is good. Against the verified same-denominator figures it is worse than GPTScan's self-reported 4.39% and better than COMPSAC'26's 34.09% for local 4-bit models — and the Heimdallr row shows how little the first survives independent measurement. The claim is that ours is interpretable: stated negative class, per-tier decomposition, hand-audited label noise, intervals.` },
+      ]} />
+
+      <div style={{ marginTop: 18, border: `1px solid ${EX.ink}`, padding: "16px 18px", background: EX.surfaceAlt }}>
+        <div style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: ".12em", color: EX.ink, marginBottom: 8 }}>
+          THE LARGEST STUDY IN THE FIELD CANNOT COMPUTE THIS QUANTITY
+        </div>
+        <p style={{ fontSize: T.body, lineHeight: 1.62, color: EX.ink, margin: 0, maxWidth: "74ch" }}>
+          {CAL.durieux.paper} run {CAL.durieux.tools} tools over{" "}
+          {CAL.durieux.wild_contracts.toLocaleString()} chain contracts —{" "}
+          {CAL.durieux.analyses.toLocaleString()} analyses, {CAL.durieux.compute} of compute — and
+          report that <strong>{Math.round(CAL.durieux.flagged_rate * 100)}%</strong> are flagged
+          vulnerable. Because that corpus is <strong>unlabelled</strong>, the figure cannot be split
+          into true and false positives, and the authors correctly go no further than calling it
+          evidence of considerable false positives. Their labelled set, where the split would be
+          possible, has {CAL.durieux.annotated_contracts} contracts and no safe class.
+        </p>
+        <p style={{ fontSize: T.body, lineHeight: 1.62, color: EX.ink, margin: "12px 0 0", maxWidth: "74ch" }}>
+          So one paper measures flag rate without a false-alarm rate, and recall without a negative
+          class — not through any defect of method, but because no corpus offered both. That gap is
+          what the six-tier benchmark on this page was built to close.
+        </p>
+        <p style={{ fontSize: 13.5, lineHeight: 1.62, color: EX.inkMuted, margin: "12px 0 0", maxWidth: "74ch" }}>
+          The same paper independently corroborates section 04: all {CAL.durieux.tools} tools
+          combined detect {CAL.durieux.all_tools_combined} of {CAL.durieux.annotated_vulns} tagged
+          vulnerabilities ({Math.round((CAL.durieux.all_tools_combined / CAL.durieux.annotated_vulns) * 100)}%),
+          Slither {CAL.durieux.slither_detected} of {CAL.durieux.annotated_vulns} (
+          {Math.round((CAL.durieux.slither_detected / CAL.durieux.annotated_vulns) * 100)}%), and{" "}
+          {CAL.durieux.zero_detection_categories.length} DASP categories —{" "}
+          {CAL.durieux.zero_detection_categories.join(", ")} — are detected by no tool at all. Two
+          corpora, the same conclusion, one of them peer-reviewed.
+        </p>
+      </div>
+
+      <Novelty>
+        The reference band for this metric is twenty times wider than any effect published inside
+        it, and it is not commensurable end to end. That is not a reason to stop reporting the
+        number. It is the reason to report the negative class and the denominator beside it — which
+        is the whole argument of this page, arriving from outside our own data.
+      </Novelty>
+    </Section>
+  );
+}
+
+/* ─── 07 reproducibility ───────────────────────────────────────────── */
 
 function NotReproducible() {
   return (
     <Section
-      n="06" kicker="Reproducibility" tint
+      n="07" kicker="Reproducibility" tint
       title="The same contract, the same seed, a different machine — and roughly one verdict in five changes."
       lede="Every number this field publishes is produced on one machine and reported as a property of the method. We ran an identical contract set on a second GPU, under one identical decision rule, and compared verdict by verdict."
     >
@@ -619,7 +715,7 @@ function SilentTruncation() {
   const pct = (k: number, n: number) => `${((k / n) * 100).toFixed(1)}%`;
   return (
     <Section
-      n="08" kicker="A silent failure, in our own results"
+      n="09" kicker="A silent failure, in our own results"
       title="A quarter of the benchmark was being judged on a fraction of its code."
       lede={`Every number this project has published was produced with the local runtime's context window at 4,096 tokens. A longer prompt is not refused — it is truncated. The specialist then reads part of the contract and returns a verdict as though it had read all of it. ${CTX.pool_overflowing} of ${CTX.corpus} benchmark contracts overflow that window.`}
     >
@@ -682,7 +778,7 @@ function CapabilityDoesntFix() {
   const { small, large } = CAPACITY;
   return (
     <Section
-      n="07" kicker="Negative result"
+      n="08" kicker="Negative result"
       title="The obvious fix — a bigger model — made the false alarms worse."
       lede="Three of the eight specialists were pinned to a small model purely because a larger one did not fit in 4GB of VRAM. Those three are the semantic roles. A larger card let us restore the bigger model and change exactly one variable."
     >
@@ -742,7 +838,7 @@ const INVARIANTS: [string, string][] = [
 function Invariants() {
   return (
     <Section
-      n="09" kicker="The output" tint
+      n="10" kicker="The output" tint
       title="Five invariants that turn each silent failure into a loud one."
       lede="Every defect above was found by hitting it, and each produced plausible-looking metrics from a broken pipeline. These are the checks that make them fail visibly instead."
     >
@@ -766,7 +862,7 @@ function Invariants() {
 function Instrument({ onOpenApp }: { onOpenApp?: () => void }) {
   return (
     <Section
-      n="10" kicker="The instrument"
+      n="11" kicker="The instrument"
       title="Run it on a contract whose answer is already known."
       lede="The tool is evidence that the measurements above came from a working system rather than a spreadsheet. Pick a contract with a known verdict and watch a recorded run, or paste your own and run it live against the backend."
     >
@@ -788,21 +884,26 @@ function Instrument({ onOpenApp }: { onOpenApp?: () => void }) {
   );
 }
 
-/* ─── 10 status ────────────────────────────────────────────────────── */
+/* ─── 12 status ────────────────────────────────────────────────────── */
 
+/* This list previously held four items that have all since been completed:
+   the related-work survey, the num_parallel=1 reproducibility control, the
+   full-scale capacity ablation, and the GPTScan head-to-head. Leaving a
+   done-work list on the page as "currently working towards" is exactly the
+   kind of stale claim this exhibit objects to elsewhere, so it now carries
+   only what is genuinely open. */
 const NEXT: [string, string][] = [
-  ["Related-work survey", "Positioning nine surveyed papers against each finding. The one item blocking submission."],
-  ["Single-variable reproducibility control", "Isolating batch parallelism from hardware, which decides how finding 05 is stated."],
-  ["Full-scale capacity ablation", "Taking finding 06 from a 24-contract pilot to the full scored set."],
-  ["Web3Bugs / GPTScan comparison", "Real Code4rena audit contests — 300 confirmed semantic bugs across 91 protocol codebases."],
+  ["Safe-class context ablation", "The context result is measured on the vulnerable class. On the partial safe arm the false-alarm rate moved 27.3% \u2192 63.6% (p = 0.13, not yet a result) \u2014 so 29.9% may be an under-estimate, and this run decides it. The one item blocking submission."],
+  ["Remaining citation verification", "Three related-work entries are still summaries rather than reads. The inference-backend paper constrains how finding 07 is stated and has to be read end to end."],
+  ["Novelty check on the label-trust gradient", "Finding 03 is the strongest claim here and the least externally verified. It needs a deliberate search of dataset label-quality and PU-learning work before it is asserted as new."],
 ];
 
 function Status() {
   return (
     <Section
-      n="11" kicker="Status"
+      n="12" kicker="Status"
       title="Where the manuscript stands."
-      lede={`Findings 01 through 05 are measured at full scale on ${N} contracts and are stable. Findings 06 and 07 are pilots: the direction is established, the magnitude is still moving.`}
+      lede={`Findings 01 through 06 are measured at full scale on ${N} contracts, or verified against the source papers, and are stable. Findings 08 and 09 are the ones still moving: the direction is established, the magnitude is not final.`}
     >
       <div style={{ fontFamily: MONO, fontSize: 10.5, color: EX.signal, letterSpacing: ".14em", marginBottom: 14 }}>
         CURRENTLY WORKING TOWARDS
@@ -817,11 +918,13 @@ function Status() {
       </div>
       <p style={{ fontSize: 14.5, lineHeight: 1.65, color: EX.inkMuted, maxWidth: "72ch", marginTop: 26 }}>
         <strong style={{ color: EX.ink }}>What this work does not claim.</strong> Not that ThirdEye
-        is the best available auditor — a 29% false-alarm rate is not deployable unattended, and we
-        say so. Not that the balanced benchmark is representative of all Solidity. Not that the
-        Web3Bugs figure, once measured, is directly comparable to GPTScan&rsquo;s published number,
-        since the evaluated subsets differ. The contribution is the measurement apparatus and what
-        it exposes, not a leaderboard position.
+        is the best available auditor — a {((after.fpr ?? 0) * 100).toFixed(1)}% false-alarm rate is
+        not deployable unattended, and we say so. Not that the balanced benchmark is representative
+        of all Solidity. Not that our rate is comparable to every figure in section 06 — two of
+        those are computed on a different denominator, which is the point of putting them in a
+        table with their denominators attached. And not that we beat GPTScan: the head-to-head
+        intervals overlap. The contribution is the measurement apparatus and what it exposes, not a
+        leaderboard position.
       </p>
     </Section>
   );
