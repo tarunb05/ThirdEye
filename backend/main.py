@@ -26,6 +26,34 @@ ALLOWED_ORIGINS = [
     o.strip() for o in os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",") if o.strip()
 ]
 
+# ── Arbitration gate ─────────────────────────────────────────────────────────
+#
+# OFF unless THIRDEYE_ARBITRATION is set, which is what the findings register
+# has claimed all along ("shipped OFF by default", F5) and what the code did
+# NOT do: the streaming endpoint arbitrated unconditionally whenever a scan
+# produced findings.
+#
+# Two reasons that was wrong, beyond the documentation mismatch:
+#
+#  1. It hangs the demo. The local judge is qwen3:8b, measured at 83 s/call on
+#     a 4 GB laptop GPU, and it is called once per surviving finding. A scan
+#     that flags four findings therefore withholds its `final` event for
+#     minutes while the UI sits on "council running" -- observed here, which is
+#     how the gate came to be written.
+#
+#  2. The measured result does not justify the cost. Arbitration retains 32.9%
+#     of true flags against 29.3% of false ones -- near-uniform thinning -- so
+#     precision moves 49.6% -> 52.9% while recall collapses 93.6% -> 32.9%. It
+#     does not buy the property it was adopted for, and a threshold achieves
+#     the same trade far more cheaply (docs/FINDINGS.md D2, D3).
+#
+# Set THIRDEYE_ARBITRATION=1 to reproduce the arbitration experiments.
+ARBITRATION_ON = os.getenv("THIRDEYE_ARBITRATION", "").strip().lower() in (
+    "1",
+    "true",
+    "yes",
+)
+
 app = FastAPI(title="ThirdEye", version="3.0")
 app.add_middleware(
     CORSMiddleware,
@@ -230,17 +258,24 @@ async def analyze_council(req: AnalyzeReq, request: Request, uid: int | None = D
     return result
 
 
-class ArgusReq(BaseModel):
+class PipelineReq(BaseModel):
     code: str
     session_id: str | None = None
     user_id: str | None = None
     use_retrieval: bool = True
-    use_arbitration: bool = True
+    # None = follow the shipped default (ARBITRATION_ON, i.e. off). An explicit
+    # true/false still wins, because this endpoint exists to produce ablation
+    # configurations and an ablation must be able to turn the stage ON.
+    use_arbitration: bool | None = None
     use_dynamic: bool = True
 
 
-@app.post("/api/analyze/argus")
-async def analyze_argus(req: ArgusReq, request: Request, uid: int | None = Depends(optional_user)):
+# The "/argus" spelling is the pre-rename path. It is kept as an alias so any
+# saved client, script or bookmark keeps working; new callers should use
+# "/api/analyze/pipeline". Both resolve to the same handler.
+@app.post("/api/analyze/pipeline")
+@app.post("/api/analyze/argus", deprecated=True)
+async def analyze_pipeline(req: PipelineReq, request: Request, uid: int | None = Depends(optional_user)):
     enforce_rate_limit(request, uid)
     """Full ThirdEye pipeline: retrieval -> model-diverse council -> evidence-
     anchored arbitration -> dynamic confirmation. Per-stage toggles let the
@@ -249,16 +284,18 @@ async def analyze_argus(req: ArgusReq, request: Request, uid: int | None = Depen
     if len(code) < 10:
         raise HTTPException(422, "Code too short")
 
-    from services.pipeline import run_argus
+    from services.pipeline import run_thirdeye
     if req.session_id:
         if uid is None:
             raise HTTPException(401, "Sign in to write to a session")
         await owned_session(int(req.session_id), uid)
         await add_message(req.session_id, "user", code)
-    result = await run_argus(
+    result = await run_thirdeye(
         code,
         use_retrieval=req.use_retrieval,
-        use_arbitration=req.use_arbitration,
+        use_arbitration=(
+            ARBITRATION_ON if req.use_arbitration is None else req.use_arbitration
+        ),
         use_dynamic=req.use_dynamic,
     )
     try:
@@ -312,10 +349,18 @@ async def analyze_council_stream(req: AnalyzeReq, request: Request, uid: int | N
                 final_result = ev["result"]
                 # 2. Precision gate — arbitrate the council's findings with a
                 # strong judge, then emit the arbitrated final (the real pipeline).
-                if final_result.get("vulnerabilities") and final_result.get("final_verdict") != "INCONCLUSIVE":
+                if (
+                    ARBITRATION_ON
+                    and final_result.get("vulnerabilities")
+                    and final_result.get("final_verdict") != "INCONCLUSIVE"
+                ):
                     try:
                         from services.arbitration import run_arbitration
-                        ab = "cerebras" if os.getenv("CEREBRAS_API_KEY") else None
+                        # Local-only: the judge is the local model, never a
+                        # hosted one picked up merely because a key happens to
+                        # sit in the environment.
+                        from services.council import ALLOW_CLOUD as _cloud_ok
+                        ab = "cerebras" if (_cloud_ok and os.getenv("CEREBRAS_API_KEY")) else None
                         yield f"data: {json.dumps({'event': 'arbitrating', 'count': len(final_result['vulnerabilities'])})}\n\n"
                         final_result = await run_arbitration(code, final_result, backend=ab)
                         survivors = final_result.get("vulnerabilities") or []
@@ -400,16 +445,36 @@ async def download_report(req: ReportReq):
 async def ollama_status():
     return await check_ollama()
 
+@app.get("/api/preflight")
+async def preflight_endpoint():
+    """Can this machine run a live scan right now? Checks the council's models
+    BY NAME -- see services/preflight.py for the incident that motivated it."""
+    from services.preflight import preflight
+    return await preflight()
+
+
 @app.get("/api/health")
 async def health():
     """Fail-LOUD readiness check — surfaces missing keys so a deploy doesn't
     silently return INCONCLUSIVE on every scan (critique #2/#20). `ready` is
     False when the configured tier can't actually run the council."""
+    from services.council import ALLOW_CLOUD
     backend = os.getenv("LLM_BACKEND", "ollama").lower()
     has_groq = bool(os.getenv("GROQ_API_KEY"))
     has_cerebras = bool(os.getenv("CEREBRAS_API_KEY"))
     problems = []
-    if backend in ("groq", "hosted"):
+    if backend in ("groq", "hosted") and not ALLOW_CLOUD:
+        # This endpoint used to answer purely from LLM_BACKEND and the presence
+        # of keys, so after the local-only gate landed it reported
+        # {ready: true, tier: "groq"} on a deployment where every scan would
+        # actually raise CloudDisabled. A readiness check that does not know
+        # about the rule deciding readiness is worse than none.
+        problems.append(
+            f"LLM_BACKEND={backend!r} but ThirdEye is in LOCAL-ONLY mode, so every "
+            f"scan will refuse. Either set LLM_BACKEND=ollama with Ollama running, "
+            f"or set THIRDEYE_ALLOW_CLOUD=1 to deliberately re-enable hosted models."
+        )
+    elif backend in ("groq", "hosted"):
         # hosted council needs Cerebras (dual) at minimum; Groq is optional.
         if not has_cerebras:
             problems.append("CEREBRAS_API_KEY missing — hosted council/judge cannot run")
@@ -417,6 +482,7 @@ async def health():
     return {
         "ready": not problems,
         "tier": backend,
+        "mode": "cloud-enabled" if ALLOW_CLOUD else "local-only",
         "providers": {"groq": has_groq, "cerebras": has_cerebras},
         "foundry": foundry_available(),
         "problems": problems,
