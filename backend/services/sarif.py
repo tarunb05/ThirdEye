@@ -25,7 +25,7 @@ clean (GO) run still produces a valid SARIF object with zero results.
 """
 
 # Where a SARIF consumer can learn what produced these results.
-ARGUS_INFO_URI = "https://github.com/third-eye-capstone/argus"
+THIRDEYE_INFO_URI = "https://github.com/tarunb05/ThirdEye"
 SARIF_SCHEMA = "https://json.schemastore.org/sarif-2.1.0.json"
 SARIF_VERSION = "2.1.0"
 
@@ -57,7 +57,7 @@ def _rule_for_type(vuln_type: str) -> dict:
             "text": f"A {title} class finding raised by an ThirdEye council specialist."
         },
         # helpUri lets a viewer deep-link to docs for this rule class.
-        "helpUri": f"{ARGUS_INFO_URI}#{vuln_type or 'unknown'}",
+        "helpUri": f"{THIRDEYE_INFO_URI}#{vuln_type or 'unknown'}",
     }
 
 
@@ -88,7 +88,7 @@ def _result_for_vuln(vuln: dict, source_path: str) -> dict:
         # partialFingerprints make a finding stable across runs / file moves so
         # GitHub can dedupe and track it — keyed on the source specialist + type.
         "partialFingerprints": {
-            "argus/source-type": f"{source}:{vuln_type}",
+            "thirdeye/source-type": f"{source}:{vuln_type}",
         },
         # Property bag: ThirdEye-specific metadata SARIF has no first-class slot for.
         "properties": {
@@ -161,7 +161,7 @@ def to_sarif(result: dict, source_path: str = "contract.sol") -> dict:
                 "tool": {
                     "driver": {
                         "name": "ThirdEye",
-                        "informationUri": ARGUS_INFO_URI,
+                        "informationUri": THIRDEYE_INFO_URI,
                         "rules": rules,
                     }
                 },
