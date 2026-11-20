@@ -128,13 +128,26 @@ def _parse_judge(raw: str) -> dict:
                 "verdict": str(p.get("verdict", "not_a_bug")).lower(),
                 "calibrated_confidence": float(p.get("calibrated_confidence", 0.0)),
                 "reason": str(p.get("reason", "")),
+                "judge_ok": True,
             }
     except Exception:
         pass
     # Unparseable judge output -> KEEP the finding, low confidence (fail-safe:
     # a security tool shouldn't silently drop a potential bug because the
     # judge's response didn't parse). It surfaces flagged, not hidden.
-    return {"verdict": "real", "calibrated_confidence": 0.4, "reason": "judge output unparseable; finding kept for safety (unvetted)"}
+    #
+    # judge_ok=False IS THE IMPORTANT PART, added 2026-10-23. The fail-safe is
+    # right for the product and was silently catastrophic for the evaluation:
+    # with LOCAL_JUDGE_MODEL defaulting to qwen3:8b, a model not pulled on the
+    # campus box, EVERY judge call 404'd and every finding came back
+    # verdict="real", confidence=0.4, upheld=True. The sweep stored 234
+    # findings with 234 identical verdicts and nothing marked as failed, so
+    # "arbitration yields no held-out gain" was measured on a judge that never
+    # answered. A fail-open default must be DISTINGUISHABLE from a judgement,
+    # or it is indistinguishable from a result.
+    return {"verdict": "real", "calibrated_confidence": 0.4,
+            "reason": "judge output unparseable or unavailable; finding kept for safety (UNVETTED)",
+            "judge_ok": False}
 
 
 async def _arbitrate_one(finding: dict, code: str, backend: str, seed: int | None) -> dict:
@@ -167,6 +180,8 @@ async def _arbitrate_one(finding: dict, code: str, backend: str, seed: int | Non
             "rebuttal": rebuttal[:600],
             "verdict": judgment["verdict"],
             "reason": judgment["reason"],
+            # False means the judge never actually adjudicated this finding.
+            "judge_ok": judgment.get("judge_ok", True),
         },
         # Judge's calibrated confidence supersedes the proposer's self-reported
         # one — that's the whole point of calibration.
