@@ -32,16 +32,15 @@
   --color-surface-2: #EDE9DF;   /* raised panels */
   --color-line: rgba(22,21,15,0.10);
 
-  /* Accent — the VALIDATED data blue, matching lib/theme.ts and the exhibit.
-     #2C4A6B was replaced because it failed the palette validator on two checks:
-     outside the lightness band and under the chroma floor, i.e. it rendered as
-     grey rather than as a hue. It survived here after lib/theme.ts was fixed,
-     which is why the deployed bundle still carried it. --color-gold is a
-     historical name; it has been the signal vermillion since the move off
-     violet, and renaming it would touch every call site for no gain. */
-  --color-accent: #1F6FB2;
-  --color-accent-soft: #4A88C4;
-  --color-accent-dim: rgba(31,111,178,0.08);
+  /* Accent — the signal vermillion, which is now the ONLY chromatic colour in
+     the chrome. The data blue that used to live here (#1F6FB2, itself a
+     validated replacement for #2C4A6B) is gone: one hue, carrying meaning,
+     reads as an instrument; two hues read as a dashboard. --color-gold is a
+     historical name that has been this same vermillion since the move off
+     violet, so the two now agree instead of competing. */
+  --color-accent: #B4351F;
+  --color-accent-soft: #C96A55;
+  --color-accent-dim: rgba(180,53,31,0.08);
   --color-gold: #B4351F;
 }
 
@@ -190,9 +189,9 @@ textarea:focus-visible,
 
 /* Ring pulse for live-status indicators */
 @keyframes ring-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(44,74,107,0.08); }
-  70% { box-shadow: 0 0 0 8px rgba(44,74,107,0.08); }
-  100% { box-shadow: 0 0 0 0 rgba(44,74,107,0.08); }
+  0% { box-shadow: 0 0 0 0 rgba(180,53,31,0.10); }
+  70% { box-shadow: 0 0 0 8px rgba(180,53,31,0.10); }
+  100% { box-shadow: 0 0 0 0 rgba(180,53,31,0.10); }
 }
 .animate-ring-pulse { animation: ring-pulse 1.8s ease-out infinite; }
 
@@ -226,8 +225,8 @@ textarea:focus-visible,
 /* Subtle background grid for hero panels */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(196, 181, 253, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(196, 181, 253, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(22, 21, 15, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(22, 21, 15, 0.045) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -258,3 +257,192 @@ body.exhibit-mode {
   color: #16150F;
 }
 body.exhibit-mode ::selection { background: #F6E7E2; }
+
+/* ─── Site shell ──────────────────────────────────────
+   The rebuilt site (src/site/) paints its own surfaces via inline tokens;
+   these three rules only make the browser's own ground match, so overscroll
+   and short pages don't show a different colour beyond the content.
+
+   This block used to force #0B0E14 near-black here, which fought the bone
+   paper the sheet above sets for the older product views -- two themes in one
+   stylesheet, last-wins. Now there is one ground and the conflict is gone. */
+html, body, #root {
+  background: #F7F5F0;
+  color: #16150F;
+  margin: 0;
+  min-height: 100%;
+}
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Ink at full strength, not the accent: a 2px blue ring on bone is ~3:1 and
+   keyboard users navigate by this one indicator. */
+:focus-visible { outline: 2px solid rgba(22,21,15,0.75); outline-offset: 2px; }
+
+/* ─── Motion layer ────────────────────────────────────────────────────
+   Lenis sets html.lenis and drives scrolling itself; these are its required
+   base styles (from the library's own stylesheet, inlined so there is no
+   extra request). Without the stop/stopped rules a nested scroller cannot
+   be locked, which matters for the Tool page's code editor.            */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* The card hover lift. A class, not inline styles, because :hover cannot be
+   expressed inline and a JS listener per card is a lot of machinery for 2px.
+   border-color carries most of the effect -- on bone paper a shadow alone
+   reads as murk, while the hairline going accent reads as "this is live". */
+.te-card {
+  transition:
+    transform 260ms cubic-bezier(.16, 1, .3, 1),
+    box-shadow 260ms ease,
+    border-color 260ms ease;
+}
+.te-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(180, 53, 31, 0.30);
+  box-shadow: 0 10px 28px -14px rgba(22, 21, 15, 0.18);
+}
+@media (prefers-reduced-motion: reduce) {
+  .te-card, .te-card:hover { transform: none; transition: none; }
+}
+
+/* Paper grain. A real press sheet is not a flat RGB value, and at 3% opacity
+   this is the difference between "white div" and "stock". Fixed-position so it
+   does not scroll with content (grain that moves reads as video noise), and
+   pointer-events:none so it never eats a click. */
+.te-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.032;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Nav links: the underline grows from the left rather than fading in, so the
+   active route reads as a position on a rail instead of a highlighted word. */
+.te-nav-link { position: relative; }
+.te-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 11px; right: 11px; bottom: 3px;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 300ms cubic-bezier(.16, 1, .3, 1);
+}
+.te-nav-link:hover::after, .te-nav-link[data-on="1"]::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .te-nav-link::after { transition: none; }
+}
+
+/* ─── Reveal: CSS-driven, not frame-driven ────────────────────────────
+   The hidden state is gated on html.te-motion, which JS adds at startup.
+   Two failure modes this is built around, both observed:
+
+   1. JS never runs (bundle fails, CSP blocks it). No .te-motion class is
+      added, so [data-reveal] is never hidden and the whole document reads
+      normally. The old GSAP version set opacity:0 from script and restored
+      it from a scroll callback -- so a page that half-loaded was a blank page.
+
+   2. requestAnimationFrame never fires. Measured in a non-compositing
+      browser pane: 0 rAF ticks and 0 scroll events in a full second with
+      visibilityState "visible". Anything that needs a frame to become
+      visible stays invisible. IntersectionObserver does NOT need a frame,
+      and neither does a class toggle, so content appears either way -- the
+      transition is the only thing lost.
+
+   The transition is therefore pure decoration over a correct static state,
+   which is the only arrangement that is safe for content.            */
+html.te-motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 720ms cubic-bezier(.16, 1, .3, 1),
+    transform 720ms cubic-bezier(.16, 1, .3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.te-motion [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.te-motion [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Last-resort unhide. Set when IntersectionObserver is proven dead (see
+   motion.tsx): observed in a non-compositing context, where IO callbacks are
+   never delivered because intersection is computed during the rendering
+   lifecycle -- the same step that was skipping rAF. Four pages rendered with
+   every section at opacity 0 before this existed. Decoration must never be
+   load-bearing for content. */
+html.te-io-dead [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* The hero instrument. Two columns on desktop, stacked below 680px.
+   Measured at 375px before this existed: the fixed 220px diagram left the
+   text column 142px wide, so the 54px readout and its caption were
+   unreadable. This lives in CSS rather than inline styles because a media
+   query is the only honest way to express it -- a JS resize listener would
+   re-render the component on every drag frame. */
+.te-eye {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 26px;
+  align-items: center;
+}
+@media (max-width: 680px) {
+  .te-eye { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* ── the architecture schematic's entrance ────────────────────────────────────
+ * The panel arrives rather than appearing: the frame lifts in, then each piece
+ * of the pipeline pops in left to right, so the reader's eye is walked along
+ * the flow once before anything starts moving through it.
+ *
+ * `both` fill, so a node is invisible during its delay rather than flashing in
+ * at full opacity and then animating. Transform-box fill-box because an SVG <g>
+ * has no box of its own to scale about. */
+@keyframes te-flow-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+.te-flow-in { animation: te-flow-in 560ms cubic-bezier(.22,1,.36,1) both; }
+
+@keyframes te-pop {
+  from { opacity: 0; transform: translateY(10px) scale(.94); }
+  to   { opacity: 1; transform: none; }
+}
+.te-pop {
+  animation: te-pop 440ms cubic-bezier(.22,1,.36,1) both;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Edges draw themselves in behind the nodes. */
+@keyframes te-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .te-flow-in, .te-pop { animation: none; opacity: 1; transform: none; }
+}
+
+/* Hold the schematic's entrance until the page has finished scrolling to it.
+ *
+ * The animation starts the moment the panel mounts, which is the same moment
+ * the scroll starts -- so its first beats played while the page was still
+ * travelling and the reader arrived part-way through. Paused with a `both`
+ * fill the nodes simply wait at their from-state; the element still has
+ * layout, so the scroll can measure where it is going. */
+[data-flow="hold"] .te-flow-in,
+[data-flow="hold"] .te-pop { animation-play-state: paused; }
