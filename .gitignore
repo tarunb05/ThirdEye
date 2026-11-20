@@ -73,3 +73,25 @@ backend/eval/phaseD.sh
 backend/eval/finish.sh
 backend/eval/pipeline_all.sh
 publish_when_done.sh
+
+# Private workspace: AI-assistant permissions and editor launch config.
+# Not part of the project; was tracked by accident.
+.claude/
+
+# Codebase-flattening helpers for pasting into an assistant. Private workflow.
+tools/
+
+# Personal working checkpoint, explicitly "not a deliverable doc".
+# Durable decisions belong in docs/DECISION_LOG.md.
+backend/eval/SESSION_NOTES.md
+
+# Local, uncommitted: the campus box address, sourced by scripts/GO.sh.
+#   THIRDEYE_DGX_HOST=user@host
+# Every variant, not just the bare name. `.dgx_host.campus` -- holding the
+# real `student-9@10.1.72.54` -- was swept into a commit by `git add -A` on
+# 2026-10-24 because only the exact filename was ignored, while the sibling
+# `.dgx_host.example` documents in its own text that the address is
+# deliberately NOT committed. Negate the example so the template stays.
+.dgx_host*
+!.dgx_host.example
+ThirdEye_Publication_Package.zip
