@@ -210,7 +210,7 @@ def _run_forge_project(target_code: str, test_source: str) -> dict:
     if not foundry_available():
         return {"ran": False, "exploited": False, "raw": "forge not installed"}
 
-    with tempfile.TemporaryDirectory(prefix="argus_dyn_") as d:
+    with tempfile.TemporaryDirectory(prefix="thirdeye_dyn_") as d:
         proj = Path(d)
         (proj / "src").mkdir()
         (proj / "test").mkdir()
