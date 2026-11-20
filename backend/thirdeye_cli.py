@@ -3,7 +3,7 @@
 ThirdEye CLI — run the smart-contract auditor council from the terminal / CI.
 
 Usage:
-    python argus_cli.py scan <path> [--sarif OUT.sarif] [--json OUT.json]
+    python thirdeye_cli.py scan <path> [--sarif OUT.sarif] [--json OUT.json]
                                     [--backend ollama|groq] [--seed N]
 
 <path> may be a single .sol file or a directory; a directory is scanned by
@@ -216,7 +216,7 @@ def cmd_scan(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="argus_cli.py",
+        prog="thirdeye_cli.py",
         description="ThirdEye — model-diverse smart-contract auditor council.",
     )
     sub = parser.add_subparsers(dest="command", required=True)
