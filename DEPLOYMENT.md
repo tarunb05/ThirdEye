@@ -108,6 +108,12 @@ also a dataset dashboard showing batch results across a 50-contract Etherscan-ve
 Under the hood it's a single hosted LLM call (Groq) combined with Slither static analysis (when
 available) and a regex-based pre-filter that suppresses some hallucinated findings — **not** the
 multi-agent "council" of model-diverse specialists, the retrieval-grounded exploit corpus, or the
-dynamic exploit-confirmation/fuzzing layer described in the Argus plan. None of those exist in
-any version of this codebase yet, deployed or otherwise — this pass only made the *existing*
-single-LLM pipeline deployable, it didn't add new analysis capability.
+dynamic exploit-confirmation/fuzzing layer.
+
+> **Superseded, 2026-09-01.** The paragraph above described the *deployed* build at the time it
+> was written, and its last sentence — that none of those components existed in any version of
+> the codebase — is no longer true. The model-diverse council, retrieval grounding, arbitration
+> and the dynamic reference-PoC path are all implemented; see `docs/THIRDEYE_PIPELINE.md`. What
+> remains accurate is the narrower point this section is really about: the *hosted single-LLM*
+> deployment path is not the council, so numbers taken from it must not be reported as
+> council results.
