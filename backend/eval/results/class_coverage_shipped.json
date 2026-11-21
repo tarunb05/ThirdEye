@@ -1,0 +1,201 @@
+{
+ "backend": "ollama_noarb",
+ "seed": 0,
+ "rule": "shipped",
+ "n_vulnerable_scored": 551,
+ "n_detected": 445,
+ "n_without_mapped_label": 202,
+ "unit": "contract carrying the label, any-slice-positive \u2014 an UPPER bound against Durieux's type-matched lower bound; the two are not differenced",
+ "per_category": [
+  {
+   "category": "unchecked_low_level_calls",
+   "n": 109,
+   "detected_any_slice": 97,
+   "rate_any_slice": 0.8899,
+   "ci95_any_slice": [
+    81.7,
+    93.6
+   ],
+   "detected_type_matched": 0,
+   "rate_type_matched": 0.0,
+   "ci95_type_matched": [
+    0.0,
+    3.4
+   ],
+   "has_specialist": false,
+   "durieux": "Slither 33% (4/12)",
+   "durieux_zero_detection": false
+  },
+  {
+   "category": "reentrancy",
+   "n": 86,
+   "detected_any_slice": 66,
+   "rate_any_slice": 0.7674,
+   "ci95_any_slice": [
+    66.8,
+    84.4
+   ],
+   "detected_type_matched": 25,
+   "rate_type_matched": 0.2907,
+   "ci95_type_matched": [
+    20.5,
+    39.4
+   ],
+   "has_specialist": true,
+   "durieux": "Slither 88% (7/8)",
+   "durieux_zero_detection": false
+  },
+  {
+   "category": "arithmetic",
+   "n": 79,
+   "detected_any_slice": 61,
+   "rate_any_slice": 0.7722,
+   "ci95_any_slice": [
+    66.8,
+    85.1
+   ],
+   "detected_type_matched": 49,
+   "rate_type_matched": 0.6203,
+   "ci95_type_matched": [
+    51.0,
+    71.9
+   ],
+   "has_specialist": true,
+   "durieux": "Mythril 68% (15/22)",
+   "durieux_zero_detection": false
+  },
+  {
+   "category": "time_manipulation",
+   "n": 40,
+   "detected_any_slice": 37,
+   "rate_any_slice": 0.925,
+   "ci95_any_slice": [
+    80.1,
+    97.4
+   ],
+   "detected_type_matched": 0,
+   "rate_type_matched": 0.0,
+   "ci95_type_matched": [
+    -0.0,
+    8.8
+   ],
+   "has_specialist": false,
+   "durieux": "Slither 40% (2/5)",
+   "durieux_zero_detection": false
+  },
+  {
+   "category": "access_control",
+   "n": 17,
+   "detected_any_slice": 15,
+   "rate_any_slice": 0.8824,
+   "ci95_any_slice": [
+    65.7,
+    96.7
+   ],
+   "detected_type_matched": 12,
+   "rate_type_matched": 0.7059,
+   "ci95_type_matched": [
+    46.9,
+    86.7
+   ],
+   "has_specialist": true,
+   "durieux": "best 21% (4/19)",
+   "durieux_zero_detection": false
+  },
+  {
+   "category": "bad_randomness",
+   "n": 9,
+   "detected_any_slice": 6,
+   "rate_any_slice": 0.6667,
+   "ci95_any_slice": [
+    35.4,
+    87.9
+   ],
+   "detected_type_matched": 0,
+   "rate_type_matched": 0.0,
+   "ci95_type_matched": [
+    0.0,
+    29.9
+   ],
+   "has_specialist": false,
+   "durieux": "ZERO by any of 9 tools",
+   "durieux_zero_detection": true
+  },
+  {
+   "category": "denial_of_service",
+   "n": 8,
+   "detected_any_slice": 5,
+   "rate_any_slice": 0.625,
+   "ci95_any_slice": [
+    30.6,
+    86.3
+   ],
+   "detected_type_matched": 4,
+   "rate_type_matched": 0.5,
+   "ci95_type_matched": [
+    21.5,
+    78.5
+   ],
+   "has_specialist": true,
+   "durieux": "ZERO by any of 9 tools",
+   "durieux_zero_detection": true
+  },
+  {
+   "category": "front_running",
+   "n": 4,
+   "detected_any_slice": 4,
+   "rate_any_slice": 1.0,
+   "ci95_any_slice": [
+    51.0,
+    100.0
+   ],
+   "detected_type_matched": 0,
+   "rate_type_matched": 0.0,
+   "ci95_type_matched": [
+    0.0,
+    49.0
+   ],
+   "has_specialist": true,
+   "durieux": "Mythril/Securify 29% (2/7)",
+   "durieux_zero_detection": false
+  },
+  {
+   "category": "other",
+   "n": 3,
+   "detected_any_slice": 2,
+   "rate_any_slice": 0.6667,
+   "ci95_any_slice": [
+    20.8,
+    93.9
+   ],
+   "detected_type_matched": 0,
+   "rate_type_matched": 0.0,
+   "ci95_type_matched": [
+    0.0,
+    56.2
+   ],
+   "has_specialist": false,
+   "durieux": null,
+   "durieux_zero_detection": false
+  },
+  {
+   "category": "short_addresses",
+   "n": 1,
+   "detected_any_slice": 1,
+   "rate_any_slice": 1.0,
+   "ci95_any_slice": [
+    20.7,
+    100.0
+   ],
+   "detected_type_matched": 0,
+   "rate_type_matched": 0.0,
+   "ci95_type_matched": [
+    0.0,
+    79.3
+   ],
+   "has_specialist": false,
+   "durieux": "ZERO by any of 9 tools",
+   "durieux_zero_detection": true
+  }
+ ]
+}
