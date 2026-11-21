@@ -41,6 +41,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 
+from eval import guard
 from eval.loaders import web3bugs
 from eval.slicing import slice_paths, is_in_scope
 from eval.schema import REPO_ROOT
@@ -296,18 +297,34 @@ async def main() -> None:
 
     if not a.report_only:
         print(f"[web3bugs] {len(items)} contests with S-class bugs; cap {a.max_slices} slices each; backend={a.backend}")
-        for i, it in enumerate(items, 1):
-            cp = CKPT / f"contest_{it.contract_id}.json"
-            if cp.exists():
-                rows.append(json.load(open(cp)))
-                continue
-            row = await scan_contest(it, a.max_slices, a.backend, a.seed, a.concurrency)
-            json.dump(row, open(cp, "w"), indent=1)
-            rows.append(row)
-            n_bugs = len(sclass.get(str(it.contract_id), []))
-            print(f"  [{i}/{len(items)}] contest {it.contract_id:<5} slices={row['n_slices_scanned']:<3} "
-                  f"-> {'DETECTED' if row['detected'] else 'missed  '} "
-                  f"({n_bugs} S-bug(s), {row['latency_s']}s)")
+        # 2,733 slices across 102 projects is the longest unattended stage in
+        # the pipeline, and until now it had neither a breaker nor quarantining.
+        # A contest whose slices all died used to be checkpointed as "missed",
+        # which is the worst possible direction: it depresses recall, so the
+        # result looks conservative rather than broken and nobody re-runs it.
+        g = guard.Guard("web3bugs",
+                        terminal_fn=guard.aggregate_terminal("detected", "slices_errored"))
+        try:
+            for i, it in enumerate(items, 1):
+                cp = CKPT / f"contest_{it.contract_id}.json"
+                if cp.exists():
+                    rows.append(json.load(open(cp)))
+                    continue
+                row = await scan_contest(it, a.max_slices, a.backend, a.seed, a.concurrency)
+                terminal = g.write(row, cp)
+                if terminal:
+                    rows.append(row)
+                n_bugs = len(sclass.get(str(it.contract_id), []))
+                mark = ("DETECTED" if row["detected"] else "missed  ") if terminal else "QUARANTINE"
+                print(f"  [{i}/{len(items)}] contest {it.contract_id:<5} slices={row['n_slices_scanned']:<3} "
+                      f"-> {mark} "
+                      f"({n_bugs} S-bug(s), {row['latency_s']}s, {row['slices_errored']} slice err)")
+        except guard.RunAborted:
+            guard.record_stage(g.summary())
+            raise
+        print()
+        print(g.line())
+        guard.record_stage(g.summary())
     else:
         # --report-only used to glob EVERY checkpoint and ignore --gptscan-set, so
         # "the GPTScan comparison" silently reported the whole 91-contest sweep
