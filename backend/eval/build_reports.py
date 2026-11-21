@@ -16,6 +16,10 @@ from pathlib import Path
 
 from eval import metrics
 from eval.loaders import etherscan50, smartbugs_curated, web3bugs, access_control_slice
+# The SAME function run_baselines uses to build the filename. Imported, not
+# re-implemented: two copies of a sanitizer drift, and the drift is invisible
+# because the mismatch looks like a missing row.
+from eval.run_baselines import _safe_id
 from eval.schema import REPO_ROOT
 
 CHECKPOINT_ROOT = REPO_ROOT / "backend" / "eval" / "checkpoints"
@@ -29,14 +33,54 @@ LOADERS = {
 }
 
 
-def _load_checkpoints(baseline: str, dataset_name: str) -> dict[str, dict]:
+def _load_checkpoints(baseline: str, dataset_name: str, seed: int | None = None) -> dict[str, dict]:
+    """Rows for one (baseline, dataset), seed-aware.
+
+    THIS GLOBBED ONE LEVEL TOO SHALLOW. `run_baselines --seed N` writes to
+    <baseline>/<dataset>/seedN/, and only an unseeded run writes flat into
+    <baseline>/<dataset>/. Matching `*.json` directly under the dataset dir
+    therefore returned {} for every seeded arm, and main() turned that into
+    `SKIP row ...: no checkpoints on this machine` -- a FALSE statement that
+    reads as benign housekeeping. On 2026-10-24 that silently hid ~580
+    completed rows, including 21 hours of council GPU time, from every
+    baseline table. Same failure shape as the dead slither arm and the
+    *baseline* glob before it: a loader that cannot see a thing reports the
+    thing as absent, in reassuring words.
+
+    Seeds are never pooled. Two seeds hold rows for the SAME contract_id, so
+    merging them would silently let one seed overwrite the other and score a
+    mixture no run produced. If several seed dirs exist and none is named,
+    that is reported and the lowest is used explicitly, not quietly."""
     out = {}
-    d = CHECKPOINT_ROOT / baseline / dataset_name
-    if not d.exists():
+    base = CHECKPOINT_ROOT / baseline / dataset_name
+    if not base.exists():
         return out
-    for f in d.glob("*.json"):
-        with open(f, encoding="utf-8") as fh:
-            out[f.stem] = json.load(fh)
+
+    if seed is not None:
+        dirs = [base / f"seed{seed}"]
+    else:
+        flat = sorted(base.glob("*.json"))
+        seeded = sorted(d for d in base.iterdir()
+                        if d.is_dir() and d.name.startswith("seed")
+                        and d.name[4:].isdigit())
+        if flat:
+            dirs = [base]
+        elif len(seeded) <= 1:
+            dirs = seeded
+        else:
+            pick = min(seeded, key=lambda d: int(d.name[4:]))
+            print(f"  NOTE {baseline}/{dataset_name}: {len(seeded)} seed dirs "
+                  f"({', '.join(d.name for d in seeded)}); using {pick.name}. "
+                  f"Seeds are not pooled -- they hold rows for the same contracts. "
+                  f"Pass an explicit seed to choose.")
+            dirs = [pick]
+
+    for d in dirs:
+        if not d.exists():
+            continue
+        for f in d.glob("*.json"):
+            with open(f, encoding="utf-8") as fh:
+                out[f.stem] = json.load(fh)
     return out
 
 
@@ -50,7 +94,14 @@ def build_baseline_dataset_report(baseline: str, dataset_name: str, items) -> tu
     skip_reasons: list[dict] = []
 
     for item in items:
-        ckpt = checkpoints.get(item.contract_id)
+        # Look up by the SANITIZED id. run_baselines writes
+        # <_safe_id(contract_id)>.json, so a loader id containing anything
+        # outside [A-Za-z0-9_.-] -- every `sb:`/`w3b:` prefix does -- never
+        # matched its own checkpoint. smartbugs_curated ids happen to need no
+        # sanitizing, so that one dataset worked and the bug stayed hidden:
+        # access_control_slice scored 0 of 148 council and 0 of 159 single_llm
+        # rows, reported as "missing".
+        ckpt = checkpoints.get(_safe_id(item.contract_id)) or checkpoints.get(item.contract_id)
         status = ckpt.get("status", "missing") if ckpt is not None else "missing"
         status_counts[status] = status_counts.get(status, 0) + 1
 
@@ -158,7 +209,13 @@ def main() -> None:
             # when in fact it was simply never run on this machine. Rows with
             # real non-ok coverage (no_result/too_large) are kept.
             if coverage["status_counts"].get("missing", 0) == coverage["n_total"]:
-                print(f"SKIP row {baseline}/{dataset_name}: no checkpoints on this machine")
+                # Do NOT claim the rows are absent from the machine -- that
+                # wording hid a loader bug for a day. Say what is actually
+                # known: nothing LOADED, and where it looked.
+                print(f"SKIP row {baseline}/{dataset_name}: 0 of {coverage['n_total']} "
+                      f"rows loaded from {CHECKPOINT_ROOT / baseline / dataset_name} "
+                      f"(incl. seed*/). Either the arm never ran here, or it ran and "
+                      f"wrote somewhere this loader does not look.")
                 continue
             if baseline == "slither":
                 metrics.print_report(report)
@@ -189,11 +246,28 @@ def main() -> None:
     lines = [
         "# Baseline ablation table",
         "",
-        "Generated by `eval/build_reports.py` from real checkpointed analysis runs",
-        "(Slither: Windows + WSL2 sessions; single_llm/current_thirdeye: local Ollama",
-        "via WSL2, `llama3.2:3b`). Web3Bugs only has a Slither row — see coverage notes",
-        "above and prior session's documentation for why the LLM baselines were never",
-        "run against it.",
+        "Generated by `eval/build_reports.py` from real checkpointed analysis runs.",
+        "",
+        "**Provenance (corrected 2026-10-24).** This preamble previously said",
+        "Slither ran on Windows + WSL2 and that Web3Bugs had a Slither row. Both",
+        "are now wrong and the second was never checked against the table it",
+        "introduced: the `slither` arm has **zero** usable rows on every dataset.",
+        "Its 2026 re-run was attempted on an aarch64 host whose 76 solc binaries",
+        "are all x86-64, so it produced 301 `no_result` rows and nothing else",
+        "(quarantined; FINDINGS.md E8). The published Slither numbers come from an",
+        "earlier x86 run recorded in `slither_bench.json`, NOT from this table.",
+        "`single_llm` and `council` rows here are from the campus GB10 via Ollama.",
+        "",
+        "Rows appear only for (arm, dataset) pairs with loadable checkpoints. A",
+        "SKIP line states where the loader looked -- it must never claim the rows",
+        "are absent from the machine, because for a day it said exactly that about",
+        "307 rows it simply could not address (sanitized-id mismatch, fixed).",
+        "",
+        "**Arms are scored on their own coverage, not a common contract set.**",
+        "Run `python -m eval.baseline_parity` before citing any two rows against",
+        "each other; as of 2026-10-24 the restriction moves F1/recall by <= 0.7",
+        "points on both datasets, so these rows are comparable -- a measured",
+        "statement, not an assumption.",
         "",
         "Binary precision/recall/F1 are not meaningful pooled across datasets:",
         "SmartBugs-Curated and Web3Bugs have zero negative (likely_safe) examples, so",
