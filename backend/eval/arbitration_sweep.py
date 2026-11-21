@@ -34,6 +34,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 
+from eval import guard
 from eval.loaders import thirdeye_bench
 from eval.schema import REPO_ROOT
 
@@ -80,6 +81,14 @@ async def collect(arb_backend: str, council_backend: str, limit: int) -> None:
     from services.council import run_council
     from services.arbitration import run_arbitration
 
+    # The arbiter is a second model on top of the council, so this stage makes
+    # roughly twice the calls per contract and is twice as exposed to a backend
+    # going down. It already refused to checkpoint an errored row -- which is
+    # right -- but with nothing counting those refusals it would happily spend
+    # an hour writing nothing at all and exit looking like a completed sweep
+    # over a handful of contracts.
+    g = guard.Guard("arbitration", terminal_fn=lambda r: not r.get("error"))
+
     for i, b in enumerate(flagged, 1):
         cid = b["contract_id"]
         cp = CKPT / f"{cid.replace('/', '_')}.json"
@@ -103,6 +112,10 @@ async def collect(arb_backend: str, council_backend: str, limit: int) -> None:
                     findings.append({
                         "type": f.get("type"),
                         "judge_verdict": a.get("verdict"),
+                        # Carry the judge's liveness into the row. Without it a
+                        # fail-open default is stored as a verdict and the
+                        # sweep cannot tell adjudication from a 404.
+                        "judge_ok": a.get("judge_ok", True),
                         "conf": f.get("confidence"),
                         "p_real": _p_real(a.get("verdict", ""), f.get("confidence", 0.0)),
                         "upheld": bool(f.get("upheld")),
@@ -113,11 +126,17 @@ async def collect(arb_backend: str, council_backend: str, limit: int) -> None:
             row = {"contract_id": cid, "gt": b["ground_truth"], "findings": [],
                    "council_verdict": "NO-GO", "error": str(e)[:200]}
         row["latency_s"] = round(time.time() - t0, 1)
-        if not row["error"]:
-            json.dump(row, open(cp, "w"))
+        try:
+            g.write(row, cp)
+        except guard.RunAborted:
+            guard.record_stage(g.summary())
+            raise
         scores = [f"{f['p_real']:.2f}" for f in row["findings"]]
         print(f"  [{i}/{len(flagged)}] {cid[:42]:<44} gt={row['gt']:<12} "
               f"p_real={scores} {row['latency_s']}s" + (f" ERR:{row['error'][:40]}" if row["error"] else ""))
+
+    print(g.line())
+    guard.record_stage(g.summary())
 
 
 def sweep() -> dict:
