@@ -34,7 +34,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()  # must run before importing eval.metrics -> services.llm reads LLM_BACKEND/GROQ_API_KEY at module-import time
 
-from eval import metrics
+from eval import guard, metrics
 from eval.loaders import etherscan50, smartbugs_curated, web3bugs, access_control_slice
 from eval.schema import EvalItem, REPO_ROOT
 
@@ -50,6 +50,39 @@ CHECKPOINT_ROOT = REPO_ROOT / "backend" / "eval" / "checkpoints"
 # block every future day's retry, exactly the kind of self-inflicted
 # wound a multi-day checkpointed run can't afford.
 TERMINAL_STATUSES = {"ok", "no_result", "too_large_for_backend"}
+
+# `no_result` means two OPPOSITE things and the guard could not tell them apart.
+#
+#   (a) the corpus genuinely lacks the source file -> terminal. A permanent
+#       property of the dataset; re-running will never change it.
+#   (b) the TOOL could not run at all -> NOT terminal, and not the corpus's
+#       fault in any way.
+#
+# Both write status="no_result", so treating the status as terminal certified
+# (b) as healthy. On 2026-10-24 the slither arm emitted 303 rows of (b) --
+# every solc binary on the box is x86-64 on an aarch64 host -- and the guard
+# printed, two lines below `ok: 0`:
+#
+#     [baseline:slither/smartbugs_curated] sound=142 quarantined=0 (0%) 159.0/min
+#
+# A 100% dead arm reported as 100% sound, at 159 rows/min, by the very
+# component whose job is to notice that. Only a `reason` naming an absent
+# source counts as terminal now; anything else is quarantined.
+_CORPUS_ABSENT_REASONS = ("missing source file", "no contracts", "empty source")
+
+
+def _baseline_terminal(row: dict) -> bool:
+    """Terminal iff the result is a real answer, or a real property of the corpus."""
+    st = row.get("status")
+    if st == "ok":
+        return True
+    if st == "too_large_for_backend":
+        # A genuine, reproducible limit of the backend for that input.
+        return True
+    if st == "no_result":
+        reason = str(row.get("reason") or "").lower()
+        return any(k in reason for k in _CORPUS_ABSENT_REASONS)
+    return False
 
 # The benchmark BACKBONE (the restructured set). Etherscan-50 is intentionally
 # NOT here: its ground truth is heuristic/scraped ("vulnerabilities not checked
@@ -294,6 +327,16 @@ async def run_dataset_baseline(baseline: str, dataset_name: str, items: list[Eva
     preds: dict[str, metrics.Prediction] = {}
     counts = {"ok": 0, "skipped_checkpoint": 0, "no_result": 0, "error": 0, "rate_limited_exhausted": 0}
 
+    # This runner already refuses to checkpoint a non-terminal status, so a
+    # failure costs no permanent damage -- what it lacked was any reason to
+    # STOP. With a dead backend it would walk all 400 items, write nothing,
+    # and exit printing a tidy counts dict, having burnt the slot for nothing.
+    # Note that "no_result" (a missing source file) counts as terminal here and
+    # must not trip the breaker: it is a permanent property of the corpus, not
+    # a symptom of the backend.
+    g = guard.Guard(f"baseline:{baseline}/{dataset_name}",
+                    terminal_fn=_baseline_terminal)
+
     for i, item in enumerate(items):
         ckpt_path = _checkpoint_path(baseline, dataset_name, item.contract_id, seed=seed)
         cached = _load_checkpoint(ckpt_path)
@@ -307,11 +350,18 @@ async def run_dataset_baseline(baseline: str, dataset_name: str, items: list[Eva
                 t0 = time.time()
                 result = await run_one(baseline, item, llm_backend, seed=seed)
                 result["latency_s"] = round(time.time() - t0, 2)
-            if result.get("status") in TERMINAL_STATUSES:
-                result["_checkpointed_at"] = time.time()
-                if seed is not None:
-                    result["_seed"] = seed
-                _save_checkpoint(ckpt_path, result)
+            # Observe before saving: a RunAborted here must not leave a
+            # half-considered row behind, and the existing save condition is
+            # already the same predicate the guard is using.
+            try:
+                if g.observe(result):
+                    result["_checkpointed_at"] = time.time()
+                    if seed is not None:
+                        result["_seed"] = seed
+                    _save_checkpoint(ckpt_path, result)
+            except guard.RunAborted:
+                guard.record_stage(g.summary())
+                raise
 
         status = result.get("status", "error")
         counts[status] = counts.get(status, 0) + 1
@@ -327,6 +377,8 @@ async def run_dataset_baseline(baseline: str, dataset_name: str, items: list[Eva
             )
 
     print(f"  [{baseline}/{dataset_name}] done: {counts}")
+    print(f"  {g.line()}")
+    guard.record_stage(g.summary())
     return {"predictions": preds, "counts": counts}
 
 
