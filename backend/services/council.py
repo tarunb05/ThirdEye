@@ -130,11 +130,24 @@ _SPECIALIST_BY_ROLE = {s["role"]: s for s in SPECIALISTS}
 # Set OLLAMA_LOGIC_MODEL=llama3.1:8b on a bigger GPU to restore the 8B.
 LOGIC_MODEL = os.getenv("OLLAMA_LOGIC_MODEL", "llama3.2:3b")
 
+# The code-reading slot, split out for the same reason as LOGIC_MODEL: model
+# SIZE is the binding constraint on a small GPU, not model quality.
+# qwen2.5-coder:7b is 4.68 GB against 4 GB of VRAM on the demo laptop, and
+# under memory pressure it does not merely run slowly -- it dies with
+# "CUDA error: shared object initialization failed", erroring one specialist on
+# EVERY scan. Measured on this machine: 1 of 4 routed specialists errored on
+# both smoke-test contracts.
+#
+# Set OLLAMA_CODER_MODEL=qwen2.5-coder:3b on a <=4 GB GPU, or leave the 7b on a
+# bigger card. Three distinct model families (qwen / llama / gemma) are
+# preserved either way, so the model-diversity claim is unaffected by the swap.
+CODER_MODEL = os.getenv("OLLAMA_CODER_MODEL", "qwen2.5-coder:7b")
+
 OLLAMA_ASSIGNMENTS = {
-    "reentrancy": "qwen2.5-coder:7b",
-    "access_control": "qwen2.5-coder:7b",
-    "arithmetic": "qwen2.5-coder:7b",
-    "proxy_upgradeability": "qwen2.5-coder:7b",
+    "reentrancy": CODER_MODEL,
+    "access_control": CODER_MODEL,
+    "arithmetic": CODER_MODEL,
+    "proxy_upgradeability": CODER_MODEL,
     "business_logic": LOGIC_MODEL,
     "oracle_price_manipulation": LOGIC_MODEL,
     "flashloan_mev": LOGIC_MODEL,
@@ -181,6 +194,15 @@ def specialist_assignments(backend: str) -> dict:
         # throughput — use for thousands-scale runs, not for the headline
         # diversity claim.
         return {s["role"]: ("cerebras", CEREBRAS_MODEL) for s in SPECIALISTS}
+    if backend in ("groq", "hosted") and not ALLOW_CLOUD:
+        # Fail loudly rather than quietly running a different tier than asked.
+        # A silent downgrade is how a run gets labelled "hosted" in its
+        # provenance while every call actually went somewhere else.
+        raise CloudDisabled(
+            f"tier {backend!r} needs a hosted provider, but ThirdEye is in "
+            f"LOCAL-ONLY mode. Use the 'ollama' tier, or set "
+            f"THIRDEYE_ALLOW_CLOUD=1 to reproduce the paper's hosted runs."
+        )
     if backend in ("groq", "hosted"):
         return dict(GROQ_CEREBRAS_ASSIGNMENTS if _HAS_GROQ else CEREBRAS_DUAL_ASSIGNMENTS)
     return {role: ("ollama", model) for role, model in OLLAMA_ASSIGNMENTS.items()}
@@ -301,7 +323,34 @@ def get_api_call_count() -> dict:
     return {"total": _API_CALL_COUNT["total"], "by_provider": dict(_API_CALL_COUNT["by_provider"])}
 
 
+# LOCAL-ONLY BY DEFAULT.
+#
+# ThirdEye now runs entirely on the machine in front of you: Ollama, no API
+# key, no network, no per-call cost, and nothing leaves the laptop. That last
+# property is the one that matters for the actual use case -- you are handing
+# this tool unaudited, often proprietary, Solidity source. Shipping it to a
+# third-party inference API by default was always the wrong default for a
+# security tool, independent of cost.
+#
+# The hosted providers are not deleted, because the paper reports measurements
+# taken on them and those numbers must stay reproducible. They are GATED: a
+# cloud call raises unless THIRDEYE_ALLOW_CLOUD=1 is set explicitly. An absent
+# or empty key no longer silently changes which models run -- it refuses.
+ALLOW_CLOUD = os.getenv("THIRDEYE_ALLOW_CLOUD", "").strip().lower() in ("1", "true", "yes")
+
+
+class CloudDisabled(RuntimeError):
+    """Raised when something asks for a hosted provider in local-only mode."""
+
+
 async def _query(provider: str, model: str, prompt: str, timeout: int | None = None, seed: int | None = None) -> str:
+    if provider != "ollama" and not ALLOW_CLOUD:
+        raise CloudDisabled(
+            f"provider {provider!r} requested but ThirdEye is in LOCAL-ONLY mode. "
+            f"Everything runs on Ollama; no contract source leaves this machine. "
+            f"Set THIRDEYE_ALLOW_CLOUD=1 only if you are deliberately reproducing "
+            f"the paper's hosted-tier measurements."
+        )
     _API_CALL_COUNT["total"] += 1
     _API_CALL_COUNT["by_provider"][provider] = _API_CALL_COUNT["by_provider"].get(provider, 0) + 1
     if provider == "ollama":
@@ -445,6 +494,12 @@ async def _run_specialist(spec: dict, provider: str, model: str, code: str, seed
 CONF_MIN = float(os.getenv("COUNCIL_CONF_MIN", "0.6"))
 
 
+# Populated by _aggregate on every call; read by _assemble_result immediately
+# after. Single-threaded per contract, same pattern as run_ablation's health
+# capture.
+_LAST_GATE: dict = {}
+
+
 def _aggregate(specialist_results: list[dict], code: str) -> list[dict]:
     """Pure-Python evidence gate — PER FINDING, no cross-class quorum.
 
@@ -457,12 +512,41 @@ def _aggregate(specialist_results: list[dict], code: str) -> list[dict]:
     Genuine precision is then applied by the adversarial arbitration stage
     (services/arbitration.py), which vets each surviving finding with a strong
     independent judge — real per-finding review, not a vote count."""
-    return [
-        r for r in specialist_results
-        if r["found"]
-        and r["confidence"] >= CONF_MIN
-        and quote_appears_in_code(r["evidence_quote"], code)
-    ]
+    # THE GATE MUST REPORT WHAT IT REJECTED. This function silently discarded
+    # every finding whose quote did not appear in the source, which made the
+    # fabrication question (F2: how often does a specialist invent a quote?)
+    # permanently unanswerable from cached data -- every surviving finding has
+    # a valid quote BY CONSTRUCTION, so the stored rows can only ever show a
+    # 0% fabrication rate. Three months of runs cannot answer it. Count the
+    # rejections by reason and keep a bounded sample.
+    kept, rej = [], {"proposed": len(specialist_results), "not_found": 0,
+                     "below_conf": 0, "quote_empty": 0, "quote_not_in_code": 0}
+    sample = []
+    for r in specialist_results:
+        if not r["found"]:
+            rej["not_found"] += 1
+            continue
+        if r["confidence"] < CONF_MIN:
+            rej["below_conf"] += 1
+            continue
+        q = r.get("evidence_quote") or ""
+        if not q.strip():
+            rej["quote_empty"] += 1
+            continue
+        if not quote_appears_in_code(q, code):
+            # A non-empty quote that is NOT in the source the model was shown.
+            # This is the fabrication signal; it is the whole point of F2.
+            rej["quote_not_in_code"] += 1
+            if len(sample) < 8:
+                sample.append({"role": r.get("type"), "confidence": r.get("confidence"),
+                               "severity": r.get("severity"), "model": r.get("model"),
+                               "quote": q[:200]})
+            continue
+        kept.append(r)
+    _LAST_GATE.clear()
+    _LAST_GATE.update(rej)
+    _LAST_GATE["fabricated_sample"] = sample
+    return kept
 
 
 # Contract-level risk threshold. THIS is the rule the paper's headline result
@@ -623,11 +707,32 @@ def _assemble_result(code: str, features: dict, specialist_results: list[dict], 
             "contract_risk": round(_contract_risk(confirmed), 4),
             "risk_tau": RISK_TAU,
             "findings_suppressed": len(suppressed),
+            # Evidence-gate accounting, so F2 is answerable offline.
+            "gate": dict(_LAST_GATE),
             "similar_in_db": len(similar_exploits) if similar_exploits else 0,
             "llm_error_detected": llm_error_detected, "tier": backend, "models_used": models,
         },
         "council_detail": specialist_results, "similar_exploits": similar_exploits or [], "mode": "council",
     }
+
+
+def _models_resident() -> bool:
+    """True when every local model can stay loaded at once, so grouping by
+    model buys nothing.
+
+    The grouping below exists because a 4GB GPU holds ONE of these models at a
+    time. On a host with enough memory for all three (OLLAMA_MAX_LOADED_MODELS
+    >= the number of distinct models, OLLAMA_KEEP_ALIVE long enough that
+    nothing is evicted between contracts), there is no reload to avoid and the
+    serialisation is pure dead time: a contract waits out three sequential
+    groups instead of fanning all eight specialists out at once.
+
+    Opt-in, not auto-detected. Memory being present is not the same as Ollama
+    being configured to use it, and guessing wrong costs an evict+reload per
+    call -- the failure this grouping was written to prevent. Set
+    OLLAMA_MODELS_RESIDENT=1 once Gate 0 confirms the models stay loaded.
+    """
+    return os.getenv("OLLAMA_MODELS_RESIDENT", "").strip().lower() in ("1", "true", "yes")
 
 
 def _schedule_groups(assignments: dict, backend: str) -> list[list[tuple]]:
@@ -648,7 +753,7 @@ def _schedule_groups(assignments: dict, backend: str) -> list[list[tuple]]:
     positionally indexes), so that is safe.
     """
     items = [(role, provider, model) for role, (provider, model) in assignments.items()]
-    if backend == "ollama":
+    if backend == "ollama" and not _models_resident():
         by_model: dict[str, list[tuple]] = {}
         for role, provider, model in items:
             by_model.setdefault(model, []).append((role, provider, model))

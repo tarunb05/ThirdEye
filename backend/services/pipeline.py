@@ -125,7 +125,3 @@ async def run_thirdeye(
     result["mode"] = "thirdeye"
     return result
 
-
-# Backwards-compatible alias — the old endpoint/name still works.
-async def run_argus(code: str, **kw) -> dict:
-    return await run_thirdeye(code, **kw)
