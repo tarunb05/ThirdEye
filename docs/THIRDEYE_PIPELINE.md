@@ -1,4 +1,7 @@
-# Argus pipeline & benchmark restructure (Session 5)
+# ThirdEye pipeline & benchmark architecture
+
+**This is the current architecture document.** It supersedes
+`GAP_ANALYSIS.md`, which describes an earlier state of the project.
 
 This documents the restructured benchmarking and the full multi-phase pipeline
 built in this session. It is deliberately honest about what is production-grade,

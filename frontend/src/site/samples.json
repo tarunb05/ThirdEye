@@ -1,0 +1,50 @@
+[
+  {
+    "id": "safe-guarded-withdraw",
+    "name": "Guarded Withdraw (looks risky, is not)",
+    "category": "Safe / false-positive probe",
+    "expected": "GO",
+    "blurb": "A raw .call{value:} sits right there in the source, but state is zeroed first AND a reentrancy guard wraps the function. Pattern matchers flag this; a reader of the actual logic should not. This is the sample most likely to expose a false positive — which is exactly why it is in the set.",
+    "code": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.20;\n\ncontract GuardedWithdraw {\n    mapping(address => uint256) public balances;\n    uint256 private _lock = 1;\n\n    modifier nonReentrant() {\n        require(_lock == 1, \"reentrant\");\n        _lock = 2;\n        _;\n        _lock = 1;\n    }\n\n    function deposit() external payable {\n        balances[msg.sender] += msg.value;\n    }\n\n    function withdraw() external nonReentrant {\n        uint256 bal = balances[msg.sender];\n        require(bal > 0, \"nothing to withdraw\");\n        balances[msg.sender] = 0;            // effect FIRST\n        (bool ok, ) = msg.sender.call{value: bal}(\"\");\n        require(ok, \"transfer failed\");\n    }\n}\n"
+  },
+  {
+    "id": "safe-pull-payment",
+    "name": "Pull-Payment Splitter",
+    "category": "Safe / business logic",
+    "expected": "GO",
+    "blurb": "Pull-over-push payouts with fixed shares. No external call in the accounting path at all, so there is nothing for a reentrancy or DoS specialist to legitimately raise.",
+    "code": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.20;\n\ncontract PullPaymentSplitter {\n    mapping(address => uint256) public owed;\n    uint256 public totalOwed;\n\n    function credit(address who) external payable {\n        require(who != address(0), \"zero address\");\n        owed[who] += msg.value;\n        totalOwed += msg.value;\n    }\n\n    function claim() external {\n        uint256 amount = owed[msg.sender];\n        require(amount > 0, \"nothing owed\");\n        owed[msg.sender] = 0;\n        totalOwed -= amount;\n        payable(msg.sender).transfer(amount);\n    }\n}\n"
+  },
+  {
+    "id": "safe-vault",
+    "name": "Safe Vault (CEI + Ownable)",
+    "category": "Safe",
+    "expected": "GO",
+    "blurb": "Checks-Effects-Interactions, owner-gated admin, checked arithmetic. Should pass clean.",
+    "code": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.20;\n\ncontract SafeVault {\n    address public immutable owner;\n    mapping(address => uint256) public balances;\n    constructor() { owner = msg.sender; }\n\n    modifier onlyOwner() { require(msg.sender == owner, \"not owner\"); _; }\n\n    function deposit() external payable {\n        balances[msg.sender] += msg.value;\n    }\n\n    function withdraw(uint256 amount) external {\n        require(balances[msg.sender] >= amount, \"insufficient\");\n        balances[msg.sender] -= amount;            // effects BEFORE interaction\n        (bool ok, ) = msg.sender.call{value: amount}(\"\");\n        require(ok, \"transfer failed\");\n    }\n\n    function sweepDust(address payable to) external onlyOwner {\n        to.transfer(address(this).balance);\n    }\n    receive() external payable {}\n}\n"
+  },
+  {
+    "id": "bad-randomness-lottery",
+    "name": "Predictable Lottery",
+    "category": "Bad Randomness",
+    "expected": "NO-GO",
+    "blurb": "Winner picked from block.timestamp/prevrandao — miner/validator-influenceable, not real randomness.",
+    "code": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Lottery {\n    address[] public players;\n    function enter() external payable { require(msg.value == 1 ether); players.push(msg.sender); }\n\n    function pickWinner() external {\n        // BUG: predictable on-chain \"randomness\".\n        uint256 idx = uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao))) % players.length;\n        payable(players[idx]).transfer(address(this).balance);\n        delete players;\n    }\n}\n"
+  },
+  {
+    "id": "access-control-drain",
+    "name": "Unprotected Treasury",
+    "category": "Access Control",
+    "expected": "NO-GO",
+    "blurb": "withdrawAll() has no owner/role check — anyone can drain the contract.",
+    "code": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Treasury {\n    address public owner;\n    constructor() { owner = msg.sender; }\n    function deposit() external payable {}\n\n    // BUG: no onlyOwner / access check — anyone can call this.\n    function withdrawAll() external {\n        payable(msg.sender).transfer(address(this).balance);\n    }\n}\n"
+  },
+  {
+    "id": "reentrancy-bank",
+    "name": "Vulnerable Bank",
+    "category": "Reentrancy",
+    "expected": "NO-GO",
+    "blurb": "Classic external-call-before-state-update. The withdraw pays out before zeroing the balance — re-entrant drain.",
+    "code": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract VulnerableBank {\n    mapping(address => uint256) public balances;\n\n    function deposit() external payable {\n        balances[msg.sender] += msg.value;\n    }\n\n    function withdraw() external {\n        uint256 bal = balances[msg.sender];\n        require(bal > 0, \"no balance\");\n        (bool ok, ) = msg.sender.call{value: bal}(\"\"); // external call FIRST\n        require(ok, \"transfer failed\");\n        balances[msg.sender] = 0;                       // state update AFTER\n    }\n\n    receive() external payable {}\n}\n"
+  }
+]

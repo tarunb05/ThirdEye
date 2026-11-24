@@ -1,0 +1,232 @@
+{
+  "generated_at": "2026-10-25T12:57:13",
+  "models": {
+    "coder": "qwen2.5-coder:3b",
+    "logic": "llama3.2:3b",
+    "dos": "gemma3:4b"
+  },
+  "results": {
+    "safe-guarded-withdraw": {
+      "verdict": "GO",
+      "expected": "GO",
+      "agrees": true,
+      "latency_s": 26.2,
+      "roles_routed": [
+        "reentrancy",
+        "access_control",
+        "arithmetic",
+        "business_logic"
+      ],
+      "specialists_errored": 1,
+      "verdict_reason": "1 finding(s) quoted real code but their combined risk 0.800 is below the 0.925 bar: business logic. Reported for review, not blocking.",
+      "findings": [
+        {
+          "type": "business_logic",
+          "severity": "low",
+          "confidence": 0.8,
+          "evidence_quote": "balances[msg.sender] = 0;",
+          "description": "Confirmed by business_logic specialist (llama3.2:3b). Evidence: balances[msg.sender] = 0;"
+        }
+      ]
+    },
+    "safe-pull-payment": {
+      "verdict": "NO-GO",
+      "expected": "GO",
+      "agrees": false,
+      "latency_s": 44.1,
+      "roles_routed": [
+        "reentrancy",
+        "access_control",
+        "arithmetic",
+        "business_logic",
+        "dos_gas"
+      ],
+      "specialists_errored": 0,
+      "verdict_reason": "2 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: access control, dos gas.",
+      "findings": [
+        {
+          "type": "access_control",
+          "severity": "medium",
+          "confidence": 1.0,
+          "evidence_quote": "function credit(address who) external payable {",
+          "description": "Confirmed by access_control specialist (qwen2.5-coder:3b). Evidence: function credit(address who) external payable {"
+        },
+        {
+          "type": "dos_gas",
+          "severity": "critical",
+          "confidence": 0.95,
+          "evidence_quote": "uint256 public totalOwed;",
+          "description": "Confirmed by dos_gas specialist (gemma3:4b). Evidence: uint256 public totalOwed;"
+        }
+      ]
+    },
+    "safe-vault": {
+      "verdict": "NO-GO",
+      "expected": "GO",
+      "agrees": false,
+      "latency_s": 45.5,
+      "roles_routed": [
+        "reentrancy",
+        "access_control",
+        "arithmetic",
+        "business_logic",
+        "dos_gas"
+      ],
+      "specialists_errored": 1,
+      "verdict_reason": "3 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: arithmetic, business logic, dos gas.",
+      "findings": [
+        {
+          "type": "arithmetic",
+          "severity": "critical",
+          "confidence": 1.0,
+          "evidence_quote": "balances[msg.sender] -= amount;",
+          "description": "Confirmed by arithmetic specialist (qwen2.5-coder:3b). Evidence: balances[msg.sender] -= amount;"
+        },
+        {
+          "type": "business_logic",
+          "severity": "low",
+          "confidence": 0.6,
+          "evidence_quote": "balances[msg.sender] -= amount; ",
+          "description": "Confirmed by business_logic specialist (llama3.2:3b). Evidence: balances[msg.sender] -= amount; "
+        },
+        {
+          "type": "dos_gas",
+          "severity": "critical",
+          "confidence": 0.95,
+          "evidence_quote": "balances[msg.sender] -= amount;",
+          "description": "Confirmed by dos_gas specialist (gemma3:4b). Evidence: balances[msg.sender] -= amount;"
+        }
+      ]
+    },
+    "bad-randomness-lottery": {
+      "verdict": "NO-GO",
+      "expected": "NO-GO",
+      "agrees": true,
+      "latency_s": 41.3,
+      "roles_routed": [
+        "reentrancy",
+        "access_control",
+        "business_logic",
+        "dos_gas"
+      ],
+      "specialists_errored": 0,
+      "verdict_reason": "4 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: access control, business logic, dos gas, reentrancy.",
+      "findings": [
+        {
+          "type": "reentrancy",
+          "severity": "high",
+          "confidence": 0.8,
+          "evidence_quote": "payable(players[idx]).transfer(address(this).balance);",
+          "description": "Confirmed by reentrancy specialist (qwen2.5-coder:3b). Evidence: payable(players[idx]).transfer(address(this).balance);"
+        },
+        {
+          "type": "access_control",
+          "severity": "high",
+          "confidence": 0.9,
+          "evidence_quote": "function pickWinner() external {\n    // BUG: predictable on-chain \"randomness\".\n    uint256 idx = uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao))) % players.length;\n",
+          "description": "Confirmed by access_control specialist (qwen2.5-coder:3b). Evidence: function pickWinner() external {\n    // BUG: predictable on-chain \"randomness\".\n    uint256 idx = uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao))) % players.length;\n"
+        },
+        {
+          "type": "business_logic",
+          "severity": "critical",
+          "confidence": 0.9,
+          "evidence_quote": "uint256 idx = uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao))) % players.length;",
+          "description": "Confirmed by business_logic specialist (llama3.2:3b). Evidence: uint256 idx = uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao))) % players.length;"
+        },
+        {
+          "type": "dos_gas",
+          "severity": "critical",
+          "confidence": 0.95,
+          "evidence_quote": "uint256 idx = uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao))) % players.length;",
+          "description": "Confirmed by dos_gas specialist (gemma3:4b). Evidence: uint256 idx = uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao))) % players.length;"
+        }
+      ]
+    },
+    "access-control-drain": {
+      "verdict": "NO-GO",
+      "expected": "NO-GO",
+      "agrees": true,
+      "latency_s": 34.8,
+      "roles_routed": [
+        "reentrancy",
+        "access_control",
+        "business_logic",
+        "dos_gas"
+      ],
+      "specialists_errored": 0,
+      "verdict_reason": "4 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: access control, business logic, dos gas, reentrancy.",
+      "findings": [
+        {
+          "type": "reentrancy",
+          "severity": "critical",
+          "confidence": 1.0,
+          "evidence_quote": "payable(msg.sender).transfer(address(this).balance);",
+          "description": "Confirmed by reentrancy specialist (qwen2.5-coder:3b). Evidence: payable(msg.sender).transfer(address(this).balance);"
+        },
+        {
+          "type": "access_control",
+          "severity": "critical",
+          "confidence": 1.0,
+          "evidence_quote": "function withdrawAll() external {\n        payable(msg.sender).transfer(address(this).balance);\n    }",
+          "description": "Confirmed by access_control specialist (qwen2.5-coder:3b). Evidence: function withdrawAll() external {\n        payable(msg.sender).transfer(address(this).balance);\n    }"
+        },
+        {
+          "type": "business_logic",
+          "severity": "critical",
+          "confidence": 0.8,
+          "evidence_quote": "function withdrawAll() external {",
+          "description": "Confirmed by business_logic specialist (llama3.2:3b). Evidence: function withdrawAll() external {"
+        },
+        {
+          "type": "dos_gas",
+          "severity": "critical",
+          "confidence": 0.95,
+          "evidence_quote": "function withdrawAll() external {\n        payable(msg.sender).transfer(address(this).balance);\n    }",
+          "description": "Confirmed by dos_gas specialist (gemma3:4b). Evidence: function withdrawAll() external {\n        payable(msg.sender).transfer(address(this).balance);\n    }"
+        }
+      ]
+    },
+    "reentrancy-bank": {
+      "verdict": "NO-GO",
+      "expected": "NO-GO",
+      "agrees": true,
+      "latency_s": 26.7,
+      "roles_routed": [
+        "reentrancy",
+        "access_control",
+        "arithmetic",
+        "business_logic"
+      ],
+      "specialists_errored": 1,
+      "verdict_reason": "3 finding(s) cleared the evidence gate and their combined risk 1.000 is at or above the 0.925 bar: access control, arithmetic, business logic.",
+      "findings": [
+        {
+          "type": "access_control",
+          "severity": "critical",
+          "confidence": 1.0,
+          "evidence_quote": "receive() external payable {}",
+          "description": "Confirmed by access_control specialist (qwen2.5-coder:3b). Evidence: receive() external payable {}"
+        },
+        {
+          "type": "arithmetic",
+          "severity": "high",
+          "confidence": 1.0,
+          "evidence_quote": "balances[msg.sender] += msg.value;",
+          "description": "Confirmed by arithmetic specialist (qwen2.5-coder:3b). Evidence: balances[msg.sender] += msg.value;"
+        },
+        {
+          "type": "business_logic",
+          "severity": "high",
+          "confidence": 0.8,
+          "evidence_quote": "balances[msg.sender] += msg.value;",
+          "description": "Confirmed by business_logic specialist (llama3.2:3b). Evidence: balances[msg.sender] += msg.value;"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "n": 6,
+    "agreed": 4,
+    "specialist_errors": 3
+  }
+}
